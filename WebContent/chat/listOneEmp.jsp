@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=Big5"%>
-<%@ page import="com.emp.model.*"%>
+<%@ page import="com.chat.model.*"%>
 <%
-EmpVO empVO = (EmpVO) request.getAttribute("empVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("cf_no"); //EmpServlet.java(Concroller), 存入req的empVO物件
 %>
 <html>
 <head>
@@ -29,13 +29,10 @@ EmpVO empVO = (EmpVO) request.getAttribute("empVO"); //EmpServlet.java(Concrolle
 		<th>部門</th>
 	</tr>
 	<tr align='center' valign='middle'>
-		<td><%=empVO.getEmpno()%></td>
-		<td><%=empVO.getEname()%></td>
-		<td><%=empVO.getJob()%></td>
-		<td><%=empVO.getHiredate()%></td>
-		<td><%=empVO.getSal()%></td>
-		<td><%=empVO.getComm()%></td>
-		<td><%=empVO.getDeptno()%></td>
+		<td><%=chat_FriendVO.getEmpno()%></td>
+		<td><%=chat_FriendVO.getEname()%></td>
+		<td><%=chat_FriendVO.getJob()%></td>
+		<td><%=chat_FriendVO.getHiredate()%></td>		
 	</tr>
 </table>
 

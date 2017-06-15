@@ -131,9 +131,10 @@ public class Chat_FriendServlet extends HttpServlet {
 		
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				Integer empno = new Integer(req.getParameter("cf_no").trim());
-				String ename = req.getParameter("cf_no").trim();
-				String job = req.getParameter("job").trim();				
+				String cf_no = new String(req.getParameter("cf_no").trim());
+				String mem_no_s = req.getParameter("mem_no_s").trim();
+				String mem_no_o = req.getParameter("mem_no_o").trim();				
+				String cf_is_del = req.getParameter("cf_is_del").trim();				
 				
 				java.sql.Date hiredate = null;
 				try {
@@ -162,14 +163,11 @@ public class Chat_FriendServlet extends HttpServlet {
 				Integer deptno = new Integer(req.getParameter("deptno").trim());
 
 				Chat_FriendVO chat_FriendVO = new Chat_FriendVO();
-				chat_FriendVO.setEmpno(cf_no);
-				chat_FriendVO.setEname(ename);
-				chat_FriendVO.setJob(job);
-				chat_FriendVO.setHiredate(hiredate);
-				chat_FriendVO.setSal(sal);
-				chat_FriendVO.setComm(comm);
-				chat_FriendVO.setDeptno(deptno);
-
+				chat_FriendVO.setCf_no(cf_no);
+				chat_FriendVO.setMem_no_s(mem_no_s);
+				chat_FriendVO.setMem_no_o(mem_no_o);
+				chat_FriendVO.setCf_is_del(cf_is_del);
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("chat_FriendVO", chat_FriendVO); // 含有輸入格式錯誤的empVO物件,也存入req
@@ -181,7 +179,8 @@ public class Chat_FriendServlet extends HttpServlet {
 				
 				/***************************2.開始修改資料*****************************************/
 				Chat_FriendService chat_FriendSvc = new Chat_FriendService();
-				chat_FriendVO = empSvc.updateEmp(empno, ename, job, hiredate, sal,comm, deptno);
+				chat_FriendVO = chat_FriendSvc.updateChat_Friend( cf_no,
+				           mem_no_s, mem_no_o,  cf_is_del);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("chat_FriendVO", chat_FriendVO); // 資料庫update成功後,正確的的empVO物件,存入req

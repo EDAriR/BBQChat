@@ -1,12 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.emp.model.*"%>
+<%@ page import="com.chat.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-    EmpService empSvc = new EmpService();
-    List<EmpVO> list = empSvc.getAll();
+Chat_FriendService chat_FriendSvc = new Chat_FriendService();
+    List<Chat_FriendVO> list = chat_FriendSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
 
@@ -42,32 +42,27 @@
 		<th>員工姓名</th>
 		<th>職位</th>
 		<th>雇用日期</th>
-		<th>薪水</th>
-		<th>獎金</th>
-		<th>部門</th>
+		
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
 	<%@ include file="page1.file" %> 
-	<c:forEach var="empVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+	<c:forEach var="chat_FriendVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		<tr align='center' valign='middle'>
-			<td>${empVO.empno}</td>
-			<td>${empVO.ename}</td>
-			<td>${empVO.job}</td>
-			<td>${empVO.hiredate}</td>
-			<td>${empVO.sal}</td>
-			<td>${empVO.comm}</td>
-			<td>${empVO.deptno}</td>
+			<td>${chat_FriendVO.cf_no}</td>
+			<td>${chat_FriendVO.mem_no_s}</td>
+			<td>${chat_FriendVO.mem_no_o}</td>
+			<td>${chat_FriendVO.cf_is_del}</td>			
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do">
 			     <input type="submit" value="修改">
-			     <input type="hidden" name="empno" value="${empVO.empno}">
+			     <input type="hidden" name="cf_no" value="${chat_FriendVO.cf_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do">
 			    <input type="submit" value="刪除">
-			    <input type="hidden" name="empno" value="${empVO.empno}">
+			    <input type="hidden" name="cf_no" value="${chat_FriendVO.cf_no}">
 			    <input type="hidden" name="action"value="delete"></FORM>
 			</td>
 		</tr>
