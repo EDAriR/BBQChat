@@ -5,7 +5,7 @@ Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("cf_no"); //E
 %>
 <html>
 <head>
-<title>員工資料 - listOneEmp.jsp</title>
+<title>員工資料 - listOneChat_Friend.jsp</title>
 </head>
 <body bgcolor='white'>
 

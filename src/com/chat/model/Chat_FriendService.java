@@ -26,7 +26,7 @@ public class Chat_FriendService {
         return chat_FriendVO;
     }
 
-    public Chat_FriendVO updateChat_Friend(String cf_no, String cf_is_del) {
+    public Chat_FriendVO updateChat_Friend(String cfNo, String mem_no_s, String cf_no, String cf_is_del) {
 
         Chat_FriendVO chat_FriendVO = new Chat_FriendVO();
 

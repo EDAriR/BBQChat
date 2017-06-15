@@ -12,14 +12,14 @@ Chat_FriendService chat_FriendSvc = new Chat_FriendService();
 
 <html>
 <head>
-<title>所有員工資料 - listAllEmp.jsp</title>
+<title>所有好友資料 - listAllChat_Friend.jsp</title>
 </head>
 <body bgcolor='white'>
 <b><font color=red>此頁練習採用 EL 的寫法取值:</font></b>
 <table border='1' cellpadding='5' cellspacing='0' width='800'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>所有員工資料 - ListAllEmp.jsp</h3>
+		<h3>所有員工資料 - listAllChat_Friend.jsp</h3>
 		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a>
 		</td>
 	</tr>
@@ -38,10 +38,10 @@ Chat_FriendService chat_FriendSvc = new Chat_FriendService();
 
 <table border='1' bordercolor='#CCCCFF' width='800'>
 	<tr>
-		<th>員工編號</th>
-		<th>員工姓名</th>
-		<th>職位</th>
-		<th>雇用日期</th>
+		<th>好友編號</th>
+		<th>自己會員編號</th>
+		<th>好友會員編號</th>
+		<th>狀態碼</th>
 		
 		<th>修改</th>
 		<th>刪除</th>
