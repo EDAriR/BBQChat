@@ -1,4 +1,4 @@
-package bbq.chat.model;
+package com.chat.model;
 
 import java.io.Serializable;
 import java.sql.Date;

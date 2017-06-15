@@ -2,9 +2,7 @@ package com.chat.model;
 
 import java.io.Serializable;
 
-/**
- * Created by Java on 2017/6/8.
- */
+
 public class Chat_FriendVO implements Serializable {
     private String cf_no;       //	Not Null (PK)
     private String mem_no_s;    //	(FK)
