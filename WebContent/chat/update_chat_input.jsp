@@ -1,13 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.chat.model.*"%>
-<%
-Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("cf_no");
+<%  //EmpServlet.java (Concroller), 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+	Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("chat_FriendVO");
 %>
-
 <html>
 <head>
-<title>員工資料新增 - addEmp.jsp</title></head>
+<title>員工資料修改 - update_emp_input.jsp</title></head>
 <link rel="stylesheet" type="text/css" href="js/calendar.css">
 <script language="JavaScript" src="js/calendarcode.js"></script>
 <div id="popupcalendar" class="text"></div>
@@ -17,15 +16,12 @@ Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("cf_no");
 <table border='1' cellpadding='5' cellspacing='0' width='400'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>好友資料新增 - addEmp.jsp</h3>
-		</td>
-		<td>
-		   <a href="select_page.jsp"><img src="images/tomcat.gif" width="100" height="100" border="1">回首頁</a>
-	    </td>
+		<h3>員工資料修改 - update_emp_input.jsp</h3>
+		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></td>
 	</tr>
 </table>
 
-<h3>資料員工:</h3>
+<h3>資料修改:</h3>
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font color='red'>請修正以下錯誤:
@@ -37,25 +33,25 @@ Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("cf_no");
 	</font>
 </c:if>
 
-<FORM METHOD="post" ACTION="emp.do" name="form1">
+<FORM METHOD="post" ACTION="Chat_FrienServlet.do" name="form1">
 <table border="0">
-
+	<tr>
+		<td>員工編號:<font color=red><b>*</b></font></td>
+		<td><%=chat_FriendVO.getCf_no()%></td>
+	</tr>
 	<tr>
 		<td>員工姓名:</td>
-		<td><input type="TEXT" name="ename" size="45" 
-			value="<%= (chat_FriendVO==null)? "吳永志" : chat_FriendVO.getEname()%>" /></td>
+		<td><input type="TEXT" name="ename" size="45" value="<%=chat_FriendVO.getEname()%>" /></td>
 	</tr>
 	<tr>
 		<td>職位:</td>
-		<td><input type="TEXT" name="job" size="45"
-			value="<%= (chat_FriendVO==null)? "MANAGER" : chat_FriendVO.getJob()%>" /></td>
+		<td><input type="TEXT" name="job" size="45"	value="<%=chat_FriendVO.getJob()%>" /></td>
 	</tr>
 	<tr>
-		<%java.sql.Date date_SQL = new java.sql.Date(System.currentTimeMillis());%>
 		<td>雇用日期:</td>
 		<td bgcolor="#CCCCFF">
 		    <input class="cal-TextBox"
-			onFocus="this.blur()" size="9" readonly type="text" name="hiredate" value="<%= (chat_FriendVO==null)? date_SQL : empVO.getHiredate()%>">
+			onFocus="this.blur()" size="9" readonly type="text" name="hiredate" value="<%=chat_FriendVO.getHiredate()%>">
 			<a class="so-BtnLink"
 			href="javascript:calClick();return false;"
 			onmouseover="calSwapImg('BTN_date', 'img_Date_OVER',true);"
@@ -66,29 +62,28 @@ Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("cf_no");
 	</tr>
 	<tr>
 		<td>薪水:</td>
-		<td><input type="TEXT" name="sal" size="45"
-			value="<%= (chat_FriendVO==null)? "10000" : empVO.getSal()%>" /></td>
+		<td><input type="TEXT" name="sal" size="45"	value="<%=chat_FriendVO.getSal()%>" /></td>
 	</tr>
 	<tr>
 		<td>獎金:</td>
-		<td><input type="TEXT" name="comm" size="45"
-			value="<%= (chat_FriendVO==null)? "100" : empVO.getComm()%>" /></td>
+		<td><input type="TEXT" name="comm" size="45" value="<%=chat_FriendVO.getComm()%>" /></td>
 	</tr>
 
-	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />
+	<jsp:useBean id="deptSvc" scope="page" class="com.member.model.MemberService" />
 	<tr>
 		<td>部門:<font color=red><b>*</b></font></td>
 		<td><select size="1" name="deptno">
 			<c:forEach var="deptVO" items="${deptSvc.all}">
-				<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)? 'selected':'' } >${deptVO.dname}
+				<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)?'selected':'' } >${deptVO.dname}
 			</c:forEach>
 		</select></td>
 	</tr>
 
 </table>
 <br>
-<input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
-</body>
+<input type="hidden" name="action" value="update">
+<input type="hidden" name="empno" value="<%=chat_FriendVO.getCf_no()%>">
+<input type="submit" value="送出修改"></FORM>
 
+</body>
 </html>

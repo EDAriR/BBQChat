@@ -29,13 +29,11 @@ Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("cf_no"); //E
 		<th>³¡ªù</th>
 	</tr>
 	<tr align='center' valign='middle'>
-		<td><%=empVO.getEmpno()%></td>
-		<td><%=empVO.getEname()%></td>
-		<td><%=empVO.getJob()%></td>
-		<td><%=empVO.getHiredate()%></td>
-		<td><%=empVO.getSal()%></td>
-		<td><%=empVO.getComm()%></td>
-		<td><%=empVO.getDeptno()%></td>
+		<td><%=chat_FriendVO.getCf_no()%></td>
+		<td><%=chat_FriendVO.getMem_no_s()%></td>
+		<td><%=chat_FriendVO.getMem_no_o()%></td>
+		<td><%=chat_FriendVO.getCf_is_del()%></td>
+
 	</tr>
 </table>
 

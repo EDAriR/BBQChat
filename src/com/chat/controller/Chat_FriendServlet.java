@@ -1,8 +1,7 @@
 package com.chat.controller;
 
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import com.chat.model.Chat_FriendService;
+import com.chat.model.Chat_FriendVO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,10 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
-import com.chat.model.*;
-
-@WebServlet("/Chat_FrienServlet")
+@WebServlet("/Chat_FrienServlet.do")
 public class Chat_FriendServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

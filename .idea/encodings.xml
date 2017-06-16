@@ -9,5 +9,9 @@
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendJNDIDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendVO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/member/model/MemberDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/member/model/MemberDAO_interface.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/member/model/MemberJDBCDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/member/model/MemberVO.java" charset="x-windows-950" />
   </component>
 </project>
