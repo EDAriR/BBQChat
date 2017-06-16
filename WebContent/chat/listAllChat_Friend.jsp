@@ -54,13 +54,13 @@ Chat_FriendService chat_FriendSvc = new Chat_FriendService();
 			<td>${chat_FriendVO.mem_no_o}</td>
 			<td>${chat_FriendVO.cf_is_del}</td>			
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Chat_FrienServlet.do">  <%--QQ--%>
 			     <input type="submit" value="­×§ï">
 			     <input type="hidden" name="cf_no" value="${chat_FriendVO.cf_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Chat_FrienServlet.do">
 			    <input type="submit" value="§R°£">
 			    <input type="hidden" name="cf_no" value="${chat_FriendVO.cf_no}">
 			    <input type="hidden" name="action"value="delete"></FORM>

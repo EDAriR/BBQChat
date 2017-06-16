@@ -25,7 +25,7 @@
 </c:if>
 
 <ul>
-  <li><a href='listAllEmp.jsp'>List</a> all Emps. </li> <br><br>
+  <li><a href='listAllChat_Friend.jsp'>List</a>AllChat_Friend. </li> <br><br>
   
   <li>
     <FORM METHOD="post" ACTION="emp.do" >
@@ -36,14 +36,14 @@
     </FORM>
   </li>
 
-  <jsp:useBean id="empSvc" scope="page" class="com.emp.model.EmpService" />
+  <jsp:useBean id="empSvc" scope="page" class="com.chat.model.Chat_FriendService" />
    
   <li>
      <FORM METHOD="post" ACTION="emp.do" >
        <b>選擇員工編號:</b>
        <select size="1" name="empno">
-         <c:forEach var="empVO" items="${empSvc.all}" > 
-          <option value="${empVO.empno}">${empVO.empno}
+         <c:forEach var="chat_FriendVO" items="${empSvc.all}" >
+          <option value="${chat_FriendVO.empno}">${chat_FriendVO.empno}
          </c:forEach>   
        </select>
        <input type="submit" value="送出">
@@ -55,8 +55,8 @@
      <FORM METHOD="post" ACTION="emp.do" >
        <b>選擇員工姓名:</b>
        <select size="1" name="empno">
-         <c:forEach var="empVO" items="${empSvc.all}" > 
-          <option value="${empVO.empno}">${empVO.ename}
+         <c:forEach var="chat_FriendVO" items="${empSvc.all}" >
+          <option value="${chat_FriendVO.empno}">${chat_FriendVO.ename}
          </c:forEach>   
        </select>
        <input type="submit" value="送出">
@@ -69,7 +69,7 @@
 <h3>員工管理</h3>
 
 <ul>
-  <li><a href='addEmp.jsp'>Add</a> a new Emp.</li>
+  <li><a href='addChat_Friend.jsp'>Add</a> a new Emp.</li>
 </ul>
 
 </body>

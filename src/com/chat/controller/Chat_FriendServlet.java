@@ -45,7 +45,7 @@ public class Chat_FriendServlet extends HttpServlet {
                 // Send the use back to the form, if there were errors
                 if (!errorMsgs.isEmpty()) {
                     RequestDispatcher failureView = req
-                            .getRequestDispatcher("/emp/select_page.jsp");
+                            .getRequestDispatcher("/chat/select_page.jsp");
                     failureView.forward(req, res);
                     return;//程式中斷
                 }
@@ -59,7 +59,7 @@ public class Chat_FriendServlet extends HttpServlet {
                 // Send the use back to the form, if there were errors
                 if (!errorMsgs.isEmpty()) {
                     RequestDispatcher failureView = req
-                            .getRequestDispatcher("/emp/select_page.jsp");
+                            .getRequestDispatcher("/chat/select_page.jsp");
                     failureView.forward(req, res);
                     return;//程式中斷
                 }
@@ -73,7 +73,7 @@ public class Chat_FriendServlet extends HttpServlet {
                 // Send the use back to the form, if there were errors
                 if (!errorMsgs.isEmpty()) {
                     RequestDispatcher failureView = req
-                            .getRequestDispatcher("/emp/select_page.jsp");
+                            .getRequestDispatcher("/chat/select_page.jsp");
                     failureView.forward(req, res);
                     return;//程式中斷
                 }
@@ -118,7 +118,7 @@ public class Chat_FriendServlet extends HttpServlet {
             } catch (Exception e) {
                 errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
                 RequestDispatcher failureView = req
-                        .getRequestDispatcher("/emp/listAllEmp.jsp");
+                        .getRequestDispatcher("/chat/listAllC");
                 failureView.forward(req, res);
             }
         }
@@ -140,7 +140,7 @@ public class Chat_FriendServlet extends HttpServlet {
 
                 Integer del = null;
                 try {
-                    del = new Integer(req.getParameter("sal").trim());
+                    del = new Integer(req.getParameter("cf_is_del").trim());
                 } catch (NumberFormatException e) {
                     del = 0;
                     errorMsgs.add("請填數字 0 or 1");
@@ -156,7 +156,7 @@ public class Chat_FriendServlet extends HttpServlet {
                 if (!errorMsgs.isEmpty()) {
                     req.setAttribute("chat_FriendVO", chat_FriendVO); // 含有輸入格式錯誤的empVO物件,也存入req
                     RequestDispatcher failureView = req
-                            .getRequestDispatcher("/emp/update_emp_input.jsp");
+                            .getRequestDispatcher("/chat/update_chat_input.jsp"); /*QQ*/
                     failureView.forward(req, res);
                     return; //程式中斷
                 }
@@ -251,5 +251,4 @@ public class Chat_FriendServlet extends HttpServlet {
             }
         }
     }
-
 }

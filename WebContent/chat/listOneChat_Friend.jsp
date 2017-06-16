@@ -20,13 +20,11 @@ Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("cf_no"); //E
 
 <table border='1' bordercolor='#CCCCFF' width='600'>
 	<tr>
-		<th>員工編號</th>
-		<th>員工姓名</th>
-		<th>職位</th>
-		<th>雇用日期</th>
-		<th>薪水</th>
-		<th>獎金</th>
-		<th>部門</th>
+		<th>好友編號</th>
+		<th>會員編號S</th>
+		<th>會員編號O</th>
+		<th>狀態</th>
+
 	</tr>
 	<tr align='center' valign='middle'>
 		<td><%=chat_FriendVO.getCf_no()%></td>
