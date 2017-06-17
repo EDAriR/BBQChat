@@ -15,7 +15,7 @@ public class User_ReportDAO implements User_ReportDAO_interface {
     static {
         try {
             Context ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB3");
         } catch (NamingException e) {
             e.printStackTrace();
         }
