@@ -41,28 +41,28 @@
     <table border="0">
 
         <tr>
-            <td>員工姓名:</td>
+            <td>會員編號:</td>
+            <td><input type="TEXT" name="mem_no_o" size="45"
+                       value="<%= (chat_FriendVO==null)? "M0000007" : chat_FriendVO.getMem_no_s()%>"/></td>
+        </tr>
+        <tr>
+            <td>好友會員編號:</td>
             <td><input type="TEXT" name="mem_no_o" size="45"
                        value="<%= (chat_FriendVO==null)? "M0000007" : chat_FriendVO.getMem_no_o()%>"/></td>
         </tr>
         <tr>
-            <td>職位:</td>
-            <td><input type="TEXT" name="mem_no_o" size="45"
-                       value="<%= (chat_FriendVO==null)? "M0000007" : chat_FriendVO.getMem_no_o()%>"/></td>
-        </tr>
-        <tr>
-            <td>獎金:</td>
+            <td>狀態碼:</td>
             <td><input type="TEXT" name="cf_is_del" size="45"
                        value="<%= (chat_FriendVO==null)? "1" : chat_FriendVO.getCf_is_del()%>"/></td>
         </tr>
 
-        <jsp:useBean id="deptSvc" scope="page" class="com.member.model.MemberService"/>
+        <jsp:useBean id="memberSvc" scope="page" class="com.member.model.MemberService"/>
         <tr>
             <td>部門:<font color=red><b>*</b></font></td>
-            <td><select size="1" name="deptno">
+            <td><select size="1" name="mem_no">
                 <c:forEach var="deptVO" items="${deptSvc.all}">
-                <option value="${memberVO.mem_no}" ${(chat_FriendVO.deptno==memberVO.deptno)? 'selected':'' } >
-                        ${chat_FriendVO.dname}
+                <option value="${memberVO.mem_no}" ${(chat_FriendVO.deptno==memberVO.Mem_no)? 'selected':'' } >
+                        ${chat_FriendVO.getMem_no_s}
                     </c:forEach>
             </select></td>
         </tr>
