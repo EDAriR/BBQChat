@@ -7,7 +7,7 @@ import java.sql.*;
 public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
-//    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    //    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
     // 新增資料

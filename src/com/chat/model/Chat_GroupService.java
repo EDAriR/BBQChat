@@ -13,8 +13,8 @@ public class Chat_GroupService {
     }
 
     public Chat_GroupVO addChat_Group(String cg_no, String cg_name, Date cg_year,
-                                      String cg_is_aa, String cg_is_ab, String cg_is_ac, String cg_is_sf,
-                                      String cg_is_ad, String baby_rd) {
+                                      String cg_is_aa, String cg_is_ab, String cg_is_ac,
+                                      String cg_is_sf, String cg_is_ad, String baby_rd) {
 
         Chat_GroupVO chat_GroupVO = new Chat_GroupVO();
 
@@ -33,12 +33,13 @@ public class Chat_GroupService {
         return chat_GroupVO;
     }
 
-    public Chat_GroupVO updateChat_Friend(String cg_name, String cg_no) {
+    public Chat_GroupVO updateChat_Friend(String cg_name, String cg_no, String baby_rd) {
 
         Chat_GroupVO chat_GroupVO = new Chat_GroupVO();
 
-        chat_GroupVO.getCg_name();
-        chat_GroupVO.getCg_no();
+        chat_GroupVO.setCg_no(cg_no);
+        chat_GroupVO.setCg_name(cg_name);
+        chat_GroupVO.setBaby_rd(baby_rd);
         dao.update(chat_GroupVO);
 
         return chat_GroupVO;

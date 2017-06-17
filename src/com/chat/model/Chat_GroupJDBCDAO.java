@@ -18,7 +18,10 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
     private static final String GET_ALL_STMT = "SELECT cg_no , cg_name FROM chat_group";
     private static final String GET_ONE_STMT = "SELECT cg_no, cg_name FROM chat_group WHERE cg_no = ?";
     // 刪除資料 需連動
-    private static final String DELETE_CHAT_GROUP = "DELETE FROM chat_group WHERE cg_no = ?";
+    private static final String DELETE_CHAT_GROUP = "DELETE FROM chat_notebook WHERE cg_no = ?;"
+            + "DELETE FROM chat_notebook WHERE cg_no = ?;"
+            + "DELETE FROM chat_group_item WHERE cg_no = ?;"
+            + "DELETE FROM chat_group WHERE cg_no = ?";
     // 修改資料
     private static final String UPDATE = "UPDATE chat_group SET cg_name=? WHERE cg_no = ?";
 
@@ -310,13 +313,14 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
 //		System.out.println("update");
 
         // 刪除
-//		dao.delete("cg001");
+		dao.delete("CG000001");
+		System.out.println("Delete");
 
         // 查詢
-        Chat_GroupVO chat_GroupVO3 = dao.findByPrimaryKey("cg002");
-        System.out.print(chat_GroupVO3.getCg_no() + ",");
-        System.out.println(chat_GroupVO3.getCg_name());
-        System.out.println("---------------------");
+//        Chat_GroupVO chat_GroupVO3 = dao.findByPrimaryKey("CG000001");
+//        System.out.print(chat_GroupVO3.getCg_no() + ",");
+//        System.out.println(chat_GroupVO3.getCg_name());
+//        System.out.println("---------------------");
 
         // 查詢部門
         List<Chat_GroupVO> list = dao.getAll();

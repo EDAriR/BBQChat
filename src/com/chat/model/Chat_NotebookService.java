@@ -38,11 +38,11 @@ public class Chat_NotebookService {
         return chat_NotebookVO;
     }
 
-    public void deleteCF(String cnb_no) {
+    public void deleteCN(String cnb_no) {
         dao.delete(cnb_no);
     }
 
-    public Chat_NotebookVO getOneCF(String cnb_no) {
+    public Chat_NotebookVO getOneCN(String cnb_no) {
         return dao.findByPrimaryKey(cnb_no);
     }
 

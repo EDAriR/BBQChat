@@ -8,9 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Chat_GroupDAO implements Chat_GroupDAO_interface {
-
+public class User_ReportDAO implements User_ReportDAO_interface {
     // 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
     private static DataSource ds = null;
 
@@ -22,47 +20,43 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
             e.printStackTrace();
         }
     }
-
     // 新增資料
-    private static final String INSERT_STMT = "INSERT INTO Chat_Group " +
-            "(cg_no, cg_name, cg_year, cg_is_ar, cg_is_ab, cg_is_ac, cg_is_sf, cg_is_ad, cg_baby_rd) " +
-            "VALUES ('cg'||LPAD(to_char(cg_no_seq.NEXTVAL),3,'0'), ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_STMT = "INSERT INTO user_report "
+            + "(mem_no_ed, mem_no_ing, urpt_cnt, urpt_date, urpt_rsn, urpt_is_cert, urpt_unrsn) "
+            + "VALUES (?, ?, ?, current_timestamp, ?, ?, ?)";
     // 查詢資料
-    private static final String GET_ALL_STMT = "SELECT cg_no , cg_name FROM chat_group";
-    private static final String GET_ONE_STMT = "SELECT cg_no, cg_name FROM chat_group WHERE cg_no = ?";
-    // 刪除資料 需連動
-    private static final String DELETE_CHAT_GROUP = "DELETE FROM chat_notebook WHERE cg_no = ?;"
-            + "DELETE FROM chat_notebook WHERE cg_no = ?;"
-            + "DELETE FROM chat_group_item WHERE cg_no = ?;"
-            + "DELETE FROM chat_group WHERE cg_no = ?";
+    private static final String GET_ALL_STMT = "SELECT mem_no_ed, urpt_cnt, urpt_rsn, urpt_is_cert FROM user_report";
+    private static final String GET_ONE_STMT = "SELECT mem_no_ed, urpt_cnt, urpt_rsn, urpt_is_cert "
+            + "FROM User_Report WHERE mem_no_ed = ?";
+    // 刪除資料
+    private static final String DELETE_NEWS = "DELETE FROM User_Report WHERE mem_no_ed = ? AND mem_no_ing =?";
     // 修改資料
-    private static final String UPDATE = "UPDATE chat_group SET cg_name=? WHERE cg_no = ?";
+    private static final String UPDATE = "UPDATE User_Report SET URPT_IS_CERT=? WHERE mem_no_ed = ? AND mem_no_ing =?";
 
     @Override
-    public void insert(Chat_GroupVO chat_GroupVO) {
-
+    public void insert(User_ReportVO user_ReportVO) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
         try {
-//        	(cg_no, CG_NAME, CG_YEAR, CG_IS_AR, CG_IS_AB, CG_IS_AC, CG_IS_SF, CG_IS_AD, BABY_RD
+
             con = ds.getConnection();
-            String[] cg = {"cg_no"}; // 有使用sequence產生編號的話才要寫
-            pstmt = con.prepareStatement(INSERT_STMT, cg); // 有使用sequence產生編號的話才要寫第二個參數
-            pstmt.setString(1, chat_GroupVO.getCg_name());
-            pstmt.setDate(2, chat_GroupVO.getCg_year());
-            pstmt.setString(3, chat_GroupVO.getCg_is_ar());
-            pstmt.setString(4, chat_GroupVO.getCg_is_ab());
-            pstmt.setString(5, chat_GroupVO.getCg_is_ac());
-            pstmt.setString(6, chat_GroupVO.getCg_is_sf());
-            pstmt.setString(7, chat_GroupVO.getCg_is_ad());
-            pstmt.setString(8, chat_GroupVO.getBaby_rd());
+            pstmt = con.prepareStatement(INSERT_STMT);
+
+            // (MEM_NO_ED, MEM_NO_ING, URPT_CNT, URPT_DATE, URPT_RSN,
+            // URPT_IS_CERT, URPT_UNRSN)
+            pstmt.setString(1, user_ReportVO.getMem_no_ed());
+            pstmt.setString(2, user_ReportVO.getMem_no_ing());
+            pstmt.setString(3, user_ReportVO.getUrpt_cnt());
+            pstmt.setString(4, user_ReportVO.getUrpt_rsn());
+            pstmt.setString(5, user_ReportVO.getUrpt_is_cert());
+            pstmt.setString(6, user_ReportVO.getUrpt_unrsn());
+
             pstmt.executeUpdate();
 
             // Handle any SQL errors
         } catch (SQLException se) {
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
+            throw new RuntimeException("A database error occured. " + se.getMessage());
             // Clean up JDBC resources
         } finally {
             if (pstmt != null) {
@@ -83,7 +77,7 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
     }
 
     @Override
-    public void update(Chat_GroupVO chat_GroupVO) {
+    public void update(User_ReportVO user_ReportVO) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -93,15 +87,14 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
             con = ds.getConnection();
             pstmt = con.prepareStatement(UPDATE);
 
-            pstmt.setString(2, chat_GroupVO.getCg_no());
-            pstmt.setString(1, chat_GroupVO.getCg_name());
-            pstmt.setString(1, chat_GroupVO.getBaby_rd());
+            pstmt.setString(1, user_ReportVO.getMem_no_ed());
+            pstmt.setString(2, user_ReportVO.getMem_no_ing());
+            pstmt.setString(3, user_ReportVO.getUrpt_is_cert());
             pstmt.executeUpdate();
 
             // Handle any SQL errors
         } catch (SQLException se) {
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
+            throw new RuntimeException("A database error occured. " + se.getMessage());
             // Clean up JDBC resources
         } finally {
             if (pstmt != null) {
@@ -122,7 +115,7 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
     }
 
     @Override
-    public void delete(String cg_no) {
+    public void delete(String mem_no_ed, String mem_no_ing) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -133,15 +126,16 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
 
             // 1 設定於 pstm.executeUpdate()之前
             con.setAutoCommit(false);
-            pstmt = con.prepareStatement(DELETE_CHAT_GROUP);
-            pstmt.setString(1, cg_no);
+
+            pstmt = con.prepareStatement(DELETE_NEWS);
+            pstmt.setString(1, mem_no_ed);
+            pstmt.setString(1, mem_no_ing);
             pstmt.executeUpdate();
 
             // 2 設定於 pstm.executeUpdate()之後
             con.commit();
             con.setAutoCommit(true);
-            System.out.println("Delete Chat_Group: " + cg_no);
-
+            System.out.println("Delete User Report :" + mem_no_ed);
 
             // Handle any SQL errors
         } catch (SQLException se) {
@@ -150,12 +144,10 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
                     // 3 設定於當有exception發生時之catch區塊內
                     con.rollback();
                 } catch (SQLException excep) {
-                    throw new RuntimeException("rollback error occured. "
-                            + excep.getMessage());
+                    throw new RuntimeException("rollback error occured. " + excep.getMessage());
                 }
             }
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
+            throw new RuntimeException("A database error occured. " + se.getMessage());
         } finally {
             if (pstmt != null) {
                 try {
@@ -175,9 +167,9 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
     }
 
     @Override
-    public Chat_GroupVO findByPrimaryKey(String cg_no) {
+    public User_ReportVO findByPrimaryKey(String mem_no_ed) {
 
-        Chat_GroupVO chat_GroupVO = null;
+        User_ReportVO user_ReportVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -185,19 +177,20 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
         try {
 
             con = ds.getConnection();
+
             pstmt = con.prepareStatement(GET_ONE_STMT);
-            pstmt.setString(1, cg_no);
+
+            pstmt.setString(1, mem_no_ed);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_GroupVO = new Chat_GroupVO();
-                chat_GroupVO.setCg_no(rs.getString("cg_no"));
-                chat_GroupVO.setCg_name(rs.getString("cg_name"));
+                user_ReportVO = new User_ReportVO();
+                user_ReportVO.setMem_no_ed(rs.getString("mem_no_ed"));
+                user_ReportVO.setUrpt_cnt(rs.getString("urpt_cnt"));
             }
             // Handle any SQL errors
         } catch (SQLException se) {
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
+            throw new RuntimeException("A database error occured. " + se.getMessage());
             // Clean up JDBC resources
         } finally {
             if (rs != null) {
@@ -222,13 +215,14 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
                 }
             }
         }
-        return chat_GroupVO;
+        return user_ReportVO;
     }
 
     @Override
-    public List<Chat_GroupVO> getAll() {
-        List<Chat_GroupVO> list = new ArrayList<Chat_GroupVO>();
-        Chat_GroupVO chat_GroupVO = null;
+    public List<User_ReportVO> getAll() {
+
+        List<User_ReportVO> list = new ArrayList<User_ReportVO>();
+        User_ReportVO user_ReportVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -240,15 +234,15 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_GroupVO = new Chat_GroupVO();
-                chat_GroupVO.setCg_no(rs.getString("cg_no"));
-                chat_GroupVO.setCg_name(rs.getString("cg_name"));
-                list.add(chat_GroupVO); // Store the row in the list
+                user_ReportVO = new User_ReportVO();
+                user_ReportVO.setMem_no_ed(rs.getString("mem_no_ed"));
+                user_ReportVO.setUrpt_cnt(rs.getString("urpt_cnt"));
+                user_ReportVO.setUrpt_rsn(rs.getString("urpt_rsn"));
+                list.add(user_ReportVO); // Store the row in the list
             }
             // Handle any SQL errors
         } catch (SQLException se) {
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
+            throw new RuntimeException("A database error occured. " + se.getMessage());
         } finally {
             if (rs != null) {
                 try {
@@ -274,5 +268,4 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
         }
         return list;
     }
-
 }

@@ -10,7 +10,7 @@ public class Chat_NotebookVO implements Serializable {
     private String cf_no;     //	(FK)
     private String cg_no;     //	(FK)
     private String cnb_cnt;   //
-//    private byte[] cnb_pic;   //
+//    private byte[] cnb_pic;
 
     public Chat_NotebookVO() {
         super();

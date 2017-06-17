@@ -4,13 +4,14 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Chat_GroupDAO implements Chat_GroupDAO_interface {
-
+public class Chat_RecordDAO implements Chat_RecordDAO_interface {
     // 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
     private static DataSource ds = null;
 
@@ -24,39 +25,31 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
     }
 
     // 新增資料
-    private static final String INSERT_STMT = "INSERT INTO Chat_Group " +
-            "(cg_no, cg_name, cg_year, cg_is_ar, cg_is_ab, cg_is_ac, cg_is_sf, cg_is_ad, cg_baby_rd) " +
-            "VALUES ('cg'||LPAD(to_char(cg_no_seq.NEXTVAL),3,'0'), ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_STMT = "INSERT INTO chat_record " +
+            "(cr_no, cr_date, cf_no, cg_no, cr_cnt) " +
+            "VALUES ('cr'||LPAD(TO_CHAR(adm_no_seq.NEXTVAL),4,'0'), CURRENT_TIMESTAMP, ?, ?, ?)";
     // 查詢資料
-    private static final String GET_ALL_STMT = "SELECT cg_no , cg_name FROM chat_group";
-    private static final String GET_ONE_STMT = "SELECT cg_no, cg_name FROM chat_group WHERE cg_no = ?";
-    // 刪除資料 需連動
-    private static final String DELETE_CHAT_GROUP = "DELETE FROM chat_notebook WHERE cg_no = ?;"
-            + "DELETE FROM chat_notebook WHERE cg_no = ?;"
-            + "DELETE FROM chat_group_item WHERE cg_no = ?;"
-            + "DELETE FROM chat_group WHERE cg_no = ?";
+    private static final String GET_ALL_STMT = "SELECT cr_no, cr_date, cr_cnt FROM chat_record";
+    private static final String GET_ONE_STMT = "SELECT cr_no, cr_date, cr_cnt FROM chat_record WHERE cr_no = ?";
+    // 刪除資料
+    private static final String DELETE_PROC = "DELETE FROM chat_record WHERE cr_no = ?";
     // 修改資料
-    private static final String UPDATE = "UPDATE chat_group SET cg_name=? WHERE cg_no = ?";
+    private static final String UPDATE = "UPDATE chat_record SET cr_cnt=? WHERE cr_no = ?";
+
 
     @Override
-    public void insert(Chat_GroupVO chat_GroupVO) {
-
+    public void insert(Chat_RecordVO chat_RecordVO) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
         try {
-//        	(cg_no, CG_NAME, CG_YEAR, CG_IS_AR, CG_IS_AB, CG_IS_AC, CG_IS_SF, CG_IS_AD, BABY_RD
+
             con = ds.getConnection();
-            String[] cg = {"cg_no"}; // 有使用sequence產生編號的話才要寫
-            pstmt = con.prepareStatement(INSERT_STMT, cg); // 有使用sequence產生編號的話才要寫第二個參數
-            pstmt.setString(1, chat_GroupVO.getCg_name());
-            pstmt.setDate(2, chat_GroupVO.getCg_year());
-            pstmt.setString(3, chat_GroupVO.getCg_is_ar());
-            pstmt.setString(4, chat_GroupVO.getCg_is_ab());
-            pstmt.setString(5, chat_GroupVO.getCg_is_ac());
-            pstmt.setString(6, chat_GroupVO.getCg_is_sf());
-            pstmt.setString(7, chat_GroupVO.getCg_is_ad());
-            pstmt.setString(8, chat_GroupVO.getBaby_rd());
+            String[] cr = {"cr_no"}; // 有使用sequence產生編號的話才要寫
+            pstmt = con.prepareStatement(INSERT_STMT, cr); // 有使用sequence產生編號的話才要寫第二個參數
+            pstmt.setString(1, chat_RecordVO.getCf_no());
+            pstmt.setString(2, chat_RecordVO.getCg_no());
+            pstmt.setString(3, chat_RecordVO.getCr_cnt());
             pstmt.executeUpdate();
 
             // Handle any SQL errors
@@ -83,7 +76,7 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
     }
 
     @Override
-    public void update(Chat_GroupVO chat_GroupVO) {
+    public void update(Chat_RecordVO chat_RecordVO) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -92,10 +85,8 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
 
             con = ds.getConnection();
             pstmt = con.prepareStatement(UPDATE);
-
-            pstmt.setString(2, chat_GroupVO.getCg_no());
-            pstmt.setString(1, chat_GroupVO.getCg_name());
-            pstmt.setString(1, chat_GroupVO.getBaby_rd());
+            pstmt.setString(1, chat_RecordVO.getCr_cnt());
+            pstmt.setString(2, chat_RecordVO.getCr_no());
             pstmt.executeUpdate();
 
             // Handle any SQL errors
@@ -122,26 +113,24 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
     }
 
     @Override
-    public void delete(String cg_no) {
+    public void delete(String cr_no) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
 
         try {
-
             con = ds.getConnection();
-
             // 1 設定於 pstm.executeUpdate()之前
             con.setAutoCommit(false);
-            pstmt = con.prepareStatement(DELETE_CHAT_GROUP);
-            pstmt.setString(1, cg_no);
+
+            pstmt = con.prepareStatement(DELETE_PROC);
+            pstmt.setString(1, cr_no);
             pstmt.executeUpdate();
 
             // 2 設定於 pstm.executeUpdate()之後
             con.commit();
             con.setAutoCommit(true);
-            System.out.println("Delete Chat_Group: " + cg_no);
-
+            System.out.println("Delete Chat_Record : " + cr_no);
 
             // Handle any SQL errors
         } catch (SQLException se) {
@@ -175,25 +164,27 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
     }
 
     @Override
-    public Chat_GroupVO findByPrimaryKey(String cg_no) {
+    public Chat_RecordVO findByPrimaryKey(String cr_no) {
 
-        Chat_GroupVO chat_GroupVO = null;
+        Chat_RecordVO chat_RecordVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         try {
-
             con = ds.getConnection();
             pstmt = con.prepareStatement(GET_ONE_STMT);
-            pstmt.setString(1, cg_no);
+
+            pstmt.setString(1, cr_no);
+
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_GroupVO = new Chat_GroupVO();
-                chat_GroupVO.setCg_no(rs.getString("cg_no"));
-                chat_GroupVO.setCg_name(rs.getString("cg_name"));
+                chat_RecordVO = new Chat_RecordVO();
+                chat_RecordVO.setCr_no(rs.getString("cr_no"));
+                chat_RecordVO.setCr_cnt(rs.getString("cr_cnt"));
             }
+            con = ds.getConnection();
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -222,13 +213,14 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
                 }
             }
         }
-        return chat_GroupVO;
+        return chat_RecordVO;
     }
 
     @Override
-    public List<Chat_GroupVO> getAll() {
-        List<Chat_GroupVO> list = new ArrayList<Chat_GroupVO>();
-        Chat_GroupVO chat_GroupVO = null;
+    public List<Chat_RecordVO> getAll() {
+
+        List<Chat_RecordVO> list = new ArrayList<Chat_RecordVO>();
+        Chat_RecordVO chat_RecordVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -240,10 +232,10 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_GroupVO = new Chat_GroupVO();
-                chat_GroupVO.setCg_no(rs.getString("cg_no"));
-                chat_GroupVO.setCg_name(rs.getString("cg_name"));
-                list.add(chat_GroupVO); // Store the row in the list
+                chat_RecordVO = new Chat_RecordVO();
+                chat_RecordVO.setCr_no(rs.getString("cr_no"));
+                chat_RecordVO.setCr_cnt(rs.getString("cr_cnt"));
+                list.add(chat_RecordVO); // Store the row in the list
             }
             // Handle any SQL errors
         } catch (SQLException se) {
@@ -274,5 +266,4 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
         }
         return list;
     }
-
 }

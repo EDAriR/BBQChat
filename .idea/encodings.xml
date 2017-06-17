@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/WebContent/chat/page1.file" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/WebContent/chat/page2.file" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO_interface.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendJNDIDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java" charset="x-windows-950" />
@@ -19,7 +20,13 @@
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_NotebookDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_NotebookJDBCDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_NotebookService.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_RecordDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_RecordJDBCDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_RecordService.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/model/User_ReportDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/User_ReportJDBCDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/model/User_ReportService.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/model/User_ReportVO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/member/model/MemberDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/member/model/MemberDAO_interface.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/member/model/MemberJDBCDAO.java" charset="x-windows-950" />

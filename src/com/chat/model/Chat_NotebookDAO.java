@@ -12,6 +12,7 @@ import java.util.List;
 public class Chat_NotebookDAO implements Chat_NotebookDAO_interface {
     // 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
     private static DataSource ds = null;
+
     static {
         try {
             Context ctx = new InitialContext();
@@ -77,6 +78,7 @@ public class Chat_NotebookDAO implements Chat_NotebookDAO_interface {
         try {
 
             con = ds.getConnection();
+
             pstmt = con.prepareStatement(UPDATE);
 
             pstmt.setString(1, chat_NotebookVO.getCnb_cnt());
@@ -178,8 +180,7 @@ public class Chat_NotebookDAO implements Chat_NotebookDAO_interface {
                 chat_NotebookVO.setCnb_no(rs.getString("cnb_no"));
                 chat_NotebookVO.setCnb_cnt(rs.getString("cnb_cnt"));
             }
-
-           // Handle any SQL errors
+            // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
                     + se.getMessage());
@@ -231,6 +232,8 @@ public class Chat_NotebookDAO implements Chat_NotebookDAO_interface {
                 chat_NotebookVO.setCnb_cnt(rs.getString("cnb_cnt"));
                 list.add(chat_NotebookVO); // Store the row in the list
             }
+
+            con = ds.getConnection();
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
