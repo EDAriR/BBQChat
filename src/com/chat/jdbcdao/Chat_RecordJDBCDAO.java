@@ -1,29 +1,18 @@
-package com.chat.model;
+package com.chat.jdbcdao;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import com.chat.model.Chat_RecordDAO_interface;
+import com.chat.model.Chat_RecordVO;
 
-public class Chat_RecordDAO implements Chat_RecordDAO_interface {
-    // 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
-    private static DataSource ds = null;
+import java.util.*;
+import java.sql.*;
 
-    static {
-        try {
-            Context ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB3");
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-    }
 
+public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
+    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
+    //    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String USER = "ba101g3";
+    private static final String PASSWORD = "baby";
     // 新增資料
     private static final String INSERT_STMT = "INSERT INTO chat_record " +
             "(cr_no, cr_date, cf_no, cg_no, cr_cnt) " +
@@ -44,7 +33,8 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
 
         try {
 
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             String[] cr = {"cr_no"}; // 有使用sequence產生編號的話才要寫
             pstmt = con.prepareStatement(INSERT_STMT, cr); // 有使用sequence產生編號的話才要寫第二個參數
             pstmt.setString(1, chat_RecordVO.getCf_no());
@@ -52,6 +42,10 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
             pstmt.setString(3, chat_RecordVO.getCr_cnt());
             pstmt.executeUpdate();
 
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -83,12 +77,17 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
 
         try {
 
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(UPDATE);
             pstmt.setString(1, chat_RecordVO.getCr_cnt());
             pstmt.setString(2, chat_RecordVO.getCr_no());
             pstmt.executeUpdate();
 
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -119,7 +118,10 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
         PreparedStatement pstmt = null;
 
         try {
-            con = ds.getConnection();
+
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+
             // 1 設定於 pstm.executeUpdate()之前
             con.setAutoCommit(false);
 
@@ -132,6 +134,10 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
             con.setAutoCommit(true);
             System.out.println("Delete Chat_Record : " + cr_no);
 
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             if (con != null) {
@@ -161,6 +167,8 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
                 }
             }
         }
+
+
     }
 
     @Override
@@ -172,7 +180,9 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
         ResultSet rs = null;
 
         try {
-            con = ds.getConnection();
+
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ONE_STMT);
 
             pstmt.setString(1, cr_no);
@@ -184,7 +194,11 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
                 chat_RecordVO.setCr_no(rs.getString("cr_no"));
                 chat_RecordVO.setCr_cnt(rs.getString("cr_cnt"));
             }
-            con = ds.getConnection();
+
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -227,7 +241,8 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
 
         try {
 
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ALL_STMT);
             rs = pstmt.executeQuery();
 
@@ -237,6 +252,10 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
                 chat_RecordVO.setCr_cnt(rs.getString("cr_cnt"));
                 list.add(chat_RecordVO); // Store the row in the list
             }
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -265,5 +284,44 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
             }
         }
         return list;
+    }
+
+    public static void main(String[] args) {
+
+        Chat_RecordJDBCDAO dao = new Chat_RecordJDBCDAO();
+
+        // 新增(OK)
+//        bbq.chat.model.Chat_RecordVO chat_RecordVO1 = new bbq.chat.model.Chat_RecordVO();
+//        chat_RecordVO1.setCr_cnt("null");
+//        chat_RecordVO1.setCr_cnt("null");
+//        chat_RecordVO1.setCr_cnt("聊天記錄測試*");
+//        dao.insert(chat_RecordVO1);
+//        System.out.println("新增成功");
+
+        // 修改
+//		bbq.chat.model.Chat_RecordVO chat_RecordVO2 = new bbq.chat.model.Chat_RecordVO();
+//		chat_RecordVO2.setCr_no("cr0002");
+//		chat_RecordVO2.setCr_cnt("修改看看");
+//		dao.update(chat_RecordVO2);
+//		System.out.println("update");
+
+        // 刪除
+//		dao.delete("cr0001");
+//		System.out.println("delete");
+
+        // 查詢
+//		bbq.chat.model.Chat_RecordVO chat_RecordVO3 = dao.findByPrimaryKey("cr0002");
+//		System.out.print(chat_RecordVO3.getCr_no() + ",");
+//		System.out.println(chat_RecordVO3.getCr_cnt());
+//		System.out.println("---------------------");
+
+        // 查詢部門
+//		List<bbq.chat.model.Chat_RecordVO> list = dao.getAll();
+//		for (bbq.chat.model.Chat_RecordVO cr : list) {
+//			System.out.print(cr.getCr_no() + ",");
+//			System.out.print(cr.getCr_cnt());
+//			System.out.println();
+//		}
+
     }
 }

@@ -1,15 +1,29 @@
-package com.chat.model;
+package com.chat.dao;
+
+import com.chat.model.Chat_FriendDAO_interface;
+import com.chat.model.Chat_FriendVO;
 
 import java.util.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.sql.*;
 
 
-public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
-    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
-    //    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-    private static final String USER = "ba101g3";
-    private static final String PASSWORD = "baby";
+public class Chat_FriendDAO implements Chat_FriendDAO_interface {
+	
+	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
+		private static DataSource ds = null;		
+		static {
+			try {
+				Context ctx = new InitialContext();
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDBG3");
+			} catch (NamingException e) {
+				e.printStackTrace();
+			}
+		}
+		
     // 新增資料
     private static final String INSERT_STMT = "INSERT INTO chat_friend (cf_no, mem_no_s, mem_no_o, cf_is_del) " +
             "VALUES ('cf'||LPAD(TO_CHAR(cf_no_seq.NEXTVAL),3,'0'), ?, ?, ?)";
@@ -29,19 +43,15 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
 
         try {
 
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
+        	con = ds.getConnection();            
             String[] cf = {"cf_no"}; // 有使用sequence產生編號的話才要寫
             pstmt = con.prepareStatement(INSERT_STMT, cf); // 有使用sequence產生編號的話才要寫第二個參數
+            
             pstmt.setString(1, chat_FriendVO.getMem_no_s());
             pstmt.setString(2, chat_FriendVO.getMem_no_o());
             pstmt.setString(3, chat_FriendVO.getCf_is_del());
             pstmt.executeUpdate();
-
-            // Handle any DRIVER errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database DRIVER. "
-                    + e.getMessage());
+            
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -63,8 +73,6 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
                 }
             }
         }
-
-
     }
 
     @Override
@@ -75,17 +83,13 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
 
         try {
 
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
+        	con = ds.getConnection();        	
             pstmt = con.prepareStatement(UPDATE);
+            
             pstmt.setString(1, chat_FriendVO.getCf_is_del());
             pstmt.setString(2, chat_FriendVO.getCf_no());
             pstmt.executeUpdate();
-
-            // Handle any DRIVER errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database DRIVER. "
-                    + e.getMessage());
+            
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -107,7 +111,6 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
                 }
             }
         }
-
     }
 
     @Override
@@ -117,31 +120,22 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
         PreparedStatement pstmt = null;
 
         try {
-
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
-
-            // 1 設定於 pstm.executeUpdate()之前
+        	
+        	con = ds.getConnection();        	
             con.setAutoCommit(false);
-
             pstmt = con.prepareStatement(DELETE_PROC);
+            
             pstmt.setString(1, cf_no);
             pstmt.executeUpdate();
 
-            // 2 設定於 pstm.executeUpdate()之後
             con.commit();
             con.setAutoCommit(true);
             System.out.println("Delete Chat Friend :" + cf_no);
-
-            // Handle any DRIVER errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database DRIVER. "
-                    + e.getMessage());
+            
             // Handle any SQL errors
         } catch (SQLException se) {
             if (con != null) {
-                try {
-                    // 3 設定於當有exception發生時之catch區塊內
+                try {                	
                     con.rollback();
                 } catch (SQLException excep) {
                     throw new RuntimeException("rollback error occured. "
@@ -178,12 +172,9 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
 
         try {
 
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
+        	con = ds.getConnection();
             pstmt = con.prepareStatement(GET_ONE_STMT);
-
             pstmt.setString(1, cf_no);
-
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -191,11 +182,6 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
                 chat_FriendVO.setCf_no(rs.getString("cf_no"));
                 chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
             }
-
-            // Handle any DRIVER errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database DRIVER. "
-                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -237,9 +223,7 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
         ResultSet rs = null;
 
         try {
-
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
+        	con = ds.getConnection();
             pstmt = con.prepareStatement(GET_ALL_STMT);
             rs = pstmt.executeQuery();
 
@@ -249,11 +233,6 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
                 chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
                 list.add(chat_FriendVO); // Store the row in the list
             }
-
-            // Handle any DRIVER errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database DRIVER. "
-                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -282,44 +261,5 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
             }
         }
         return list;
-    }
-
-    public static void main(String[] args) {
-
-        Chat_FriendJDBCDAO dao = new Chat_FriendJDBCDAO();
-        // 測試看看每個指令是否可以使用
-        // 新增(OK)
-//        bbq.chat.model.Chat_FriendVO chat_FriendVO1 = new bbq.chat.model.Chat_FriendVO();
-//        chat_FriendVO1.setMem_no_s("M0000001");
-//        chat_FriendVO1.setMem_no_o("M0000007");
-//        chat_FriendVO1.setCf_is_del("0");
-//        dao.insert(chat_FriendVO1);
-//        System.out.println("新增成功");
-
-        // 修改
-        Chat_FriendVO chat_FriendVO2 = new Chat_FriendVO();
-        chat_FriendVO2.setCf_no("cf002");
-        chat_FriendVO2.setCf_is_del("1");
-        dao.update(chat_FriendVO2);
-        
-        System.out.println("update");
-
-        // 刪除
-//        dao.delete("cf003");
-//        System.out.println("delete");
-
-        // 查詢
-        Chat_FriendVO chat_FriendVO3 = dao.findByPrimaryKey("cf001");
-        System.out.print(chat_FriendVO3.getCf_no() + ",");
-        System.out.println(chat_FriendVO3.getMem_no_o());
-        System.out.println("---------------------");
-
-        // 查詢部門
-        List<Chat_FriendVO> list = dao.getAll();
-        for (Chat_FriendVO cf : list) {
-            System.out.print(cf.getCf_no() + ",");
-            System.out.print(cf.getMem_no_o());
-            System.out.println();
-        }
     }
 }

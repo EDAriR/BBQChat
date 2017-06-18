@@ -1,27 +1,32 @@
-package com.chat.model;
+package com.chat.jdbcdao;
+
+import com.chat.model.Chat_NotebookDAO_interface;
+import com.chat.model.Chat_NotebookVO;
 
 import java.util.*;
 import java.sql.*;
 
 
-public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
+public class Chat_NotebookJDBCDAO implements Chat_NotebookDAO_interface {
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
-    //    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+//    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
     // 新增資料
-    private static final String INSERT_STMT = "INSERT INTO chat_group_item (cg_no, mem_no) " +
-            "VALUES (?, ?)";
+    private static final String INSERT_STMT = "INSERT INTO chat_notebook (cnb_no, cnb_cnt) " +
+            "VALUES ('cnb'||LPAD(to_char(cnb_no_seq.NEXTVAL),3,'0'), ?)";
     // 查詢資料
-    private static final String GET_ALL_STMT = "SELECT cg_no , mem_no FROM chat_group_item";
-    private static final String GET_ONE_STMT = "SELECT cg_no, mem_no FROM chat_group_item WHERE cg_no = ?";
+    private static final String GET_ALL_STMT = "SELECT cnb_no , cnb_cnt FROM chat_notebook";
+    private static final String GET_ONE_STMT = "SELECT cnb_no, cnb_cnt FROM chat_notebook WHERE cnb_no = ?";
     // 刪除資料
-    private static final String DELETE_PROC = "DELETE FROM chat_group_item WHERE cg_no = ?";
+    private static final String DELETE_PROC = "DELETE FROM chat_notebook WHERE cnb_no = ?";
+    // 修改資料
+    private static final String UPDATE = "UPDATE chat_notebook SET cnb_cnt=? WHERE cnb_no = ?";
 
 
     @Override
-    public void insert(Chat_Group_ItemVO chat_Group_ItemVO) {
+    public void insert(Chat_NotebookVO chat_NotebookVO) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -29,10 +34,9 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
 
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
-
-            pstmt = con.prepareStatement(INSERT_STMT);
-            pstmt.setString(1, chat_Group_ItemVO.getCg_no());
-            pstmt.setString(2, chat_Group_ItemVO.getMem_no());
+            String[] cnb = {"cnb_no"}; // 有使用sequence產生編號的話才要寫
+            pstmt = con.prepareStatement(INSERT_STMT, cnb); // 有使用sequence產生編號的話才要寫第二個參數
+            pstmt.setString(1, chat_NotebookVO.getCnb_cnt());
             pstmt.executeUpdate();
 
             // Handle any DRIVER errors
@@ -60,12 +64,53 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
                 }
             }
         }
-
-
     }
 
     @Override
-    public void delete(String cg_no, String mem_no) {
+    public void update(Chat_NotebookVO chat_NotebookVO) {
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        try {
+
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            pstmt = con.prepareStatement(UPDATE);
+
+            pstmt.setString(1, chat_NotebookVO.getCnb_cnt());
+            pstmt.setString(2, chat_NotebookVO.getCnb_no());
+            pstmt.executeUpdate();
+
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void delete(String cnb_no){
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -77,14 +122,15 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
 
             // 1 設定於 pstm.executeUpdate()之前
             con.setAutoCommit(false);
+
             pstmt = con.prepareStatement(DELETE_PROC);
-            pstmt.setString(1, cg_no);
+            pstmt.setString(1, cnb_no);
             pstmt.executeUpdate();
 
-            // 2 設定於 pstm.executeUpdate()之後
+            // 2●設定於 pstm.executeUpdate()之後
             con.commit();
             con.setAutoCommit(true);
-            System.out.println("Delete Chat Group Item" + cg_no);
+            System.out.println("Delete" + cnb_no);
 
             // Handle any DRIVER errors
         } catch (ClassNotFoundException e) {
@@ -94,7 +140,7 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
         } catch (SQLException se) {
             if (con != null) {
                 try {
-                    // 3 設定於當有exception發生時之catch區塊內
+                    // 3●設定於當有exception發生時之catch區塊內
                     con.rollback();
                 } catch (SQLException excep) {
                     throw new RuntimeException("rollback error occured. "
@@ -122,9 +168,9 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
     }
 
     @Override
-    public Chat_Group_ItemVO findByPrimaryKey(String cg_no, String mem_no) {
+    public Chat_NotebookVO findByPrimaryKey(String cnb_no){
 
-        Chat_Group_ItemVO chat_Group_ItemVO = null;
+        Chat_NotebookVO chat_NotebookVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -134,13 +180,13 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ONE_STMT);
-            pstmt.setString(1, cg_no);
+            pstmt.setString(1, cnb_no);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_Group_ItemVO = new Chat_Group_ItemVO();
-                chat_Group_ItemVO.setCg_no(rs.getString("cg_no"));
-                chat_Group_ItemVO.setMem_no(rs.getString("mem_no"));
+                chat_NotebookVO = new Chat_NotebookVO();
+                chat_NotebookVO.setCnb_no(rs.getString("cnb_no"));
+                chat_NotebookVO.setCnb_cnt(rs.getString("cnb_cnt"));
             }
 
             // Handle any DRIVER errors
@@ -175,13 +221,14 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
                 }
             }
         }
-        return chat_Group_ItemVO;
+        return chat_NotebookVO;
     }
 
-    public List<Chat_Group_ItemVO> getAll() {
+    @Override
+    public List<Chat_NotebookVO> getAll(){
 
-        List<Chat_Group_ItemVO> list = new ArrayList<Chat_Group_ItemVO>();
-        Chat_Group_ItemVO chat_Group_ItemVO = null;
+        List<Chat_NotebookVO> list = new ArrayList<Chat_NotebookVO>();
+        Chat_NotebookVO chat_NotebookVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -194,10 +241,10 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_Group_ItemVO = new Chat_Group_ItemVO();
-                chat_Group_ItemVO.setCg_no(rs.getString("cg_no"));
-                chat_Group_ItemVO.setMem_no(rs.getString("mem_no"));
-                list.add(chat_Group_ItemVO); // Store the row in the list
+                chat_NotebookVO = new Chat_NotebookVO();
+                chat_NotebookVO.setCnb_no(rs.getString("cnb_no"));
+                chat_NotebookVO.setCnb_cnt(rs.getString("cnb_cnt"));
+                list.add(chat_NotebookVO); // Store the row in the list
             }
 
             // Handle any DRIVER errors
@@ -236,34 +283,39 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
 
     public static void main(String[] args) {
 
-        Chat_Group_ItemJDBCDAO dao = new Chat_Group_ItemJDBCDAO();
+        Chat_NotebookJDBCDAO dao = new Chat_NotebookJDBCDAO();
 
         // 新增
-//        bbq.chat.model.Chat_Group_ItemVO chat_Group_ItemVO1 = new bbq.chat.model.Chat_Group_ItemVO();
-//        chat_Group_ItemVO1.setCg_no("cg002");
-//        chat_Group_ItemVO1.setMem_no("M0000003");
-//        dao.insert(chat_Group_ItemVO1);
-//        System.out.println("新增成功");
+//        bbq.chat.model.Chat_NotebookVO chat_NotebookVO1 = new bbq.chat.model.Chat_NotebookVO();
+//        chat_NotebookVO1.setCnb_cnt("記事本測試https://img.kekeke.cc/t/x8JrPHoAAr.png");
+//        dao.insert(chat_NotebookVO1);
+//        System.out.println("新增完成");
 
-        // 無法修改
+        // 修改
+//		bbq.chat.model.Chat_NotebookVO chat_NotebookVO2 = new bbq.chat.model.Chat_NotebookVO();
+//		chat_NotebookVO2.setCnb_no("cnb003");
+//		chat_NotebookVO2.setCnb_cnt("--------");
+//		System.out.println("修改完成");
+//		dao.update(chat_NotebookVO2);
+//		System.out.println("修改完成--");
 
         // 刪除
-//		dao.delete("cg002","M0000003");
-//		System.out.println("delete");
+//		dao.delete("cnb003");
+//		System.out.println("刪除完成");
 
         // 查詢
-        Chat_Group_ItemVO chat_Group_ItemVO3 = dao.findByPrimaryKey("cg002", "M0000003");
-        System.out.print(chat_Group_ItemVO3.getCg_no() + ",");
-        System.out.println(chat_Group_ItemVO3.getMem_no());
-        System.out.println("---------------------");
+		Chat_NotebookVO chat_NotebookVO3 = dao.findByPrimaryKey("cnb002");
+		System.out.print(chat_NotebookVO3.getCnb_no() + ",");
+		System.out.println(chat_NotebookVO3.getCnb_cnt());
+		System.out.println("---------------------");
 
         // 查詢部門
-//		List<bbq.chat.model.Chat_Group_ItemVO> list = dao.getAll();
-//		for (bbq.chat.model.Chat_Group_ItemVO cgi : list) {
-//			System.out.print(cgi.getCg_no() + ",");
-//			System.out.print(cgi.getMem_no());
-//			System.out.println();
-//		}
+		List<Chat_NotebookVO> list = dao.getAll();
+		for (Chat_NotebookVO cnb : list) {
+			System.out.print(cnb.getCnb_no() + ",");
+			System.out.print(cnb.getCnb_cnt());
+			System.out.println();
+		}
 
     }
 }

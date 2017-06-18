@@ -1,28 +1,18 @@
-package com.chat.model;
+package com.chat.jdbcdao;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import com.chat.model.Chat_GroupDAO_interface;
+import com.chat.model.Chat_GroupVO;
+
+import java.util.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
-public class Chat_GroupDAO implements Chat_GroupDAO_interface {
-
-    // 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
-    private static DataSource ds = null;
-
-    static {
-        try {
-            Context ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB3");
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-    }
-
+public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
+    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
+    //    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String USER = "ba101g3";
+    private static final String PASSWORD = "baby";
     // 新增資料
     private static final String INSERT_STMT = "INSERT INTO Chat_Group " +
             "(cg_no, cg_name, cg_year, cg_is_ar, cg_is_ab, cg_is_ac, cg_is_sf, cg_is_ad, cg_baby_rd) " +
@@ -46,7 +36,8 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
 
         try {
 //        	(cg_no, CG_NAME, CG_YEAR, CG_IS_AR, CG_IS_AB, CG_IS_AC, CG_IS_SF, CG_IS_AD, BABY_RD
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             String[] cg = {"cg_no"}; // 有使用sequence產生編號的話才要寫
             pstmt = con.prepareStatement(INSERT_STMT, cg); // 有使用sequence產生編號的話才要寫第二個參數
             pstmt.setString(1, chat_GroupVO.getCg_name());
@@ -59,6 +50,10 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
             pstmt.setString(8, chat_GroupVO.getBaby_rd());
             pstmt.executeUpdate();
 
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -90,14 +85,18 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
 
         try {
 
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(UPDATE);
 
-            pstmt.setString(2, chat_GroupVO.getCg_no());
             pstmt.setString(1, chat_GroupVO.getCg_name());
-            pstmt.setString(1, chat_GroupVO.getBaby_rd());
+            pstmt.setString(2, chat_GroupVO.getCg_no());
             pstmt.executeUpdate();
 
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -129,7 +128,8 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
 
         try {
 
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
 
             // 1 設定於 pstm.executeUpdate()之前
             con.setAutoCommit(false);
@@ -154,7 +154,10 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
             con.setAutoCommit(true);
             System.out.println("Delete Chat_Group: " + cg_no);
 
-
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             if (con != null) {
@@ -196,7 +199,8 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
 
         try {
 
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ONE_STMT);
             pstmt.setString(1, cg_no);
             rs = pstmt.executeQuery();
@@ -206,6 +210,11 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
                 chat_GroupVO.setCg_no(rs.getString("cg_no"));
                 chat_GroupVO.setCg_name(rs.getString("cg_name"));
             }
+
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -247,7 +256,8 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
 
         try {
 
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ALL_STMT);
             rs = pstmt.executeQuery();
 
@@ -257,6 +267,11 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
                 chat_GroupVO.setCg_name(rs.getString("cg_name"));
                 list.add(chat_GroupVO); // Store the row in the list
             }
+
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -287,4 +302,47 @@ public class Chat_GroupDAO implements Chat_GroupDAO_interface {
         return list;
     }
 
+
+    public static void main(String[] args) {
+
+        Chat_GroupJDBCDAO dao = new Chat_GroupJDBCDAO();
+
+        // 新增(OK)
+//        bbq.chat.model.Chat_GroupVO chat_GroupVO1 = new bbq.chat.model.Chat_GroupVO();
+//        chat_GroupVO1.setCg_name("群組測試1");
+//        chat_GroupVO1.setCg_year(java.sql.Date.valueOf("2002-02-01"));
+//        chat_GroupVO1.setCg_is_ab("0");
+//        chat_GroupVO1.setCg_is_ac("1");
+//        chat_GroupVO1.setCg_is_sf("0");
+//        chat_GroupVO1.setCg_is_ad("1");
+//        chat_GroupVO1.setCg_is_ar("1");
+//        chat_GroupVO1.setBaby_rd("沒時間睡覺症");
+//        dao.insert(chat_GroupVO1);
+//        System.out.println("insert");
+
+        // 修改
+//		bbq.chat.model.Chat_GroupVO chat_GroupVO2 = new bbq.chat.model.Chat_GroupVO();
+//		chat_GroupVO2.setCg_no("cg002");
+//		chat_GroupVO2.setCg_name("11修改看看");
+//		dao.update(chat_GroupVO2);
+//		System.out.println("update");
+
+        // 刪除
+		dao.delete("CG000001");
+		System.out.println("Delete");
+
+        // 查詢
+//        Chat_GroupVO chat_GroupVO3 = dao.findByPrimaryKey("CG000001");
+//        System.out.print(chat_GroupVO3.getCg_no() + ",");
+//        System.out.println(chat_GroupVO3.getCg_name());
+//        System.out.println("---------------------");
+
+        // 查詢部門
+        List<Chat_GroupVO> list = dao.getAll();
+        for (Chat_GroupVO cg : list) {
+            System.out.print(cg.getCg_no() + ",");
+            System.out.print(cg.getCg_name());
+            System.out.println();
+        }
+    }
 }

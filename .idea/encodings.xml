@@ -5,26 +5,26 @@
     <file url="file://$PROJECT_DIR$/WebContent/chat/page1.file" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/WebContent/chat/page2.file" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java" charset="x-windows-950" />
-    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/dao/Chat_FriendDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/dao/Chat_GroupDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/dao/Chat_Group_ItemDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/dao/Chat_NotebookDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/dao/Chat_RecordDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/dao/User_ReportDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_GroupJDBCDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_Group_ItemJDBCDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_NotebookJDBCDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_RecordJDBCDAO.java" charset="x-windows-950" />
+    <file url="file://$PROJECT_DIR$/src/com/chat/jdbcdao/User_ReportJDBCDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO_interface.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendJNDIDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendVO.java" charset="x-windows-950" />
-    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_GroupDAO.java" charset="x-windows-950" />
-    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_GroupJDBCDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_GroupService.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_GroupVO.java" charset="x-windows-950" />
-    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemDAO.java" charset="x-windows-950" />
-    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemJDBCDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemService.java" charset="x-windows-950" />
-    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_NotebookDAO.java" charset="x-windows-950" />
-    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_NotebookJDBCDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_NotebookService.java" charset="x-windows-950" />
-    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_RecordDAO.java" charset="x-windows-950" />
-    <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_RecordJDBCDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/Chat_RecordService.java" charset="x-windows-950" />
-    <file url="file://$PROJECT_DIR$/src/com/chat/model/User_ReportDAO.java" charset="x-windows-950" />
-    <file url="file://$PROJECT_DIR$/src/com/chat/model/User_ReportJDBCDAO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/User_ReportService.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/chat/model/User_ReportVO.java" charset="x-windows-950" />
     <file url="file://$PROJECT_DIR$/src/com/member/model/MemberDAO.java" charset="x-windows-950" />

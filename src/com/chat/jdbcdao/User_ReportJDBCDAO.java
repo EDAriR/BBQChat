@@ -1,25 +1,17 @@
-package com.chat.model;
+package com.chat.jdbcdao;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import com.chat.model.User_ReportDAO_interface;
+import com.chat.model.User_ReportVO;
+
+import java.util.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class User_ReportDAO implements User_ReportDAO_interface {
-    // 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
-    private static DataSource ds = null;
-
-    static {
-        try {
-            Context ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB3");
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-    }
+public class User_ReportJDBCDAO implements User_ReportDAO_interface {
+    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
+    // private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String USER = "ba101g3";
+    private static final String PASSWORD = "baby";
     // 新增資料
     private static final String INSERT_STMT = "INSERT INTO user_report "
             + "(mem_no_ed, mem_no_ing, urpt_cnt, urpt_date, urpt_rsn, urpt_is_cert, urpt_unrsn) "
@@ -40,7 +32,8 @@ public class User_ReportDAO implements User_ReportDAO_interface {
 
         try {
 
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(INSERT_STMT);
 
             // (MEM_NO_ED, MEM_NO_ING, URPT_CNT, URPT_DATE, URPT_RSN,
@@ -54,6 +47,9 @@ public class User_ReportDAO implements User_ReportDAO_interface {
 
             pstmt.executeUpdate();
 
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. " + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -84,7 +80,8 @@ public class User_ReportDAO implements User_ReportDAO_interface {
 
         try {
 
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(UPDATE);
 
             pstmt.setString(1, user_ReportVO.getMem_no_ed());
@@ -92,6 +89,9 @@ public class User_ReportDAO implements User_ReportDAO_interface {
             pstmt.setString(3, user_ReportVO.getUrpt_is_cert());
             pstmt.executeUpdate();
 
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. " + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -122,7 +122,8 @@ public class User_ReportDAO implements User_ReportDAO_interface {
 
         try {
 
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
 
             // 1 設定於 pstm.executeUpdate()之前
             con.setAutoCommit(false);
@@ -137,6 +138,9 @@ public class User_ReportDAO implements User_ReportDAO_interface {
             con.setAutoCommit(true);
             System.out.println("Delete User Report :" + mem_no_ed);
 
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. " + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             if (con != null) {
@@ -176,8 +180,8 @@ public class User_ReportDAO implements User_ReportDAO_interface {
 
         try {
 
-            con = ds.getConnection();
-
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ONE_STMT);
 
             pstmt.setString(1, mem_no_ed);
@@ -188,6 +192,10 @@ public class User_ReportDAO implements User_ReportDAO_interface {
                 user_ReportVO.setMem_no_ed(rs.getString("mem_no_ed"));
                 user_ReportVO.setUrpt_cnt(rs.getString("urpt_cnt"));
             }
+
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. " + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -229,7 +237,8 @@ public class User_ReportDAO implements User_ReportDAO_interface {
 
         try {
 
-            con = ds.getConnection();
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ALL_STMT);
             rs = pstmt.executeQuery();
 
@@ -240,6 +249,11 @@ public class User_ReportDAO implements User_ReportDAO_interface {
                 user_ReportVO.setUrpt_rsn(rs.getString("urpt_rsn"));
                 list.add(user_ReportVO); // Store the row in the list
             }
+//			 mem_no_ed, URPT_CNT, URPT_RSN, 
+
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. " + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -267,5 +281,51 @@ public class User_ReportDAO implements User_ReportDAO_interface {
             }
         }
         return list;
+    }
+
+    public static void main(String[] args) {
+
+        User_ReportJDBCDAO dao = new User_ReportJDBCDAO();
+
+        // 新增(OK)
+        // (MEM_NO_ED, MEM_NO_ING, URPT_CNT, URPT_DATE,
+        // URPT_RSN, URPT_IS_CERT,URPT_UNRSN)
+
+//		bbq.chat.model.User_ReportVO user_ReportVO1 = new bbq.chat.model.User_ReportVO();
+//		user_ReportVO1.setMem_no_ed("M0000001");
+//		user_ReportVO1.setMem_no_ing("M0000009");
+//		user_ReportVO1.setUrpt_cnt("787846sas回");
+//		user_ReportVO1.setUrpt_date(new Timestamp(System.currentTimeMillis()));
+//		user_ReportVO1.setUrpt_rsn("亂碼留言");
+//		user_ReportVO1.setUrpt_is_cert("0");
+//		user_ReportVO1.setUrpt_unrsn("不要問你會怕");
+//		dao.insert(user_ReportVO1);
+//		System.out.println("insert OK");
+
+        // 修改
+        User_ReportVO user_ReportVO2 = new User_ReportVO();
+        user_ReportVO2.setMem_no_ed("M0000001");
+        user_ReportVO2.setMem_no_ing("M0000009");
+        user_ReportVO2.setUrpt_is_cert("1");
+        dao.update(user_ReportVO2);
+
+        // 刪除
+//         dao.delete("M0000001","M0000009");
+//         System.out.println("delete");
+
+        // 查詢
+//		 bbq.chat.model.User_ReportVO user_ReportVO3 = dao.findByPrimaryKey("M0000001");
+//		 System.out.print(user_ReportVO3.getMem_no_ed() + ",");
+//		 System.out.println(user_ReportVO3.getUrpt_is_cert());
+//		 System.out.println("---------------------");
+
+        // 查詢部門
+//		 List<bbq.chat.model.User_ReportVO> list = dao.getAll();
+//		 for (bbq.chat.model.User_ReportVO up : list) {
+//		 System.out.print(up.getMem_no_ed() + ",");
+//		 System.out.print(up.getUrpt_cnt());
+//		 System.out.print(up.getUrpt_rsn());
+//		 System.out.println();
+//		 }
     }
 }

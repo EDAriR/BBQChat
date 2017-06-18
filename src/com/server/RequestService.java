@@ -1,4 +1,4 @@
-package server;
+package com.server;
 
 import org.apache.commons.codec.binary.Base64;
 import org.json.JSONException;

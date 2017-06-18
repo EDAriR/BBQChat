@@ -1,5 +1,7 @@
 package com.chat.model;
 
+import com.chat.dao.User_ReportDAO;
+
 import java.sql.Timestamp;
 import java.util.List;
 

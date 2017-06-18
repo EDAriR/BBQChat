@@ -3,8 +3,10 @@
     <properties maven-id="org.json:json:20141113" />
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/json-20141113.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/json-20141113.jar!/" />
     </CLASSES>
     <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/json-20141113-javadoc.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/json-20141113-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />

@@ -1,4 +1,4 @@
-package server;
+package com.server;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;

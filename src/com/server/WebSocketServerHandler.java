@@ -1,4 +1,4 @@
-package server;
+package com.server;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -183,5 +183,10 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
     private static String getWebSocketLocation(FullHttpRequest req) {
         String location = req.headers().get(HOST) + WEBSOCKET_PATH;
         return "ws://" + location;
+    }
+
+    @Override
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, Object o) throws Exception {
+
     }
 }

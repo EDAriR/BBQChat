@@ -1,4 +1,4 @@
-package server;
+package com.server;
 
 public class MessageService {
 

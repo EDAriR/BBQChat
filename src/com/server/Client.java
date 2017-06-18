@@ -1,4 +1,4 @@
-package server;
+package com.server;
 /**
  * Created by zhoumengkang on 16/7/2.
  */
