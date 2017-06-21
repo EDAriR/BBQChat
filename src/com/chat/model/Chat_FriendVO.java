@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 
 public class Chat_FriendVO implements Serializable {
-    private String cf_no;       //	Not Null (PK)
-    private String mem_no_s;    //	(FK)
-    private String mem_no_o;    //	(FK)
-    private String cf_is_del;   //	"Not Null 0：否 (預設) 1：是"
+    private String cf_no;       // Not Null (PK)
+    private String mem_no_s;    // Not Null (FK)
+    private String mem_no_o;    // Not Null (FK)
+    private String cf_is_del;   // Not Null 0：否 (預設) 1：是
 
     public Chat_FriendVO() {
         super();
