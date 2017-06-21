@@ -1,11 +1,15 @@
 package com.chat.model;
 
-import java.util.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Chat_FriendJNDIDAO implements Chat_FriendDAO_interface {
@@ -92,55 +96,6 @@ public class Chat_FriendJNDIDAO implements Chat_FriendDAO_interface {
             throw new RuntimeException("A database error occured. "
                     + se.getMessage());
             // Clean up JDBC resources
-        } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.err);
-                }
-            }
-        }
-    }
-
-    @Override
-    public void delete(String cf_no) {
-
-        Connection con = null;
-        PreparedStatement pstmt = null;
-
-        try {
-        	
-        	con = ds.getConnection();        	
-            con.setAutoCommit(false);
-            pstmt = con.prepareStatement(DELETE_PROC);
-            
-            pstmt.setString(1, cf_no);
-            pstmt.executeUpdate();
-
-            con.commit();
-            con.setAutoCommit(true);
-            System.out.println("Delete Chat Friend :" + cf_no);
-            
-            // Handle any SQL errors
-        } catch (SQLException se) {
-            if (con != null) {
-                try {                	
-                    con.rollback();
-                } catch (SQLException excep) {
-                    throw new RuntimeException("rollback error occured. "
-                            + excep.getMessage());
-                }
-            }
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
         } finally {
             if (pstmt != null) {
                 try {

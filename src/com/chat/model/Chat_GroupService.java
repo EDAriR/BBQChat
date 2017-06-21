@@ -1,7 +1,5 @@
 package com.chat.model;
 
-import com.chat.dao.Chat_GroupDAO;
-
 import java.util.Date;
 import java.util.List;
 

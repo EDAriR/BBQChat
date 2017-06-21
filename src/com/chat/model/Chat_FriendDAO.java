@@ -1,27 +1,40 @@
-package com.chat.jdbcdao;
+package com.chat.model;
 
-import com.chat.model.Chat_FriendDAO_interface;
-import com.chat.model.Chat_FriendVO;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.*;
-import java.sql.*;
 
+public class Chat_FriendDAO implements Chat_FriendDAO_interface {
 
-public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
-    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
-    //    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-    private static final String USER = "ba101g3";
-    private static final String PASSWORD = "baby";
-    // ï¿½sï¿½Wï¿½ï¿½ï¿½
+    // ¤@­ÓÀ³¥Îµ{¦¡¤¤,°w¹ï¤@­Ó¸ê®Æ®w ,¦@¥Î¤@­ÓDataSource§Y¥i
+    private static DataSource ds = null;
+
+    static {
+        try {
+            Context ctx = new InitialContext();
+            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDBG3");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ·s¼W¸ê®Æ
     private static final String INSERT_STMT = "INSERT INTO chat_friend (cf_no, mem_no_s, mem_no_o, cf_is_del) " +
             "VALUES ('cf'||LPAD(TO_CHAR(cf_no_seq.NEXTVAL),3,'0'), ?, ?, ?)";
-    // ï¿½dï¿½ß¸ï¿½ï¿½
+    // ¬d¸ß¸ê®Æ
     private static final String GET_ALL_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend";
     private static final String GET_ONE_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend WHERE cf_no = ?";
-    // ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½
+    // §R°£¸ê®Æ
     private static final String DELETE_PROC = "DELETE FROM chat_friend WHERE cf_no = ?";
-    // ï¿½×§ï¿½ï¿½ï¿½
+    // ­×§ï¸ê®Æ
     private static final String UPDATE = "UPDATE chat_friend SET cf_is_del=? WHERE cf_no = ? ";
 
 
@@ -32,19 +45,15 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
 
         try {
 
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
-            String[] cf = {"cf_no"}; // ï¿½ï¿½ï¿½Ï¥ï¿½sequenceï¿½ï¿½ï¿½Í½sï¿½ï¿½ï¿½ï¿½ï¿½Ü¤~ï¿½nï¿½g
-            pstmt = con.prepareStatement(INSERT_STMT, cf); // ï¿½ï¿½ï¿½Ï¥ï¿½sequenceï¿½ï¿½ï¿½Í½sï¿½ï¿½ï¿½ï¿½ï¿½Ü¤~ï¿½nï¿½gï¿½Ä¤Gï¿½Ó°Ñ¼ï¿½
+            con = ds.getConnection();
+            String[] cf = {"cf_no"}; // ¦³¨Ï¥Îsequence²£¥Í½s¸¹ªº¸Ü¤~­n¼g
+            pstmt = con.prepareStatement(INSERT_STMT, cf); // ¦³¨Ï¥Îsequence²£¥Í½s¸¹ªº¸Ü¤~­n¼g²Ä¤G­Ó°Ñ¼Æ
+
             pstmt.setString(1, chat_FriendVO.getMem_no_s());
             pstmt.setString(2, chat_FriendVO.getMem_no_o());
             pstmt.setString(3, chat_FriendVO.getCf_is_del());
             pstmt.executeUpdate();
 
-            // Handle any DRIVER errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database DRIVER. "
-                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -66,8 +75,6 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
                 }
             }
         }
-
-
     }
 
     @Override
@@ -78,81 +85,18 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
 
         try {
 
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            con = ds.getConnection();
             pstmt = con.prepareStatement(UPDATE);
+
             pstmt.setString(1, chat_FriendVO.getCf_is_del());
             pstmt.setString(2, chat_FriendVO.getCf_no());
             pstmt.executeUpdate();
 
-            // Handle any DRIVER errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database DRIVER. "
-                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
                     + se.getMessage());
             // Clean up JDBC resources
-        } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.err);
-                }
-            }
-        }
-
-    }
-
-    @Override
-    public void delete(String cf_no) {
-
-        Connection con = null;
-        PreparedStatement pstmt = null;
-
-        try {
-
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
-
-            // 1 ï¿½]ï¿½wï¿½ï¿½ pstm.executeUpdate()ï¿½ï¿½ï¿½e
-            con.setAutoCommit(false);
-
-            pstmt = con.prepareStatement(DELETE_PROC);
-            pstmt.setString(1, cf_no);
-            pstmt.executeUpdate();
-
-            // 2 ï¿½]ï¿½wï¿½ï¿½ pstm.executeUpdate()ï¿½ï¿½ï¿½ï¿½
-            con.commit();
-            con.setAutoCommit(true);
-            System.out.println("Delete Chat Friend :" + cf_no);
-
-            // Handle any DRIVER errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database DRIVER. "
-                    + e.getMessage());
-            // Handle any SQL errors
-        } catch (SQLException se) {
-            if (con != null) {
-                try {
-                    // 3 ï¿½]ï¿½wï¿½ï¿½ï¿½exceptionï¿½oï¿½Í®É¤ï¿½catchï¿½Ï¶ï¿½ï¿½ï¿½
-                    con.rollback();
-                } catch (SQLException excep) {
-                    throw new RuntimeException("rollback error occured. "
-                            + excep.getMessage());
-                }
-            }
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
         } finally {
             if (pstmt != null) {
                 try {
@@ -181,12 +125,9 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
 
         try {
 
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            con = ds.getConnection();
             pstmt = con.prepareStatement(GET_ONE_STMT);
-
             pstmt.setString(1, cf_no);
-
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -194,11 +135,6 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
                 chat_FriendVO.setCf_no(rs.getString("cf_no"));
                 chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
             }
-
-            // Handle any DRIVER errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database DRIVER. "
-                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -240,9 +176,7 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
         ResultSet rs = null;
 
         try {
-
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            con = ds.getConnection();
             pstmt = con.prepareStatement(GET_ALL_STMT);
             rs = pstmt.executeQuery();
 
@@ -252,11 +186,6 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
                 chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
                 list.add(chat_FriendVO); // Store the row in the list
             }
-
-            // Handle any DRIVER errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database DRIVER. "
-                    + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -285,44 +214,5 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
             }
         }
         return list;
-    }
-
-    public static void main(String[] args) {
-
-        Chat_FriendJDBCDAO dao = new Chat_FriendJDBCDAO();
-        // ï¿½ï¿½ï¿½Õ¬Ý¬Ý¨Cï¿½Ó«ï¿½ï¿½Oï¿½Oï¿½_ï¿½iï¿½Hï¿½Ï¥ï¿½
-        // ï¿½sï¿½W(OK)
-//        bbq.chat.model.Chat_FriendVO chat_FriendVO1 = new bbq.chat.model.Chat_FriendVO();
-//        chat_FriendVO1.setMem_no_s("M0000001");
-//        chat_FriendVO1.setMem_no_o("M0000007");
-//        chat_FriendVO1.setCf_is_del("0");
-//        dao.insert(chat_FriendVO1);
-//        System.out.println("ï¿½sï¿½Wï¿½ï¿½ï¿½\");
-
-        // ï¿½×§ï¿½
-        Chat_FriendVO chat_FriendVO2 = new Chat_FriendVO();
-        chat_FriendVO2.setCf_no("cf002");
-        chat_FriendVO2.setCf_is_del("1");
-        dao.update(chat_FriendVO2);
-        
-        System.out.println("update");
-
-        // ï¿½Rï¿½ï¿½
-//        dao.delete("cf003");
-//        System.out.println("delete");
-
-        // ï¿½dï¿½ï¿½
-        Chat_FriendVO chat_FriendVO3 = dao.findByPrimaryKey("cf001");
-        System.out.print(chat_FriendVO3.getCf_no() + ",");
-        System.out.println(chat_FriendVO3.getMem_no_o());
-        System.out.println("---------------------");
-
-        // ï¿½dï¿½ß³ï¿½ï¿½ï¿½
-        List<Chat_FriendVO> list = dao.getAll();
-        for (Chat_FriendVO cf : list) {
-            System.out.print(cf.getCf_no() + ",");
-            System.out.print(cf.getMem_no_o());
-            System.out.println();
-        }
     }
 }

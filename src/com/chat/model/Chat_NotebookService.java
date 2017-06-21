@@ -1,7 +1,5 @@
 package com.chat.model;
 
-import com.chat.dao.Chat_NotebookDAO;
-
 import java.util.List;
 
 

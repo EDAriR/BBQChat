@@ -2,43 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="262204df-fcad-4d8d-a5d5-22b485f43f00" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_tomcat_tomcat_websocket_api_7_0_78.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/server/MyWebSocketServer.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_jcraft_jzlib_1_1_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_jcraft_jzlib_1_1_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/commons_codec_commons_codec_1_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/commons_codec_commons_codec_1_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/io_netty_netty_all_4_0_38_Final.xml" afterPath="$PROJECT_DIR$/.idea/libraries/io_netty_netty_all_4_0_38_Final.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/io_netty_netty_all_4_1_9_Final.xml" afterPath="$PROJECT_DIR$/.idea/libraries/io_netty_netty_all_4_1_9_Final.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/io_netty_netty_transport_native_epoll_5_0_0_Alpha2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/io_netty_netty_transport_native_epoll_5_0_0_Alpha2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/org_json_json_20141113.xml" afterPath="$PROJECT_DIR$/.idea/libraries/org_json_json_20141113.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_Group_ItemJDBCDAO.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_NotebookJDBCDAO.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_RecordJDBCDAO.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/User_ReportJDBCDAO.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendDAO_interface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendJNDIDAO.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendJNDIDAO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendService.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendVO.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendVO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_GroupDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_GroupDAO_interface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_GroupVO.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_GroupVO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_Group_ItemDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_Group_ItemDAO_interface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_Group_ItemVO.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_Group_ItemVO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_NotebookDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_NotebookDAO_interface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_NotebookVO.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_NotebookVO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_RecordDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_RecordDAO_interface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_RecordVO.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_RecordVO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/User_ReportDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/User_ReportDAO_interface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/User_ReportVO.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/User_ReportVO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/member/model/MemberDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/member/model/MemberDAO_interface.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/member/model/MemberJDBCDAO.class" afterPath="$PROJECT_DIR$/build/classes/com/member/model/MemberJDBCDAO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/member/model/MemberService.class" afterPath="$PROJECT_DIR$/build/classes/com/member/model/MemberService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/member/model/MemberVO.class" afterPath="$PROJECT_DIR$/build/classes/com/member/model/MemberVO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BBQChat.iml" afterPath="$PROJECT_DIR$/BBQChat.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO_interface.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO_interface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendJNDIDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendJNDIDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendVO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendVO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupService.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupVO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemDAO_interface.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemDAO_interface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemService.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookService.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookVO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordDAO_interface.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordDAO_interface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordService.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordVO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordVO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/User_ReportDAO_interface.java" afterPath="$PROJECT_DIR$/src/com/chat/model/User_ReportDAO_interface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/User_ReportService.java" afterPath="$PROJECT_DIR$/src/com/chat/model/User_ReportService.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/dao/Chat_FriendDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_FriendJDBCDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/dao/Chat_GroupDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_GroupJDBCDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/dao/Chat_Group_ItemDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_Group_ItemJDBCDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/dao/Chat_NotebookDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_NotebookJDBCDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/dao/Chat_RecordDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_RecordJDBCDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/User_ReportDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/dao/User_ReportDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/model/User_ReportJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/jdbcdao/User_ReportJDBCDAO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/Client.java" afterPath="$PROJECT_DIR$/src/com/server/Client.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/MessageService.java" afterPath="$PROJECT_DIR$/src/com/server/MessageService.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/MyWebSocketServer.java" afterPath="$PROJECT_DIR$/src/com/server/MyWebSocketServer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/RequestService.java" afterPath="$PROJECT_DIR$/src/com/server/RequestService.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/Response.java" afterPath="$PROJECT_DIR$/src/com/server/Response.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/WebSocketServer.java" afterPath="$PROJECT_DIR$/src/com/server/WebSocketServer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/WebSocketServerHandler.java" afterPath="$PROJECT_DIR$/src/com/server/WebSocketServerHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/WebSocketServerInitializer.java" afterPath="$PROJECT_DIR$/src/com/server/WebSocketServerInitializer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/User_ReportVO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/User_ReportVO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/dao/Chat_FriendDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/dao/Chat_GroupDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/dao/Chat_Group_ItemDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/dao/Chat_NotebookDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/dao/Chat_RecordDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/dao/User_ReportDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/User_ReportDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_FriendJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendJDBCDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_GroupJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupJDBCDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_Group_ItemJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordJDBCDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_NotebookJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookJDBCDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_RecordJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemJDBCDAO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/chat/jdbcdao/User_ReportJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/User_ReportJDBCDAO.java" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,114 +66,73 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="Chat_GroupJDBCDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_GroupJDBCDAO.java">
+      <file leaf-file-name="Chat_Group_ItemDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Chat_RecordJDBCDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_RecordJDBCDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Chat_NotebookJDBCDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_NotebookJDBCDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User_ReportJDBCDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/User_ReportJDBCDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="386">
+              <caret line="251" column="35" lean-forward="false" selection-start-line="251" selection-start-column="34" selection-end-line="251" selection-end-column="35" />
               <folding>
-                <marker date="1497791046887" expanded="true" signature="616:799" ph="INSERT INTO user_report... " />
-                <marker date="1497791046887" expanded="true" signature="862:929" ph="SELECT mem_n... user_report" />
-                <marker date="1497791046887" expanded="true" signature="980:1084" ph="SELECT mem_n... User_Report" />
-                <marker date="1497791046887" expanded="true" signature="1146:1207" ph="DELETE FROM " />
-                <marker date="1497791046887" expanded="true" signature="1264:1339" ph="UPDATE User_... " />
+                <element signature="e#4133#4152#0" expanded="true" />
+                <element signature="e#5828#5847#0" expanded="true" />
+                <element signature="e#7507#7526#0" expanded="true" />
+                <marker date="1498054364080" expanded="true" signature="778:852" ph="INSERT INTO chat_group_item... " />
+                <marker date="1498054364080" expanded="true" signature="915:922" ph="SELECT cg_no... chat_group_item" />
+                <marker date="1498054364080" expanded="true" signature="915:944" ph="SELECT * FRO... chat_group_item" />
+                <marker date="1498054364080" expanded="true" signature="1000:1044" ph="SELECT * FRO... chat_group_item" />
+                <marker date="1498054364080" expanded="true" signature="1101:1146" ph="SELECT * FRO... chat_group_item" />
+                <marker date="1498054364080" expanded="true" signature="1214:1271" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="Chat_FriendJNDIDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendJNDIDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BBQChat.iml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/BBQChat.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Chat_RecordDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/chat/dao/Chat_RecordDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13">
-              <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User_ReportDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/chat/dao/User_ReportDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            <state relative-caret-position="392">
+              <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
               <folding>
-                <marker date="1497791047069" expanded="true" signature="753:936" ph="INSERT INTO user_report... " />
-                <marker date="1497791047069" expanded="true" signature="999:1066" ph="SELECT mem_n... user_report" />
-                <marker date="1497791047069" expanded="true" signature="1117:1221" ph="SELECT mem_n... User_Report" />
-                <marker date="1497791047069" expanded="true" signature="1283:1344" ph="DELETE FROM " />
-                <marker date="1497791047069" expanded="true" signature="1401:1476" ph="UPDATE User_... " />
+                <marker date="1498054363977" expanded="true" signature="734:876" ph="INSERT INTO chat_friend... " />
+                <marker date="1498054363977" expanded="true" signature="939:999" ph="SELECT cf_no... chat_friend" />
+                <marker date="1498054363977" expanded="true" signature="1050:1126" ph="SELECT cf_no... chat_friend" />
+                <marker date="1498054363977" expanded="true" signature="1284:1334" ph="UPDATE chat_... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chat_FriendJDBCDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_FriendJDBCDAO.java">
+      <file leaf-file-name="Chat_FriendDAO.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="-4340">
+              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+              <folding>
+                <marker date="1498054364025" expanded="true" signature="774:916" ph="INSERT INTO chat_friend... " />
+                <marker date="1498054364025" expanded="true" signature="979:1039" ph="SELECT cf_no... chat_friend" />
+                <marker date="1498054364025" expanded="true" signature="1090:1166" ph="SELECT cf_no... chat_friend" />
+                <marker date="1498054364025" expanded="true" signature="1228:1267" ph="DELETE FROM " />
+                <marker date="1498054364025" expanded="true" signature="1324:1374" ph="UPDATE chat_... " />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Chat_Group_ItemJDBCDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_Group_ItemJDBCDAO.java">
+        <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemJDBCDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="307">
+              <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="295" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4338#4357#0" expanded="true" />
+                <element signature="e#6296#6315#0" expanded="true" />
+                <element signature="e#8238#8257#0" expanded="true" />
+                <marker date="1498053700052" expanded="true" signature="457:531" ph="INSERT INTO chat_group_item... " />
+                <marker date="1498053700052" expanded="true" signature="594:623" ph="SELECT * FRO... chat_group_item" />
+                <marker date="1498053700052" expanded="true" signature="679:723" ph="SELECT * FRO... chat_group_item" />
+                <marker date="1498053700052" expanded="true" signature="780:825" ph="SELECT * FRO... chat_group_item" />
+                <marker date="1498053700052" expanded="true" signature="893:950" ph="DELETE FROM " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -191,7 +165,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO_interface.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_FriendJNDIDAO.java" />
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_FriendVO.java" />
         <option value="$PROJECT_DIR$/WebContent/chat/page1.file" />
         <option value="$PROJECT_DIR$/WebContent/chat/page2.file" />
@@ -206,24 +179,14 @@
         <option value="$PROJECT_DIR$/WebContent/chat/update_chat_input.jsp" />
         <option value="$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java" />
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_GroupVO.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemJDBCDAO.java" />
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemService.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookJDBCDAO.java" />
         <option value="$PROJECT_DIR$/src/com/chat/model/User_ReportVO.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/User_ReportService.java" />
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_RecordService.java" />
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookVO.java" />
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookService.java" />
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_GroupService.java" />
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_RecordJBBCDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_RecordJDBCDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_GroupJDBCDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/User_ReportJDBCDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_GroupDAO.java" />
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_RecordDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/User_ReportDAO.java" />
         <option value="$PROJECT_DIR$/src/server/WebSocketServer.java" />
         <option value="$PROJECT_DIR$/WebContent/WebSocket.html" />
         <option value="$PROJECT_DIR$/src/server/pom.xml" />
@@ -237,6 +200,21 @@
         <option value="$PROJECT_DIR$/src/server/WebSocketServerHandler.java" />
         <option value="$PROJECT_DIR$/src/com/chat/dao/User_ReportDAO.java" />
         <option value="$PROJECT_DIR$/src/com/chat/jdbcdao/User_ReportJDBCDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/dao/Chat_FriendDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/dao/Chat_GroupDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_FriendJDBCDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_GroupJDBCDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemJDBCDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_FriendJDBCDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/User_ReportJDBCDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/User_ReportDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/User_ReportService.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_RecordJDBCDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_RecordDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookJDBCDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_GroupDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_FriendJNDIDAO.java" />
       </list>
     </option>
   </component>
@@ -279,17 +257,83 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BBQChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BBQChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BBQChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BBQChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BBQChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BBQChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/javalib/servlet-api.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../forproject/BA101G3" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -301,8 +345,9 @@
     <property name="Repository.Attach.Sources" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\GGGG\j2hs\BBQChat" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="WebSocketServerHandler" />
+      <recent name="server" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\Desktop\專題用\BBQChat\src\WebSocketServerHandler" />
@@ -311,9 +356,8 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.chat.model" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="WebSocketServerHandler" />
-      <recent name="server" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\GGGG\j2hs\BBQChat" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -332,7 +376,7 @@
     <configuration default="false" name="Chat_GroupJDBCDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="com.chat.dao.*" />
+          <option name="PATTERN" value="com.chat.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -511,6 +555,16 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="BatchConfigurationType" factoryName="Batch">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
       <method />
     </configuration>
     <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
@@ -805,7 +859,8 @@
       <workItem from="1497715883669" duration="8674000" />
       <workItem from="1497769142172" duration="2870000" />
       <workItem from="1497782173892" duration="2138000" />
-      <workItem from="1497790819052" duration="227000" />
+      <workItem from="1497790819052" duration="267000" />
+      <workItem from="1498052626033" duration="1738000" />
     </task>
     <task id="LOCAL-00001" summary="cc">
       <created>1497707069545</created>
@@ -821,14 +876,22 @@
       <option name="project" value="LOCAL" />
       <updated>1497709670445</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="DAO JDBC package">
+      <created>1497791071677</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1497791071677</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45053000" />
+    <option name="totallyTimeSpent" value="46831000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -845,7 +908,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26540542" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27027026" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -901,7 +964,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="cc" />
     <MESSAGE value="chat group" />
-    <option name="LAST_COMMIT_MESSAGE" value="chat group" />
+    <MESSAGE value="DAO JDBC package" />
+    <option name="LAST_COMMIT_MESSAGE" value="DAO JDBC package" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -914,48 +978,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WebContent/chat/listAllChat_Friend.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="636">
-          <caret line="56" column="102" lean-forward="false" selection-start-line="56" selection-start-column="100" selection-end-line="56" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_GroupVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_GroupDAO_interface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="9" column="50" lean-forward="true" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemDAO_interface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_NotebookDAO_interface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="7" column="43" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/chat/select_page.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="827">
-          <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/chat/page2.file">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
@@ -1019,13 +1041,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/model/User_ReportService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="60" column="1" lean-forward="true" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chat/model/User_ReportVO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -1068,13 +1083,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendJNDIDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="897">
-          <caret line="42" column="12" lean-forward="false" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/util/Collections.java" />
     <entry file="jar://C:/BA101/apache-tomcat-7.0.75/lib/websocket-api.jar!/javax/websocket/server/PathParam.class" />
     <entry file="file://$PROJECT_DIR$/src/com/server/Client.java" />
@@ -1091,7 +1099,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1099,9 +1106,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1116,9 +1120,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1126,9 +1127,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1146,7 +1144,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1154,83 +1151,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="146" column="30" lean-forward="false" selection-start-line="146" selection-start-column="30" selection-end-line="146" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/dao/Chat_FriendDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/dao/Chat_Group_ItemDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/dao/Chat_GroupDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/dao/Chat_NotebookDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/dao/Chat_RecordDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/dao/User_ReportDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <marker date="1497791047069" expanded="true" signature="753:936" ph="INSERT INTO user_report... " />
-            <marker date="1497791047069" expanded="true" signature="999:1066" ph="SELECT mem_n... user_report" />
-            <marker date="1497791047069" expanded="true" signature="1117:1221" ph="SELECT mem_n... User_Report" />
-            <marker date="1497791047069" expanded="true" signature="1283:1344" ph="DELETE FROM " />
-            <marker date="1497791047069" expanded="true" signature="1401:1476" ph="UPDATE User_... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_FriendJDBCDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_Group_ItemJDBCDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_GroupJDBCDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="140">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
         </state>
@@ -1238,7 +1164,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_NotebookJDBCDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="28">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
         </state>
@@ -1246,7 +1172,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_RecordJDBCDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="28">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_GroupJDBCDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
         </state>
@@ -1256,13 +1190,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <marker date="1497791046887" expanded="true" signature="616:799" ph="INSERT INTO user_report... " />
-            <marker date="1497791046887" expanded="true" signature="862:929" ph="SELECT mem_n... user_report" />
-            <marker date="1497791046887" expanded="true" signature="980:1084" ph="SELECT mem_n... User_Report" />
-            <marker date="1497791046887" expanded="true" signature="1146:1207" ph="DELETE FROM " />
-            <marker date="1497791046887" expanded="true" signature="1264:1339" ph="UPDATE User_... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1276,9 +1204,212 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BBQChat.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="392">
+          <caret line="14" column="61" lean-forward="false" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/jdbcdao/Chat_FriendJDBCDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendJDBCDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1820">
+          <caret line="8" column="13" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="14" />
+          <folding>
+            <marker date="1498053271444" expanded="true" signature="8814:9229" ph="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/User_ReportDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="196" column="12" lean-forward="false" selection-start-line="196" selection-start-column="12" selection-end-line="196" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5811#5826#0" expanded="true" />
+            <marker date="1498054026125" expanded="true" signature="669:825" ph="INSERT INTO user_report... " />
+            <marker date="1498054026125" expanded="true" signature="669:842" ph="INSERT INTO user_report... " />
+            <marker date="1498054026125" expanded="true" signature="905:930" ph="SELECT * FRO... user_report" />
+            <marker date="1498054026125" expanded="true" signature="981:1043" ph="SELECT * FRO... User_Report" />
+            <marker date="1498054026125" expanded="true" signature="1100:1189" ph="UPDATE User_... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/User_ReportJDBCDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="110" column="77" lean-forward="true" selection-start-line="110" selection-start-column="42" selection-end-line="110" selection-end-column="77" />
+          <folding>
+            <marker date="1498053271437" expanded="true" signature="9788:10329" ph="//..." />
+            <marker date="1498053271437" expanded="true" signature="9788:10335" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/User_ReportService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1372">
+          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_RecordJDBCDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="244" column="5" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="244" selection-end-column="5" />
+          <folding>
+            <marker date="1498053271301" expanded="true" signature="9158:9558" ph="//..." />
+            <marker date="1498053271301" expanded="true" signature="9158:9565" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_RecordDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1478">
+          <caret line="209" column="12" lean-forward="false" selection-start-line="209" selection-start-column="12" selection-end-line="209" selection-end-column="12" />
+          <folding>
+            <element signature="e#6044#6059#0" expanded="true" />
+            <marker date="1498054088465" expanded="true" signature="924:1094" ph="INSERT INTO chat_record... " />
+            <marker date="1498054088465" expanded="true" signature="1157:1182" ph="SELECT * FRO... chat_record" />
+            <marker date="1498054088465" expanded="true" signature="1233:1274" ph="SELECT * FRO... chat_record" />
+            <marker date="1498054088465" expanded="true" signature="1343:1382" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_NotebookDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <marker date="1498053746488" expanded="true" signature="775:894" ph="INSERT INTO chat_notebook... " />
+            <marker date="1498053746488" expanded="true" signature="957:999" ph="SELECT cnb_n... chat_notebook" />
+            <marker date="1498053746488" expanded="true" signature="1050:1108" ph="SELECT cnb_n... chat_notebook" />
+            <marker date="1498053746488" expanded="true" signature="1170:1212" ph="DELETE FROM " />
+            <marker date="1498053746488" expanded="true" signature="1269:1320" ph="UPDATE chat_... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_NotebookJDBCDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <marker date="1498053271308" expanded="true" signature="10768:11127" ph="//..." />
+            <marker date="1498053271308" expanded="true" signature="10768:11134" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_GroupJDBCDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="319" column="5" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="319" selection-end-column="5" />
+          <folding>
+            <marker date="1498053271293" expanded="true" signature="447:671" ph="INSERT INTO chat_group... " />
+            <marker date="1498053271293" expanded="true" signature="734:758" ph="SELECT * FRO... chat_group" />
+            <marker date="1498053271293" expanded="true" signature="809:849" ph="SELECT * FRO... chat_group" />
+            <marker date="1498053271293" expanded="true" signature="923:962" ph="DELETE FROM " />
+            <marker date="1498053271293" expanded="true" signature="1022:1063" ph="DELETE FROM " />
+            <marker date="1498053271293" expanded="true" signature="1120:1163" ph="DELETE FROM " />
+            <marker date="1498053271293" expanded="true" signature="1219:1257" ph="DELETE FROM " />
+            <marker date="1498053271293" expanded="true" signature="1314:1457" ph="UPDATE chat_... " />
+            <marker date="1498053271293" expanded="true" signature="13819:14556" ph="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_GroupDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="284" column="12" lean-forward="false" selection-start-line="284" selection-start-column="12" selection-end-line="284" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1498054259364" expanded="true" signature="771:783" ph="INSERT INTO Chat_Group... " />
+            <marker date="1498054259364" expanded="true" signature="771:995" ph="INSERT INTO chat_group... " />
+            <marker date="1498054259364" expanded="true" signature="1058:1082" ph="SELECT * FRO... chat_group" />
+            <marker date="1498054259364" expanded="true" signature="1133:1173" ph="SELECT * FRO... chat_group" />
+            <marker date="1498054259364" expanded="true" signature="1247:1286" ph="DELETE FROM " />
+            <marker date="1498054259364" expanded="true" signature="1346:1387" ph="DELETE FROM " />
+            <marker date="1498054259364" expanded="true" signature="1444:1487" ph="DELETE FROM " />
+            <marker date="1498054259364" expanded="true" signature="1543:1581" ph="DELETE FROM " />
+            <marker date="1498054259364" expanded="true" signature="1638:1787" ph="UPDATE chat_... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemJDBCDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="295" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4338#4357#0" expanded="true" />
+            <element signature="e#6296#6315#0" expanded="true" />
+            <element signature="e#8238#8257#0" expanded="true" />
+            <marker date="1498053700052" expanded="true" signature="457:531" ph="INSERT INTO chat_group_item... " />
+            <marker date="1498053700052" expanded="true" signature="594:623" ph="SELECT * FRO... chat_group_item" />
+            <marker date="1498053700052" expanded="true" signature="679:723" ph="SELECT * FRO... chat_group_item" />
+            <marker date="1498053700052" expanded="true" signature="780:825" ph="SELECT * FRO... chat_group_item" />
+            <marker date="1498053700052" expanded="true" signature="893:950" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="251" column="35" lean-forward="false" selection-start-line="251" selection-start-column="34" selection-end-line="251" selection-end-column="35" />
+          <folding>
+            <element signature="e#4133#4152#0" expanded="true" />
+            <element signature="e#5828#5847#0" expanded="true" />
+            <element signature="e#7507#7526#0" expanded="true" />
+            <marker date="1498054364080" expanded="true" signature="778:852" ph="INSERT INTO chat_group_item... " />
+            <marker date="1498054364080" expanded="true" signature="915:922" ph="SELECT cg_no... chat_group_item" />
+            <marker date="1498054364080" expanded="true" signature="915:944" ph="SELECT * FRO... chat_group_item" />
+            <marker date="1498054364080" expanded="true" signature="1000:1044" ph="SELECT * FRO... chat_group_item" />
+            <marker date="1498054364080" expanded="true" signature="1101:1146" ph="SELECT * FRO... chat_group_item" />
+            <marker date="1498054364080" expanded="true" signature="1214:1271" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendJNDIDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding>
+            <marker date="1498054363977" expanded="true" signature="734:876" ph="INSERT INTO chat_friend... " />
+            <marker date="1498054363977" expanded="true" signature="939:999" ph="SELECT cf_no... chat_friend" />
+            <marker date="1498054363977" expanded="true" signature="1050:1126" ph="SELECT cf_no... chat_friend" />
+            <marker date="1498054363977" expanded="true" signature="1284:1334" ph="UPDATE chat_... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4340">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <marker date="1498054364025" expanded="true" signature="774:916" ph="INSERT INTO chat_friend... " />
+            <marker date="1498054364025" expanded="true" signature="979:1039" ph="SELECT cf_no... chat_friend" />
+            <marker date="1498054364025" expanded="true" signature="1090:1166" ph="SELECT cf_no... chat_friend" />
+            <marker date="1498054364025" expanded="true" signature="1228:1267" ph="DELETE FROM " />
+            <marker date="1498054364025" expanded="true" signature="1324:1374" ph="UPDATE chat_... " />
+          </folding>
         </state>
       </provider>
     </entry>

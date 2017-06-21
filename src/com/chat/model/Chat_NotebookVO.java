@@ -6,9 +6,9 @@ import java.io.Serializable;
  * Created by Java on 2017/6/8.
  */
 public class Chat_NotebookVO implements Serializable {
-    private String cnb_no;    //	Not Null (PK)
-    private String cf_no;     //	(FK)
-    private String cg_no;     //	(FK)
+    private String cnb_no;    // Not Null (PK)
+    private String cf_no;     // (FK)
+    private String cg_no;     // (FK)
     private String cnb_cnt;   //
 //    private byte[] cnb_pic;
 

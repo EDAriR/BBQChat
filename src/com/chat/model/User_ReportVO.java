@@ -8,12 +8,12 @@ import java.sql.Timestamp;
  */
 public class User_ReportVO implements Serializable {
 
-    private String mem_no_ed;     //	Not Null (PK) (FK)
-    private String mem_no_ing;    //	Not Null (PK) (FK)
-    private String urpt_cnt;      //	Not Null
-    private Timestamp urpt_date;  //	Not Null
-    private String urpt_rsn;      //	Not Null
-    private String urpt_is_cert;  //	"Not Null0¡G§_1¡G¬O"
+    private String mem_no_ed;     // Not Null (PK) (FK)
+    private String mem_no_ing;    // Not Null (PK) (FK)
+    private String urpt_cnt;      // Not Null
+    private Timestamp urpt_date;  // Not Null
+    private String urpt_rsn;      // Not Null
+    private String urpt_is_cert;  // Not Null 0¡G§_ 1¡G¬O 
     private String urpt_unrsn;    //
 
     public User_ReportVO() {

@@ -1,7 +1,5 @@
 package com.chat.model;
 
-import com.chat.dao.Chat_FriendDAO;
-
 import java.util.List;
 
 

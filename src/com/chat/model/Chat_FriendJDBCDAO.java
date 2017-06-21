@@ -1,30 +1,26 @@
-package com.chat.jdbcdao;
-
-import com.chat.model.Chat_Group_ItemDAO_interface;
-import com.chat.model.Chat_Group_ItemVO;
+package com.chat.model;
 
 import java.util.*;
 import java.sql.*;
 
 
-public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
+public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
-    //    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
     // 新增資料
-    private static final String INSERT_STMT = "INSERT INTO chat_group_item (cg_no, mem_no) " +
-            "VALUES (?, ?)";
+    private static final String INSERT_STMT = "INSERT INTO chat_friend (cf_no, mem_no_s, mem_no_o, cf_is_del) " +
+            "VALUES ('CF'||LPAD(to_char(cf_no_seq.NEXTVAL),6,'0'), ?, ?, ?)";
     // 查詢資料
-    private static final String GET_ALL_STMT = "SELECT cg_no , mem_no FROM chat_group_item";
-    private static final String GET_ONE_STMT = "SELECT cg_no, mem_no FROM chat_group_item WHERE cg_no = ?";
-    // 刪除資料
-    private static final String DELETE_PROC = "DELETE FROM chat_group_item WHERE cg_no = ?";
+    private static final String GET_ALL_STMT = "SELECT * FROM chat_friend";
+    private static final String GET_ONE_STMT = "SELECT * FROM chat_friend WHERE cf_no = ?";
+    // 修改資料
+    private static final String UPDATE = "UPDATE chat_friend SET cf_is_del=? WHERE cf_no = ? ";
 
 
     @Override
-    public void insert(Chat_Group_ItemVO chat_Group_ItemVO) {
+    public void insert(Chat_FriendVO chat_FriendVO) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -32,10 +28,11 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
 
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
-
-            pstmt = con.prepareStatement(INSERT_STMT);
-            pstmt.setString(1, chat_Group_ItemVO.getCg_no());
-            pstmt.setString(2, chat_Group_ItemVO.getMem_no());
+            String[] cf = {"cf_no"}; // 有使用sequence產生編號的話才要寫
+            pstmt = con.prepareStatement(INSERT_STMT, cf); // 有使用sequence產生編號的話才要寫第二個參數
+            pstmt.setString(1, chat_FriendVO.getMem_no_s());
+            pstmt.setString(2, chat_FriendVO.getMem_no_o());
+            pstmt.setString(3, chat_FriendVO.getCf_is_del());
             pstmt.executeUpdate();
 
             // Handle any DRIVER errors
@@ -68,7 +65,7 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
     }
 
     @Override
-    public void delete(String cg_no, String mem_no) {
+    public void update(Chat_FriendVO chat_FriendVO) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -77,17 +74,10 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
 
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
-
-            // 1 設定於 pstm.executeUpdate()之前
-            con.setAutoCommit(false);
-            pstmt = con.prepareStatement(DELETE_PROC);
-            pstmt.setString(1, cg_no);
+            pstmt = con.prepareStatement(UPDATE);
+            pstmt.setString(1, chat_FriendVO.getCf_is_del());
+            pstmt.setString(2, chat_FriendVO.getCf_no());
             pstmt.executeUpdate();
-
-            // 2 設定於 pstm.executeUpdate()之後
-            con.commit();
-            con.setAutoCommit(true);
-            System.out.println("Delete Chat Group Item" + cg_no);
 
             // Handle any DRIVER errors
         } catch (ClassNotFoundException e) {
@@ -95,17 +85,9 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
                     + e.getMessage());
             // Handle any SQL errors
         } catch (SQLException se) {
-            if (con != null) {
-                try {
-                    // 3 設定於當有exception發生時之catch區塊內
-                    con.rollback();
-                } catch (SQLException excep) {
-                    throw new RuntimeException("rollback error occured. "
-                            + excep.getMessage());
-                }
-            }
             throw new RuntimeException("A database error occured. "
                     + se.getMessage());
+            // Clean up JDBC resources
         } finally {
             if (pstmt != null) {
                 try {
@@ -122,12 +104,14 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
                 }
             }
         }
+
     }
 
-    @Override
-    public Chat_Group_ItemVO findByPrimaryKey(String cg_no, String mem_no) {
 
-        Chat_Group_ItemVO chat_Group_ItemVO = null;
+    @Override
+    public Chat_FriendVO findByPrimaryKey(String cf_no) {
+
+        Chat_FriendVO chat_FriendVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -137,13 +121,17 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ONE_STMT);
-            pstmt.setString(1, cg_no);
+
+            pstmt.setString(1, cf_no);
+
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_Group_ItemVO = new Chat_Group_ItemVO();
-                chat_Group_ItemVO.setCg_no(rs.getString("cg_no"));
-                chat_Group_ItemVO.setMem_no(rs.getString("mem_no"));
+                chat_FriendVO = new Chat_FriendVO();
+                chat_FriendVO.setCf_no(rs.getString("cf_no"));
+                chat_FriendVO.setMem_no_s(rs.getString("mem_no_s"));
+                chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
+                chat_FriendVO.setCf_is_del(rs.getString("cf_is_del"));
             }
 
             // Handle any DRIVER errors
@@ -178,13 +166,14 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
                 }
             }
         }
-        return chat_Group_ItemVO;
+        return chat_FriendVO;
     }
 
-    public List<Chat_Group_ItemVO> getAll() {
+    @Override
+    public List<Chat_FriendVO> getAll() {
 
-        List<Chat_Group_ItemVO> list = new ArrayList<Chat_Group_ItemVO>();
-        Chat_Group_ItemVO chat_Group_ItemVO = null;
+        List<Chat_FriendVO> list = new ArrayList<Chat_FriendVO>();
+        Chat_FriendVO chat_FriendVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -197,10 +186,12 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_Group_ItemVO = new Chat_Group_ItemVO();
-                chat_Group_ItemVO.setCg_no(rs.getString("cg_no"));
-                chat_Group_ItemVO.setMem_no(rs.getString("mem_no"));
-                list.add(chat_Group_ItemVO); // Store the row in the list
+                chat_FriendVO = new Chat_FriendVO();
+                chat_FriendVO.setCf_no(rs.getString("cf_no"));
+                chat_FriendVO.setMem_no_s(rs.getString("mem_no_s"));
+                chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
+                chat_FriendVO.setCf_is_del(rs.getString("cf_is_del"));
+                list.add(chat_FriendVO); // Store the row in the list
             }
 
             // Handle any DRIVER errors
@@ -239,34 +230,40 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
 
     public static void main(String[] args) {
 
-        Chat_Group_ItemJDBCDAO dao = new Chat_Group_ItemJDBCDAO();
-
-        // 新增
-//        bbq.chat.model.Chat_Group_ItemVO chat_Group_ItemVO1 = new bbq.chat.model.Chat_Group_ItemVO();
-//        chat_Group_ItemVO1.setCg_no("cg002");
-//        chat_Group_ItemVO1.setMem_no("M0000003");
-//        dao.insert(chat_Group_ItemVO1);
+        Chat_FriendJDBCDAO dao = new Chat_FriendJDBCDAO();
+        // 測試看看每個指令是否可以使用
+        // 新增 OK
+//        Chat_FriendVO chat_friendVO1 = new Chat_FriendVO();
+//        chat_friendVO1.setMem_no_s("M0000002");
+//        chat_friendVO1.setMem_no_o("M0000007");
+//        chat_friendVO1.setCf_is_del("0");
+//        dao.insert(chat_friendVO1);
 //        System.out.println("新增成功");
 
-        // 無法修改
+        // 修改 OK
+//        Chat_FriendVO chat_friendVO2 = new Chat_FriendVO();
+//        chat_friendVO2.setCf_no("CF000001");
+//        chat_friendVO2.setCf_is_del("1");
+//        dao.update(chat_FriendVO2);
+//        
+//        System.out.println("update");
 
-        // 刪除
-//		dao.delete("cg002","M0000003");
-//		System.out.println("delete");
+        // 查詢 OK
+//        Chat_FriendVO chat_friendVO3 = dao.findByPrimaryKey("CF000001");
+//        System.out.print(chat_friendVO3.getCf_no() + ",");
+//        System.out.print(chat_friendVO3.getMem_no_s() + ",");
+//        System.out.print(chat_friendVO3.getMem_no_o() + ",");
+//        System.out.println(chat_friendVO3.getCf_is_del());
+//        System.out.println("---------------------");
 
-        // 查詢
-        Chat_Group_ItemVO chat_Group_ItemVO3 = dao.findByPrimaryKey("cg002", "M0000003");
-        System.out.print(chat_Group_ItemVO3.getCg_no() + ",");
-        System.out.println(chat_Group_ItemVO3.getMem_no());
-        System.out.println("---------------------");
-
-        // 查詢部門
-//		List<bbq.chat.model.Chat_Group_ItemVO> list = dao.getAll();
-//		for (bbq.chat.model.Chat_Group_ItemVO cgi : list) {
-//			System.out.print(cgi.getCg_no() + ",");
-//			System.out.print(cgi.getMem_no());
-//			System.out.println();
-//		}
-
+        // 查詢全部 OK
+//        List<Chat_FriendVO> list = dao.getAll();
+//        for (Chat_FriendVO chat_friendVO : list) {
+//            System.out.print(chat_friendVO.getCf_no() + ",");
+//            System.out.print(chat_friendVO.getMem_no_s() + ",");
+//            System.out.print(chat_friendVO.getMem_no_o() + ",");
+//            System.out.print(chat_friendVO.getCf_is_del());
+//            System.out.println();
+//        }
     }
 }
