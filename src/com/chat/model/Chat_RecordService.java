@@ -12,7 +12,7 @@ public class Chat_RecordService {
         dao = new Chat_RecordDAO();
     }
 
-    public Chat_RecordVO addChat_Record(String cr_no,String cf_no,String cg_no,
+    public Chat_RecordVO addChat_Record(String cr_no, String cf_no, String cg_no,
                                         Date cr_date, String cr_cnt) {
 
         Chat_RecordVO chat_RecordVO = new Chat_RecordVO();

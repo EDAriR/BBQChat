@@ -12,7 +12,7 @@ public class Chat_FriendService {
     }
 
     public Chat_FriendVO addChat_Friend(String cf_no,
-           String mem_no_s, String mem_no_o, String cf_is_del) {
+                                        String mem_no_s, String mem_no_o, String cf_is_del) {
 
         Chat_FriendVO chat_FriendVO = new Chat_FriendVO();
         
@@ -38,11 +38,7 @@ public class Chat_FriendService {
         return chat_FriendVO;
     }
 
-    public void deleteCF(String cf_no) {
-        dao.delete(cf_no);
-    }
-
-    public Chat_FriendVO getOneCF(String cf_no) {
+    public Chat_FriendVO getOneChat_Friend(String cf_no) {
         return dao.findByPrimaryKey(cf_no);
     }
 

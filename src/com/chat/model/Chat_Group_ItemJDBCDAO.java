@@ -1,7 +1,8 @@
 package com.chat.model;
 
-import java.util.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
@@ -121,7 +122,7 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
             }
         }
     }
-
+    
     @Override
     public List<Chat_Group_ItemVO> findByCgNo(String cg_no) {
 
@@ -179,7 +180,7 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
         }
         return list;
     }
-
+    
     @Override
     public List<Chat_Group_ItemVO> findByMemNo(String mem_no) {
 
@@ -237,7 +238,7 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
         }
         return list;
     }
-
+    
     @Override
     public List<Chat_Group_ItemVO> getAll() {
 
@@ -317,7 +318,7 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
 //			System.out.print(chat_group_itemVO.getMem_no());
 //			System.out.println();
 //		}
-
+		
         // ¬d¸ß mem_no OK
 //		List<Chat_Group_ItemVO> list = dao.findByMemNo("M0000004");
 //		for (Chat_Group_ItemVO chat_group_itemVO : list) {

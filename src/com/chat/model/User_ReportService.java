@@ -13,9 +13,9 @@ public class User_ReportService {
     }
 
     public User_ReportVO addUser_Report(String mem_no_ed, String mem_no_ing,
-                                       String urpt_cnt, Timestamp urpt_date,
-                                       String urpt_rsn, String urpt_is_cert,
-                                       String urpt_unrsn) {
+                                        String urpt_cnt, Timestamp urpt_date,
+                                        String urpt_rsn, String urpt_is_cert,
+                                        String urpt_unrsn) {
 
         User_ReportVO user_ReportVO = new User_ReportVO();
 
@@ -33,7 +33,7 @@ public class User_ReportService {
     }
 
     public User_ReportVO updateUser_Report(String mem_no_ed, String mem_no_ing,
-                                          String urpt_is_cert, String urpt_unrsn) {
+                                           String urpt_is_cert, String urpt_unrsn) {
 
         User_ReportVO user_ReportVO = new User_ReportVO();
 

@@ -1,21 +1,22 @@
 package com.chat.model;
 
-import java.util.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User_ReportJDBCDAO implements User_ReportDAO_interface {
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
-    // ·s¼W¸ê®Æ
+    // ï¿½sï¿½Wï¿½ï¿½ï¿½
     private static final String INSERT_STMT = "INSERT INTO user_report "
             + "(mem_no_ed, mem_no_ing, urpt_cnt, urpt_date, urpt_rsn, urpt_is_cert, urpt_unrsn) "
             + "VALUES (?, ?, ?, SYSDATE, ?, ?, ?)";
-    // ¬d¸ß¸ê®Æ
+    // ï¿½dï¿½ß¸ï¿½ï¿½
     private static final String GET_ALL_STMT = "SELECT * FROM user_report";
     private static final String GET_ONE_STMT = "SELECT * FROM User_Report WHERE mem_no_ed = ? AND mem_no_ing=?";
-    // ­×§ï¸ê®Æ
+    // ï¿½×§ï¿½ï¿½ï¿½
     private static final String UPDATE = "UPDATE User_Report SET urpt_is_cert=?, urpt_unrsn=? WHERE mem_no_ed = ? AND mem_no_ing =?";
 
     @Override
@@ -234,24 +235,24 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
 
         User_ReportJDBCDAO dao = new User_ReportJDBCDAO();
 
-        // ·s¼W  OK
+        // ï¿½sï¿½W  OK
 //		User_ReportVO user_reportVO1 = new User_ReportVO();
 //		user_reportVO1.setMem_no_ed("M0000001");
 //		user_reportVO1.setMem_no_ing("M0000009");
-//		user_reportVO1.setUrpt_cnt("787846sas¦^");
-//		user_reportVO1.setUrpt_rsn("¶Ã½X¯d¨¥");
+//		user_reportVO1.setUrpt_cnt("787846sasï¿½^");
+//		user_reportVO1.setUrpt_rsn("ï¿½Ã½Xï¿½dï¿½ï¿½");
 //		user_reportVO1.setUrpt_is_cert("0");
 //		dao.insert(user_reportVO1);
 //		System.out.println("insert OK");
 
-        // ­×§ï OK
+        // ï¿½×§ï¿½ OK
 //        User_ReportVO user_reportVO2 = new User_ReportVO();
 //        user_reportVO2.setMem_no_ed("M0000001");
 //        user_reportVO2.setMem_no_ing("M0000009");
 //        user_reportVO2.setUrpt_is_cert("1");
 //        dao.update(user_reportVO2);
 
-        // ¬d¸ß OK
+        // ï¿½dï¿½ï¿½ OK
 //		 User_ReportVO user_reportVO3 = dao.findByPrimaryKey("M0000001", "M0000002");
 //		 System.out.print(user_reportVO3.getMem_no_ed() + ",");
 //		 System.out.print(user_reportVO3.getMem_no_ing() + ",");
@@ -262,7 +263,7 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
 //		 System.out.println(user_reportVO3.getUrpt_unrsn());
 //		 System.out.println("---------------------");
 
-        // ¬d¸ß¥þ³¡ OK
+        // ï¿½dï¿½ß¥ï¿½ï¿½ï¿½ OK
 //		 List<User_ReportVO> list = dao.getAll();
 //		 for (User_ReportVO user_reportVO : list) {
 //		 System.out.print(user_reportVO.getMem_no_ed() + ",");

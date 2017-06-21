@@ -1,7 +1,8 @@
 package com.chat.model;
 
-import java.util.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
@@ -9,14 +10,14 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
     private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
-    // ·s¼W¸ê®Æ
+    // ï¿½sï¿½Wï¿½ï¿½ï¿½
     private static final String INSERT_STMT = "INSERT INTO chat_record " +
             "(cr_no, cf_no, cg_no, cr_date, cr_cnt) " +
             "VALUES ('CR'||LPAD(to_char(cr_no_seq.NEXTVAL), 6, '0'), ?, ?, SYSDATE, ?)";
-    // ¬d¸ß¸ê®Æ
+    // ï¿½dï¿½ß¸ï¿½ï¿½
     private static final String GET_ALL_STMT = "SELECT * FROM chat_record";
     private static final String GET_ONE_STMT = "SELECT * FROM chat_record WHERE cr_no = ?";
-    // §R°£¸ê®Æ
+    // ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½
     private static final String DELETE_CHAT_RECORD = "DELETE FROM chat_record WHERE cr_no = ?";
 
 
@@ -29,8 +30,8 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
 
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
-            String[] cr = {"cr_no"}; // ¦³¨Ï¥Îsequence²£¥Í½s¸¹ªº¸Ü¤~­n¼g
-            pstmt = con.prepareStatement(INSERT_STMT, cr); // ¦³¨Ï¥Îsequence²£¥Í½s¸¹ªº¸Ü¤~­n¼g²Ä¤G­Ó°Ñ¼Æ
+            String[] cr = {"cr_no"}; // ï¿½ï¿½ï¿½Ï¥ï¿½sequenceï¿½ï¿½ï¿½Í½sï¿½ï¿½ï¿½ï¿½ï¿½Ü¤~ï¿½nï¿½g
+            pstmt = con.prepareStatement(INSERT_STMT, cr); // ï¿½ï¿½ï¿½Ï¥ï¿½sequenceï¿½ï¿½ï¿½Í½sï¿½ï¿½ï¿½ï¿½ï¿½Ü¤~ï¿½nï¿½gï¿½Ä¤Gï¿½Ó°Ñ¼ï¿½
             pstmt.setString(1, chat_recordVO.getCf_no());
             pstmt.setString(2, chat_recordVO.getCg_no());
             pstmt.setString(3, chat_recordVO.getCr_cnt());
@@ -74,14 +75,14 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            // 1 ³]©w©ó pstm.executeUpdate()¤§«e
+            // 1 ï¿½]ï¿½wï¿½ï¿½ pstm.executeUpdate()ï¿½ï¿½ï¿½e
             con.setAutoCommit(false);
 
             pstmt = con.prepareStatement(DELETE_CHAT_RECORD);
             pstmt.setString(1, cr_no);
             pstmt.executeUpdate();
 
-            // 2 ³]©w©ó pstm.executeUpdate()¤§«á
+            // 2 ï¿½]ï¿½wï¿½ï¿½ pstm.executeUpdate()ï¿½ï¿½ï¿½ï¿½
             con.commit();
             con.setAutoCommit(true);
             System.out.println("Delete Chat_Record : " + cr_no);
@@ -94,7 +95,7 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
         } catch (SQLException se) {
             if (con != null) {
                 try {
-                    // 3 ³]©w©ó·í¦³exceptionµo¥Í®É¤§catch°Ï¶ô¤º
+                    // 3 ï¿½]ï¿½wï¿½ï¿½ï¿½exceptionï¿½oï¿½Í®É¤ï¿½catchï¿½Ï¶ï¿½ï¿½ï¿½
                     con.rollback();
                 } catch (SQLException excep) {
                     throw new RuntimeException("rollback error occured. "
@@ -248,18 +249,18 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
 
         Chat_RecordJDBCDAO dao = new Chat_RecordJDBCDAO();
 
-        // ·s¼W 
+        // ï¿½sï¿½W 
 //        Chat_RecordVO chat_recordVO1 = new Chat_RecordVO();
 //        chat_recordVO1.setCf_no("CF000004");
-//        chat_recordVO1.setCr_cnt("²á¤Ñ°O¿ý´ú¸Õ*");
+//        chat_recordVO1.setCr_cnt("ï¿½ï¿½Ñ°Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*");
 //        dao.insert(chat_recordVO1);
-//        System.out.println("·s¼W¦¨¥\");
+//        System.out.println("ï¿½sï¿½Wï¿½ï¿½ï¿½\");
 
-        // §R°£ OK
+        // ï¿½Rï¿½ï¿½ OK
 //		dao.delete("CR000006");
 //		System.out.println("delete");
 
-        // ¬d¸ß OK
+        // ï¿½dï¿½ï¿½ OK
 //		Chat_RecordVO chat_recordVO3 = dao.findByPrimaryKey("CR000001");
 //		System.out.print(chat_recordVO3.getCr_no() + ",");
 //		System.out.print(chat_recordVO3.getCf_no() + ",");
@@ -268,7 +269,7 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
 //		System.out.println(chat_recordVO3.getCr_cnt());
 //		System.out.println("---------------------");
 
-        // ¬d¸ß¥þ³¡ OK
+        // ï¿½dï¿½ß¥ï¿½ï¿½ï¿½ OK
 //		List<Chat_RecordVO> list = dao.getAll();
 //		for (Chat_RecordVO chat_recordVO : list) {
 //			System.out.print(chat_recordVO.getCr_no() + ",");
