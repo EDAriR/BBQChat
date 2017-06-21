@@ -1,7 +1,4 @@
-package com.chat.dao;
-
-import com.chat.model.Chat_RecordDAO_interface;
-import com.chat.model.Chat_RecordVO;
+package com.chat.model;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -27,21 +24,23 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
         }
     }
 
+    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String USER = "ba101g3";
+    private static final String PASSWORD = "baby";
     // 新增資料
     private static final String INSERT_STMT = "INSERT INTO chat_record " +
-            "(cr_no, cr_date, cf_no, cg_no, cr_cnt) " +
-            "VALUES ('cr'||LPAD(TO_CHAR(adm_no_seq.NEXTVAL),4,'0'), CURRENT_TIMESTAMP, ?, ?, ?)";
+            "(cr_no, cf_no, cg_no, cr_date, cr_cnt) " +
+            "VALUES ('CR'||LPAD(to_char(cr_no_seq.NEXTVAL), 6, '0'), ?, ?, SYSDATE, ?)";
     // 查詢資料
-    private static final String GET_ALL_STMT = "SELECT cr_no, cr_date, cr_cnt FROM chat_record";
-    private static final String GET_ONE_STMT = "SELECT cr_no, cr_date, cr_cnt FROM chat_record WHERE cr_no = ?";
+    private static final String GET_ALL_STMT = "SELECT * FROM chat_record";
+    private static final String GET_ONE_STMT = "SELECT * FROM chat_record WHERE cr_no = ?";
     // 刪除資料
-    private static final String DELETE_PROC = "DELETE FROM chat_record WHERE cr_no = ?";
-    // 修改資料
-    private static final String UPDATE = "UPDATE chat_record SET cr_cnt=? WHERE cr_no = ?";
+    private static final String DELETE_CHAT_RECORD = "DELETE FROM chat_record WHERE cr_no = ?";
 
 
     @Override
-    public void insert(Chat_RecordVO chat_RecordVO) {
+    public void insert(Chat_RecordVO chat_recordVO) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -50,46 +49,9 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
             con = ds.getConnection();
             String[] cr = {"cr_no"}; // 有使用sequence產生編號的話才要寫
             pstmt = con.prepareStatement(INSERT_STMT, cr); // 有使用sequence產生編號的話才要寫第二個參數
-            pstmt.setString(1, chat_RecordVO.getCf_no());
-            pstmt.setString(2, chat_RecordVO.getCg_no());
-            pstmt.setString(3, chat_RecordVO.getCr_cnt());
-            pstmt.executeUpdate();
-
-            // Handle any SQL errors
-        } catch (SQLException se) {
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
-            // Clean up JDBC resources
-        } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.err);
-                }
-            }
-        }
-    }
-
-    @Override
-    public void update(Chat_RecordVO chat_RecordVO) {
-
-        Connection con = null;
-        PreparedStatement pstmt = null;
-
-        try {
-
-            con = ds.getConnection();
-            pstmt = con.prepareStatement(UPDATE);
-            pstmt.setString(1, chat_RecordVO.getCr_cnt());
-            pstmt.setString(2, chat_RecordVO.getCr_no());
+            pstmt.setString(1, chat_recordVO.getCf_no());
+            pstmt.setString(2, chat_recordVO.getCg_no());
+            pstmt.setString(3, chat_recordVO.getCr_cnt());
             pstmt.executeUpdate();
 
             // Handle any SQL errors
@@ -122,11 +84,13 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
         PreparedStatement pstmt = null;
 
         try {
+
             con = ds.getConnection();
+
             // 1 設定於 pstm.executeUpdate()之前
             con.setAutoCommit(false);
 
-            pstmt = con.prepareStatement(DELETE_PROC);
+            pstmt = con.prepareStatement(DELETE_CHAT_RECORD);
             pstmt.setString(1, cr_no);
             pstmt.executeUpdate();
 
@@ -169,12 +133,13 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
     @Override
     public Chat_RecordVO findByPrimaryKey(String cr_no) {
 
-        Chat_RecordVO chat_RecordVO = null;
+        Chat_RecordVO chat_recordVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         try {
+
             con = ds.getConnection();
             pstmt = con.prepareStatement(GET_ONE_STMT);
 
@@ -183,11 +148,13 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_RecordVO = new Chat_RecordVO();
-                chat_RecordVO.setCr_no(rs.getString("cr_no"));
-                chat_RecordVO.setCr_cnt(rs.getString("cr_cnt"));
+                chat_recordVO = new Chat_RecordVO();
+                chat_recordVO.setCr_no(rs.getString("cr_no"));
+                chat_recordVO.setCf_no(rs.getString("cf_no"));
+                chat_recordVO.setCg_no(rs.getString("cg_no"));
+                chat_recordVO.setCr_date(rs.getDate("cr_date"));
+                chat_recordVO.setCr_cnt(rs.getString("cr_cnt"));
             }
-            con = ds.getConnection();
             // Handle any SQL errors
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
@@ -216,14 +183,14 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
                 }
             }
         }
-        return chat_RecordVO;
+        return chat_recordVO;
     }
 
     @Override
     public List<Chat_RecordVO> getAll() {
 
         List<Chat_RecordVO> list = new ArrayList<Chat_RecordVO>();
-        Chat_RecordVO chat_RecordVO = null;
+        Chat_RecordVO chat_recordVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -235,10 +202,13 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_RecordVO = new Chat_RecordVO();
-                chat_RecordVO.setCr_no(rs.getString("cr_no"));
-                chat_RecordVO.setCr_cnt(rs.getString("cr_cnt"));
-                list.add(chat_RecordVO); // Store the row in the list
+                chat_recordVO = new Chat_RecordVO();
+                chat_recordVO.setCr_no(rs.getString("cr_no"));
+                chat_recordVO.setCf_no(rs.getString("cf_no"));
+                chat_recordVO.setCg_no(rs.getString("cg_no"));
+                chat_recordVO.setCr_date(rs.getDate("cr_date"));
+                chat_recordVO.setCr_cnt(rs.getString("cr_cnt"));
+                list.add(chat_recordVO); // Store the row in the list
             }
             // Handle any SQL errors
         } catch (SQLException se) {

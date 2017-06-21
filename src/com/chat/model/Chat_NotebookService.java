@@ -1,7 +1,5 @@
 package com.chat.model;
 
-import com.chat.dao.Chat_NotebookDAO;
-
 import java.util.List;
 
 
@@ -14,7 +12,7 @@ public class Chat_NotebookService {
     }
 
     public Chat_NotebookVO addChat_Friend(String cnb_no,
-           String cf_no, String cg_no, String cnb_cnt) {
+                                          String cf_no, String cg_no, String cnb_cnt) {
 
         Chat_NotebookVO chat_NotebookVO = new Chat_NotebookVO();
         
@@ -28,7 +26,7 @@ public class Chat_NotebookService {
         return chat_NotebookVO;
     }
 
-    public Chat_NotebookVO updateChat_Friend(String cnb_no,String cnb_cnt) {
+    public Chat_NotebookVO updateChat_Friend(String cnb_no, String cnb_cnt) {
 
         Chat_NotebookVO chat_NotebookVO = new Chat_NotebookVO();
 

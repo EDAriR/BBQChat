@@ -1,32 +1,26 @@
-package com.chat.jdbcdao;
+package com.chat.model;
 
-import com.chat.model.User_ReportDAO_interface;
-import com.chat.model.User_ReportVO;
-
-import java.util.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User_ReportJDBCDAO implements User_ReportDAO_interface {
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
-    // private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
-    // ·s¼W¸ê®Æ
+    // ï¿½sï¿½Wï¿½ï¿½ï¿½
     private static final String INSERT_STMT = "INSERT INTO user_report "
             + "(mem_no_ed, mem_no_ing, urpt_cnt, urpt_date, urpt_rsn, urpt_is_cert, urpt_unrsn) "
-            + "VALUES (?, ?, ?, current_timestamp, ?, ?, ?)";
-    // ¬d¸ß¸ê®Æ
-    private static final String GET_ALL_STMT = "SELECT mem_no_ed, urpt_cnt, urpt_rsn, urpt_is_cert FROM user_report";
-    private static final String GET_ONE_STMT = "SELECT mem_no_ed, urpt_cnt, urpt_rsn, urpt_is_cert "
-            + "FROM User_Report WHERE mem_no_ed = ?";
-    // §R°£¸ê®Æ
-    private static final String DELETE_NEWS = "DELETE FROM User_Report WHERE mem_no_ed = ? AND mem_no_ing =?";
-    // ­×§ï¸ê®Æ
-    private static final String UPDATE = "UPDATE User_Report SET URPT_IS_CERT=? WHERE mem_no_ed = ? AND mem_no_ing =?";
+            + "VALUES (?, ?, ?, SYSDATE, ?, ?, ?)";
+    // ï¿½dï¿½ß¸ï¿½ï¿½
+    private static final String GET_ALL_STMT = "SELECT * FROM user_report";
+    private static final String GET_ONE_STMT = "SELECT * FROM User_Report WHERE mem_no_ed = ? AND mem_no_ing=?";
+    // ï¿½×§ï¿½ï¿½ï¿½
+    private static final String UPDATE = "UPDATE User_Report SET urpt_is_cert=?, urpt_unrsn=? WHERE mem_no_ed = ? AND mem_no_ing =?";
 
     @Override
-    public void insert(User_ReportVO user_ReportVO) {
+    public void insert(User_ReportVO user_reportVO) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -36,14 +30,12 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(INSERT_STMT);
 
-            // (MEM_NO_ED, MEM_NO_ING, URPT_CNT, URPT_DATE, URPT_RSN,
-            // URPT_IS_CERT, URPT_UNRSN)
-            pstmt.setString(1, user_ReportVO.getMem_no_ed());
-            pstmt.setString(2, user_ReportVO.getMem_no_ing());
-            pstmt.setString(3, user_ReportVO.getUrpt_cnt());
-            pstmt.setString(4, user_ReportVO.getUrpt_rsn());
-            pstmt.setString(5, user_ReportVO.getUrpt_is_cert());
-            pstmt.setString(6, user_ReportVO.getUrpt_unrsn());
+            pstmt.setString(1, user_reportVO.getMem_no_ed());
+            pstmt.setString(2, user_reportVO.getMem_no_ing());
+            pstmt.setString(3, user_reportVO.getUrpt_cnt());
+            pstmt.setString(4, user_reportVO.getUrpt_rsn());
+            pstmt.setString(5, user_reportVO.getUrpt_is_cert());
+            pstmt.setString(6, user_reportVO.getUrpt_unrsn());
 
             pstmt.executeUpdate();
 
@@ -73,7 +65,7 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
     }
 
     @Override
-    public void update(User_ReportVO user_ReportVO) {
+    public void update(User_ReportVO user_reportVO) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -83,10 +75,12 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(UPDATE);
-
-            pstmt.setString(1, user_ReportVO.getMem_no_ed());
-            pstmt.setString(2, user_ReportVO.getMem_no_ing());
-            pstmt.setString(3, user_ReportVO.getUrpt_is_cert());
+            
+            pstmt.setString(1, user_reportVO.getUrpt_is_cert());
+            pstmt.setString(2, user_reportVO.getUrpt_unrsn());
+            pstmt.setString(3, user_reportVO.getMem_no_ed());
+            pstmt.setString(4, user_reportVO.getMem_no_ing());
+            
             pstmt.executeUpdate();
 
             // Handle any DRIVER errors
@@ -115,65 +109,9 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
     }
 
     @Override
-    public void delete(String mem_no_ed, String mem_no_ing) {
+    public User_ReportVO findByPrimaryKey(String mem_no_ed, String mem_no_ing) {
 
-        Connection con = null;
-        PreparedStatement pstmt = null;
-
-        try {
-
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
-
-            // 1 ³]©w©ó pstm.executeUpdate()¤§«e
-            con.setAutoCommit(false);
-
-            pstmt = con.prepareStatement(DELETE_NEWS);
-            pstmt.setString(1, mem_no_ed);
-            pstmt.setString(1, mem_no_ing);
-            pstmt.executeUpdate();
-
-            // 2 ³]©w©ó pstm.executeUpdate()¤§«á
-            con.commit();
-            con.setAutoCommit(true);
-            System.out.println("Delete User Report :" + mem_no_ed);
-
-            // Handle any DRIVER errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database DRIVER. " + e.getMessage());
-            // Handle any SQL errors
-        } catch (SQLException se) {
-            if (con != null) {
-                try {
-                    // 3 ³]©w©ó·í¦³exceptionµo¥Í®É¤§catch°Ï¶ô¤º
-                    con.rollback();
-                } catch (SQLException excep) {
-                    throw new RuntimeException("rollback error occured. " + excep.getMessage());
-                }
-            }
-            throw new RuntimeException("A database error occured. " + se.getMessage());
-        } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.err);
-                }
-            }
-        }
-    }
-
-    @Override
-    public User_ReportVO findByPrimaryKey(String mem_no_ed) {
-
-        User_ReportVO user_ReportVO = null;
+        User_ReportVO user_reportVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -185,12 +123,18 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
             pstmt = con.prepareStatement(GET_ONE_STMT);
 
             pstmt.setString(1, mem_no_ed);
+            pstmt.setString(2, mem_no_ing);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                user_ReportVO = new User_ReportVO();
-                user_ReportVO.setMem_no_ed(rs.getString("mem_no_ed"));
-                user_ReportVO.setUrpt_cnt(rs.getString("urpt_cnt"));
+                user_reportVO = new User_ReportVO();
+                user_reportVO.setMem_no_ed(rs.getString("mem_no_ed"));
+                user_reportVO.setMem_no_ing(rs.getString("mem_no_ing"));
+                user_reportVO.setUrpt_cnt(rs.getString("urpt_cnt"));
+                user_reportVO.setUrpt_date(rs.getTimestamp("urpt_date"));
+                user_reportVO.setUrpt_rsn(rs.getString("urpt_rsn"));
+                user_reportVO.setUrpt_is_cert(rs.getString("urpt_is_cert"));
+                user_reportVO.setUrpt_unrsn(rs.getString("urpt_unrsn"));
             }
 
             // Handle any DRIVER errors
@@ -223,14 +167,14 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
                 }
             }
         }
-        return user_ReportVO;
+        return user_reportVO;
     }
 
     @Override
     public List<User_ReportVO> getAll() {
 
         List<User_ReportVO> list = new ArrayList<User_ReportVO>();
-        User_ReportVO user_ReportVO = null;
+        User_ReportVO user_reportVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -243,11 +187,15 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                user_ReportVO = new User_ReportVO();
-                user_ReportVO.setMem_no_ed(rs.getString("mem_no_ed"));
-                user_ReportVO.setUrpt_cnt(rs.getString("urpt_cnt"));
-                user_ReportVO.setUrpt_rsn(rs.getString("urpt_rsn"));
-                list.add(user_ReportVO); // Store the row in the list
+                user_reportVO = new User_ReportVO();
+                user_reportVO.setMem_no_ed(rs.getString("mem_no_ed"));
+                user_reportVO.setMem_no_ing(rs.getString("mem_no_ing"));
+                user_reportVO.setUrpt_cnt(rs.getString("urpt_cnt"));
+                user_reportVO.setUrpt_date(rs.getTimestamp("urpt_date"));
+                user_reportVO.setUrpt_rsn(rs.getString("urpt_rsn"));
+                user_reportVO.setUrpt_is_cert(rs.getString("urpt_is_cert"));
+                user_reportVO.setUrpt_unrsn(rs.getString("urpt_unrsn"));
+                list.add(user_reportVO); // Store the row in the list
             }
 //			 mem_no_ed, URPT_CNT, URPT_RSN, 
 
@@ -287,44 +235,44 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
 
         User_ReportJDBCDAO dao = new User_ReportJDBCDAO();
 
-        // ·s¼W(OK)
-        // (MEM_NO_ED, MEM_NO_ING, URPT_CNT, URPT_DATE,
-        // URPT_RSN, URPT_IS_CERT,URPT_UNRSN)
-
-//		bbq.chat.model.User_ReportVO user_ReportVO1 = new bbq.chat.model.User_ReportVO();
-//		user_ReportVO1.setMem_no_ed("M0000001");
-//		user_ReportVO1.setMem_no_ing("M0000009");
-//		user_ReportVO1.setUrpt_cnt("787846sas¦^");
-//		user_ReportVO1.setUrpt_date(new Timestamp(System.currentTimeMillis()));
-//		user_ReportVO1.setUrpt_rsn("¶Ã½X¯d¨¥");
-//		user_ReportVO1.setUrpt_is_cert("0");
-//		user_ReportVO1.setUrpt_unrsn("¤£­n°Ý§A·|©È");
-//		dao.insert(user_ReportVO1);
+        // ï¿½sï¿½W  OK
+//		User_ReportVO user_reportVO1 = new User_ReportVO();
+//		user_reportVO1.setMem_no_ed("M0000001");
+//		user_reportVO1.setMem_no_ing("M0000009");
+//		user_reportVO1.setUrpt_cnt("787846sasï¿½^");
+//		user_reportVO1.setUrpt_rsn("ï¿½Ã½Xï¿½dï¿½ï¿½");
+//		user_reportVO1.setUrpt_is_cert("0");
+//		dao.insert(user_reportVO1);
 //		System.out.println("insert OK");
 
-        // ­×§ï
-        User_ReportVO user_ReportVO2 = new User_ReportVO();
-        user_ReportVO2.setMem_no_ed("M0000001");
-        user_ReportVO2.setMem_no_ing("M0000009");
-        user_ReportVO2.setUrpt_is_cert("1");
-        dao.update(user_ReportVO2);
+        // ï¿½×§ï¿½ OK
+//        User_ReportVO user_reportVO2 = new User_ReportVO();
+//        user_reportVO2.setMem_no_ed("M0000001");
+//        user_reportVO2.setMem_no_ing("M0000009");
+//        user_reportVO2.setUrpt_is_cert("1");
+//        dao.update(user_reportVO2);
 
-        // §R°£
-//         dao.delete("M0000001","M0000009");
-//         System.out.println("delete");
-
-        // ¬d¸ß
-//		 bbq.chat.model.User_ReportVO user_ReportVO3 = dao.findByPrimaryKey("M0000001");
-//		 System.out.print(user_ReportVO3.getMem_no_ed() + ",");
-//		 System.out.println(user_ReportVO3.getUrpt_is_cert());
+        // ï¿½dï¿½ï¿½ OK
+//		 User_ReportVO user_reportVO3 = dao.findByPrimaryKey("M0000001", "M0000002");
+//		 System.out.print(user_reportVO3.getMem_no_ed() + ",");
+//		 System.out.print(user_reportVO3.getMem_no_ing() + ",");
+//		 System.out.print(user_reportVO3.getUrpt_cnt() + ",");
+//		 System.out.print(user_reportVO3.getUrpt_date() + ",");
+//		 System.out.print(user_reportVO3.getUrpt_rsn() + ",");
+//		 System.out.print(user_reportVO3.getUrpt_is_cert() + ",");
+//		 System.out.println(user_reportVO3.getUrpt_unrsn());
 //		 System.out.println("---------------------");
 
-        // ¬d¸ß³¡ªù
-//		 List<bbq.chat.model.User_ReportVO> list = dao.getAll();
-//		 for (bbq.chat.model.User_ReportVO up : list) {
-//		 System.out.print(up.getMem_no_ed() + ",");
-//		 System.out.print(up.getUrpt_cnt());
-//		 System.out.print(up.getUrpt_rsn());
+        // ï¿½dï¿½ß¥ï¿½ï¿½ï¿½ OK
+//		 List<User_ReportVO> list = dao.getAll();
+//		 for (User_ReportVO user_reportVO : list) {
+//		 System.out.print(user_reportVO.getMem_no_ed() + ",");
+//		 System.out.print(user_reportVO.getMem_no_ing() + ",");
+//		 System.out.print(user_reportVO.getUrpt_cnt() + ",");
+//		 System.out.print(user_reportVO.getUrpt_date() + ",");
+//		 System.out.print(user_reportVO.getUrpt_rsn() + ",");
+//		 System.out.print(user_reportVO.getUrpt_is_cert() + ",");
+//		 System.out.print(user_reportVO.getUrpt_unrsn());
 //		 System.out.println();
 //		 }
     }

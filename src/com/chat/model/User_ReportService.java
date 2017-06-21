@@ -1,7 +1,5 @@
 package com.chat.model;
 
-import com.chat.dao.User_ReportDAO;
-
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -15,9 +13,9 @@ public class User_ReportService {
     }
 
     public User_ReportVO addUser_Report(String mem_no_ed, String mem_no_ing,
-                                       String urpt_cnt, Timestamp urpt_date,
-                                       String urpt_rsn, String urpt_is_cert,
-                                       String urpt_unrsn) {
+                                        String urpt_cnt, Timestamp urpt_date,
+                                        String urpt_rsn, String urpt_is_cert,
+                                        String urpt_unrsn) {
 
         User_ReportVO user_ReportVO = new User_ReportVO();
 
@@ -35,7 +33,7 @@ public class User_ReportService {
     }
 
     public User_ReportVO updateUser_Report(String mem_no_ed, String mem_no_ing,
-                                          String urpt_is_cert, String urpt_unrsn) {
+                                           String urpt_is_cert, String urpt_unrsn) {
 
         User_ReportVO user_ReportVO = new User_ReportVO();
 
@@ -49,12 +47,8 @@ public class User_ReportService {
         return user_ReportVO;
     }
 
-    public void deleteUR(String mem_no_ed, String mem_no_ing) {
-        dao.delete(mem_no_ed, mem_no_ing);
-    }
-
-    public User_ReportVO getOneUR(String mem_no_ed) {
-        return dao.findByPrimaryKey(mem_no_ed);
+    public User_ReportVO getOneUserRepor(String mem_no_ed, String mem_no_ing) {
+        return dao.findByPrimaryKey(mem_no_ed, mem_no_ing);
     }
 
     public List<User_ReportVO> getAll() {

@@ -1,33 +1,29 @@
-package com.chat.jdbcdao;
+package com.chat.model;
 
-import com.chat.model.Chat_RecordDAO_interface;
-import com.chat.model.Chat_RecordVO;
-
-import java.util.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
+public class Chat_NotebookJDBCDAO implements Chat_NotebookDAO_interface {
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
-    //    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
-    // ·s¼W¸ê®Æ
-    private static final String INSERT_STMT = "INSERT INTO chat_record " +
-            "(cr_no, cr_date, cf_no, cg_no, cr_cnt) " +
-            "VALUES ('cr'||LPAD(TO_CHAR(adm_no_seq.NEXTVAL),4,'0'), CURRENT_TIMESTAMP, ?, ?, ?)";
-    // ¬d¸ß¸ê®Æ
-    private static final String GET_ALL_STMT = "SELECT cr_no, cr_date, cr_cnt FROM chat_record";
-    private static final String GET_ONE_STMT = "SELECT cr_no, cr_date, cr_cnt FROM chat_record WHERE cr_no = ?";
-    // §R°£¸ê®Æ
-    private static final String DELETE_PROC = "DELETE FROM chat_record WHERE cr_no = ?";
-    // ­×§ï¸ê®Æ
-    private static final String UPDATE = "UPDATE chat_record SET cr_cnt=? WHERE cr_no = ?";
+    // ï¿½sï¿½Wï¿½ï¿½ï¿½
+    private static final String INSERT_STMT = "INSERT INTO chat_notebook (cnb_no, cf_no, cg_no, cnb_cnt) " +
+            "VALUES ('CNB'||LPAD(to_char(cnb_no_seq.NEXTVAL), 5, '0'), ?, ?, ?)";
+    // ï¿½dï¿½ß¸ï¿½ï¿½
+    private static final String GET_ALL_STMT = "SELECT * FROM chat_notebook";
+    private static final String GET_ONE_STMT = "SELECT * FROM chat_notebook WHERE cnb_no = ?";
+    // ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½
+    private static final String DELETE_CHAT_NOTEBOOK = "DELETE FROM chat_notebook WHERE cnb_no = ?";
+    // ï¿½×§ï¿½ï¿½ï¿½
+    private static final String UPDATE = "UPDATE chat_notebook SET cnb_cnt=? WHERE cnb_no = ?";
 
 
     @Override
-    public void insert(Chat_RecordVO chat_RecordVO) {
+    public void insert(Chat_NotebookVO chat_notebookVO) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -35,11 +31,11 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
 
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
-            String[] cr = {"cr_no"}; // ¦³¨Ï¥Îsequence²£¥Í½s¸¹ªº¸Ü¤~­n¼g
-            pstmt = con.prepareStatement(INSERT_STMT, cr); // ¦³¨Ï¥Îsequence²£¥Í½s¸¹ªº¸Ü¤~­n¼g²Ä¤G­Ó°Ñ¼Æ
-            pstmt.setString(1, chat_RecordVO.getCf_no());
-            pstmt.setString(2, chat_RecordVO.getCg_no());
-            pstmt.setString(3, chat_RecordVO.getCr_cnt());
+            String[] cnb = {"cnb_no"}; // ï¿½ï¿½ï¿½Ï¥ï¿½sequenceï¿½ï¿½ï¿½Í½sï¿½ï¿½ï¿½ï¿½ï¿½Ü¤~ï¿½nï¿½g
+            pstmt = con.prepareStatement(INSERT_STMT, cnb); // ï¿½ï¿½ï¿½Ï¥ï¿½sequenceï¿½ï¿½ï¿½Í½sï¿½ï¿½ï¿½ï¿½ï¿½Ü¤~ï¿½nï¿½gï¿½Ä¤Gï¿½Ó°Ñ¼ï¿½
+            pstmt.setString(1, chat_notebookVO.getCf_no());
+            pstmt.setString(2, chat_notebookVO.getCg_no());
+            pstmt.setString(3, chat_notebookVO.getCnb_cnt());
             pstmt.executeUpdate();
 
             // Handle any DRIVER errors
@@ -70,7 +66,7 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
     }
 
     @Override
-    public void update(Chat_RecordVO chat_RecordVO) {
+    public void update(Chat_NotebookVO chat_notebookVO) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -80,8 +76,9 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(UPDATE);
-            pstmt.setString(1, chat_RecordVO.getCr_cnt());
-            pstmt.setString(2, chat_RecordVO.getCr_no());
+
+            pstmt.setString(1, chat_notebookVO.getCnb_cnt());
+            pstmt.setString(2, chat_notebookVO.getCnb_no());
             pstmt.executeUpdate();
 
             // Handle any DRIVER errors
@@ -112,7 +109,7 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
     }
 
     @Override
-    public void delete(String cr_no) {
+    public void delete(String cnb_no){
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -122,17 +119,17 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            // 1 ³]©w©ó pstm.executeUpdate()¤§«e
+            // 1 ï¿½]ï¿½wï¿½ï¿½ pstm.executeUpdate()ï¿½ï¿½ï¿½e
             con.setAutoCommit(false);
 
-            pstmt = con.prepareStatement(DELETE_PROC);
-            pstmt.setString(1, cr_no);
+            pstmt = con.prepareStatement(DELETE_CHAT_NOTEBOOK);
+            pstmt.setString(1, cnb_no);
             pstmt.executeUpdate();
 
-            // 2 ³]©w©ó pstm.executeUpdate()¤§«á
+            // 2ï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½ pstm.executeUpdate()ï¿½ï¿½ï¿½ï¿½
             con.commit();
             con.setAutoCommit(true);
-            System.out.println("Delete Chat_Record : " + cr_no);
+            System.out.println("Delete" + cnb_no);
 
             // Handle any DRIVER errors
         } catch (ClassNotFoundException e) {
@@ -142,7 +139,7 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
         } catch (SQLException se) {
             if (con != null) {
                 try {
-                    // 3 ³]©w©ó·í¦³exceptionµo¥Í®É¤§catch°Ï¶ô¤º
+                    // 3ï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½ï¿½exceptionï¿½oï¿½Í®É¤ï¿½catchï¿½Ï¶ï¿½ï¿½ï¿½
                     con.rollback();
                 } catch (SQLException excep) {
                     throw new RuntimeException("rollback error occured. "
@@ -167,14 +164,12 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
                 }
             }
         }
-
-
     }
 
     @Override
-    public Chat_RecordVO findByPrimaryKey(String cr_no) {
+    public Chat_NotebookVO findByPrimaryKey(String cnb_no){
 
-        Chat_RecordVO chat_RecordVO = null;
+        Chat_NotebookVO chat_notebookVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -184,15 +179,15 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(GET_ONE_STMT);
-
-            pstmt.setString(1, cr_no);
-
+            pstmt.setString(1, cnb_no);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_RecordVO = new Chat_RecordVO();
-                chat_RecordVO.setCr_no(rs.getString("cr_no"));
-                chat_RecordVO.setCr_cnt(rs.getString("cr_cnt"));
+                chat_notebookVO = new Chat_NotebookVO();
+                chat_notebookVO.setCnb_no(rs.getString("cnb_no"));
+                chat_notebookVO.setCf_no(rs.getString("cf_no"));
+                chat_notebookVO.setCg_no(rs.getString("cg_no"));
+                chat_notebookVO.setCnb_cnt(rs.getString("cnb_cnt"));
             }
 
             // Handle any DRIVER errors
@@ -227,14 +222,14 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
                 }
             }
         }
-        return chat_RecordVO;
+        return chat_notebookVO;
     }
 
     @Override
-    public List<Chat_RecordVO> getAll() {
+    public List<Chat_NotebookVO> getAll(){
 
-        List<Chat_RecordVO> list = new ArrayList<Chat_RecordVO>();
-        Chat_RecordVO chat_RecordVO = null;
+        List<Chat_NotebookVO> list = new ArrayList<Chat_NotebookVO>();
+        Chat_NotebookVO chat_notebookVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -247,11 +242,14 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_RecordVO = new Chat_RecordVO();
-                chat_RecordVO.setCr_no(rs.getString("cr_no"));
-                chat_RecordVO.setCr_cnt(rs.getString("cr_cnt"));
-                list.add(chat_RecordVO); // Store the row in the list
+                chat_notebookVO = new Chat_NotebookVO();
+                chat_notebookVO.setCnb_no(rs.getString("cnb_no"));
+                chat_notebookVO.setCf_no(rs.getString("cf_no"));
+                chat_notebookVO.setCg_no(rs.getString("cg_no"));
+                chat_notebookVO.setCnb_cnt(rs.getString("cnb_cnt"));
+                list.add(chat_notebookVO); // Store the row in the list
             }
+
             // Handle any DRIVER errors
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Couldn't load database DRIVER. "
@@ -288,38 +286,41 @@ public class Chat_RecordJDBCDAO implements Chat_RecordDAO_interface {
 
     public static void main(String[] args) {
 
-        Chat_RecordJDBCDAO dao = new Chat_RecordJDBCDAO();
+        Chat_NotebookJDBCDAO dao = new Chat_NotebookJDBCDAO();
 
-        // ·s¼W(OK)
-//        bbq.chat.model.Chat_RecordVO chat_RecordVO1 = new bbq.chat.model.Chat_RecordVO();
-//        chat_RecordVO1.setCr_cnt("null");
-//        chat_RecordVO1.setCr_cnt("null");
-//        chat_RecordVO1.setCr_cnt("²á¤Ñ°O¿ý´ú¸Õ*");
-//        dao.insert(chat_RecordVO1);
-//        System.out.println("·s¼W¦¨¥\");
+        // ï¿½sï¿½W OK
+//        Chat_NotebookVO chat_notebookVO1 = new Chat_NotebookVO();
+//        chat_notebookVO1.setCf_no("CF000007");
+//        chat_notebookVO1.setCnb_cnt("ï¿½Oï¿½Æ¥ï¿½ï¿½ï¿½ï¿½ï¿½https://img.kekeke.cc/t/x8JrPHoAAr.png");
+//        dao.insert(chat_notebookVO1);
+//        System.out.println("ï¿½sï¿½Wï¿½ï¿½ï¿½ï¿½");
 
-        // ­×§ï
-//		bbq.chat.model.Chat_RecordVO chat_RecordVO2 = new bbq.chat.model.Chat_RecordVO();
-//		chat_RecordVO2.setCr_no("cr0002");
-//		chat_RecordVO2.setCr_cnt("­×§ï¬Ý¬Ý");
-//		dao.update(chat_RecordVO2);
-//		System.out.println("update");
+        // ï¿½×§ï¿½ OK
+//		Chat_NotebookVO chat_notebookVO2 = new Chat_NotebookVO();
+//		chat_notebookVO2.setCnb_no("CNB00005");
+//		chat_notebookVO2.setCnb_cnt("update");
+//		dao.update(chat_notebookVO2);
+//		System.out.println("ï¿½×§ï§¹ï¿½ï¿½");
 
-        // §R°£
-//		dao.delete("cr0001");
-//		System.out.println("delete");
+        // ï¿½Rï¿½ï¿½ OK
+//		dao.delete("CNB00005");
+//		System.out.println("ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
-        // ¬d¸ß
-//		bbq.chat.model.Chat_RecordVO chat_RecordVO3 = dao.findByPrimaryKey("cr0002");
-//		System.out.print(chat_RecordVO3.getCr_no() + ",");
-//		System.out.println(chat_RecordVO3.getCr_cnt());
+        // ï¿½dï¿½ï¿½ OK
+//		Chat_NotebookVO chat_notebookVO3 = dao.findByPrimaryKey("CNB00004");
+//		System.out.print(chat_notebookVO3.getCnb_no() + ",");
+//		System.out.print(chat_notebookVO3.getCf_no() + ",");
+//		System.out.print(chat_notebookVO3.getCg_no() + ",");
+//		System.out.print(chat_notebookVO3.getCnb_cnt());
 //		System.out.println("---------------------");
 
-        // ¬d¸ß³¡ªù
-//		List<bbq.chat.model.Chat_RecordVO> list = dao.getAll();
-//		for (bbq.chat.model.Chat_RecordVO cr : list) {
-//			System.out.print(cr.getCr_no() + ",");
-//			System.out.print(cr.getCr_cnt());
+        // ï¿½dï¿½ß¥ï¿½ï¿½ï¿½ OK
+//		List<Chat_NotebookVO> list = dao.getAll();
+//		for (Chat_NotebookVO chat_notebookVO : list) {
+//			System.out.print(chat_notebookVO.getCnb_no() + ",");
+//			System.out.print(chat_notebookVO.getCf_no() + ",");
+//			System.out.print(chat_notebookVO.getCg_no() + ",");
+//			System.out.print(chat_notebookVO.getCnb_cnt());
 //			System.out.println();
 //		}
 

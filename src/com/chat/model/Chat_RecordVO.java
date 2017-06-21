@@ -8,11 +8,11 @@ import java.sql.Date;
  */
 public class Chat_RecordVO implements Serializable {
 
-    private String cr_no;    //Not Null (PK)
-    private String cf_no;    //(FK)
-    private String cg_no;    //(FK)
-    private Date cr_date;    //Not Null
-    private String cr_cnt;   //Not Null
+    private String cr_no;    // Not Null (PK)
+    private String cf_no;    // (FK)
+    private String cg_no;    // (FK)
+    private Date cr_date;    // Not Null
+    private String cr_cnt;   // Not Null
 
     public Chat_RecordVO() {
         super();

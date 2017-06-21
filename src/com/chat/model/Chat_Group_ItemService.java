@@ -1,7 +1,5 @@
 package com.chat.model;
 
-import com.chat.dao.Chat_Group_ItemDAO;
-
 import java.util.List;
 
 
@@ -13,7 +11,7 @@ public class Chat_Group_ItemService {
         dao = new Chat_Group_ItemDAO();
     }
 
-    public Chat_Group_ItemVO addChat_Friend(String cg_no, String mem_no) {
+    public Chat_Group_ItemVO addChat_Group_Item(String cg_no, String mem_no) {
 
         Chat_Group_ItemVO chat_Group_ItemVO = new Chat_Group_ItemVO();
         
@@ -26,12 +24,18 @@ public class Chat_Group_ItemService {
         return chat_Group_ItemVO;
     }
 
-    public void deleteCF(String cg_no,String mem_no) {
+    public void deleteChat_Group_Item(String cg_no,String mem_no) {
         dao.delete(cg_no,mem_no);
     }
 
-    public Chat_Group_ItemVO getOneCF(String cg_no,String mem_no) {
-        return dao.findByPrimaryKey(cg_no,mem_no);
+    public List<Chat_Group_ItemVO> getOneChat_Group_No(String cg_no) {
+
+        return dao.findByCgNo(cg_no);
+    }
+
+    public List<Chat_Group_ItemVO> getOneChat_Group_Mem(String mem_no) {
+
+        return dao.findByCgNo(mem_no);
     }
 
     public List<Chat_Group_ItemVO> getAll() {

@@ -1,30 +1,28 @@
-package com.chat.jdbcdao;
+package com.chat.model;
 
-import com.chat.model.Chat_Group_ItemDAO_interface;
-import com.chat.model.Chat_Group_ItemVO;
-
-import java.util.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
-    //    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
     // 穝糤戈
     private static final String INSERT_STMT = "INSERT INTO chat_group_item (cg_no, mem_no) " +
             "VALUES (?, ?)";
     // 琩高戈
-    private static final String GET_ALL_STMT = "SELECT cg_no , mem_no FROM chat_group_item";
-    private static final String GET_ONE_STMT = "SELECT cg_no, mem_no FROM chat_group_item WHERE cg_no = ?";
+    private static final String GET_ALL_STMT = "SELECT * FROM chat_group_item";
+    private static final String GET_BY_CG_NO_STMT = "SELECT * FROM chat_group_item WHERE cg_no =?";
+    private static final String GET_BY_MEM_NO_STMT = "SELECT * FROM chat_group_item WHERE mem_no =?";
     // 埃戈
-    private static final String DELETE_PROC = "DELETE FROM chat_group_item WHERE cg_no = ?";
+    private static final String DELETE_GROUP_ITEM = "DELETE FROM chat_group_item WHERE cg_no = ? AND mem_no =?";
 
 
     @Override
-    public void insert(Chat_Group_ItemVO chat_Group_ItemVO) {
+    public void insert(Chat_Group_ItemVO chat_group_itemVO) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -34,8 +32,8 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
             con = DriverManager.getConnection(URL, USER, PASSWORD);
 
             pstmt = con.prepareStatement(INSERT_STMT);
-            pstmt.setString(1, chat_Group_ItemVO.getCg_no());
-            pstmt.setString(2, chat_Group_ItemVO.getMem_no());
+            pstmt.setString(1, chat_group_itemVO.getCg_no());
+            pstmt.setString(2, chat_group_itemVO.getMem_no());
             pstmt.executeUpdate();
 
             // Handle any DRIVER errors
@@ -80,14 +78,15 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
 
             // 1 砞﹚ pstm.executeUpdate()ぇ玡
             con.setAutoCommit(false);
-            pstmt = con.prepareStatement(DELETE_PROC);
+            pstmt = con.prepareStatement(DELETE_GROUP_ITEM);
             pstmt.setString(1, cg_no);
+            pstmt.setString(2, mem_no);
             pstmt.executeUpdate();
 
             // 2 砞﹚ pstm.executeUpdate()ぇ
             con.commit();
             con.setAutoCommit(true);
-            System.out.println("Delete Chat Group Item" + cg_no);
+            System.out.println("Delete Chat Group Item" + cg_no + mem_no);
 
             // Handle any DRIVER errors
         } catch (ClassNotFoundException e) {
@@ -123,11 +122,12 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
             }
         }
     }
-
+    
     @Override
-    public Chat_Group_ItemVO findByPrimaryKey(String cg_no, String mem_no) {
+    public List<Chat_Group_ItemVO> findByCgNo(String cg_no) {
 
-        Chat_Group_ItemVO chat_Group_ItemVO = null;
+        List<Chat_Group_ItemVO> list = new ArrayList<Chat_Group_ItemVO>();
+        Chat_Group_ItemVO chat_group_itemVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -136,14 +136,15 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
 
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
-            pstmt = con.prepareStatement(GET_ONE_STMT);
+            pstmt = con.prepareStatement(GET_BY_CG_NO_STMT);
             pstmt.setString(1, cg_no);
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_Group_ItemVO = new Chat_Group_ItemVO();
-                chat_Group_ItemVO.setCg_no(rs.getString("cg_no"));
-                chat_Group_ItemVO.setMem_no(rs.getString("mem_no"));
+                chat_group_itemVO = new Chat_Group_ItemVO();
+                chat_group_itemVO.setCg_no(rs.getString("cg_no"));
+                chat_group_itemVO.setMem_no(rs.getString("mem_no"));
+                list.add(chat_group_itemVO); // Store the row in the list
             }
 
             // Handle any DRIVER errors
@@ -154,7 +155,6 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. "
                     + se.getMessage());
-            // Clean up JDBC resources
         } finally {
             if (rs != null) {
                 try {
@@ -178,13 +178,72 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
                 }
             }
         }
-        return chat_Group_ItemVO;
+        return list;
     }
+    
+    @Override
+    public List<Chat_Group_ItemVO> findByMemNo(String mem_no) {
 
+        List<Chat_Group_ItemVO> list = new ArrayList<Chat_Group_ItemVO>();
+        Chat_Group_ItemVO chat_group_itemVO = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            pstmt = con.prepareStatement(GET_BY_MEM_NO_STMT);
+            pstmt.setString(1, mem_no);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                chat_group_itemVO = new Chat_Group_ItemVO();
+                chat_group_itemVO.setCg_no(rs.getString("cg_no"));
+                chat_group_itemVO.setMem_no(rs.getString("mem_no"));
+                list.add(chat_group_itemVO); // Store the row in the list
+            }
+
+            // Handle any DRIVER errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database DRIVER. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return list;
+    }
+    
+    @Override
     public List<Chat_Group_ItemVO> getAll() {
 
         List<Chat_Group_ItemVO> list = new ArrayList<Chat_Group_ItemVO>();
-        Chat_Group_ItemVO chat_Group_ItemVO = null;
+        Chat_Group_ItemVO chat_group_itemVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -197,10 +256,10 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_Group_ItemVO = new Chat_Group_ItemVO();
-                chat_Group_ItemVO.setCg_no(rs.getString("cg_no"));
-                chat_Group_ItemVO.setMem_no(rs.getString("mem_no"));
-                list.add(chat_Group_ItemVO); // Store the row in the list
+                chat_group_itemVO = new Chat_Group_ItemVO();
+                chat_group_itemVO.setCg_no(rs.getString("cg_no"));
+                chat_group_itemVO.setMem_no(rs.getString("mem_no"));
+                list.add(chat_group_itemVO); // Store the row in the list
             }
 
             // Handle any DRIVER errors
@@ -241,30 +300,38 @@ public class Chat_Group_ItemJDBCDAO implements Chat_Group_ItemDAO_interface {
 
         Chat_Group_ItemJDBCDAO dao = new Chat_Group_ItemJDBCDAO();
 
-        // 穝糤
-//        bbq.chat.model.Chat_Group_ItemVO chat_Group_ItemVO1 = new bbq.chat.model.Chat_Group_ItemVO();
-//        chat_Group_ItemVO1.setCg_no("cg002");
-//        chat_Group_ItemVO1.setMem_no("M0000003");
-//        dao.insert(chat_Group_ItemVO1);
+        // 穝糤 OK
+//        Chat_Group_ItemVO chat_group_itemVO1 = new Chat_Group_ItemVO();
+//        chat_group_itemVO1.setCg_no("CG000008");
+//        chat_group_itemVO1.setMem_no("M0000004");
+//        dao.insert(chat_group_itemVO1);
 //        System.out.println("穝糤Θ");
 
-        // 礚猭э
-
-        // 埃
-//		dao.delete("cg002","M0000003");
+        // 埃 OK
+//		dao.delete("CG000006","M0000004");
 //		System.out.println("delete");
 
-        // 琩高
-        Chat_Group_ItemVO chat_Group_ItemVO3 = dao.findByPrimaryKey("cg002", "M0000003");
-        System.out.print(chat_Group_ItemVO3.getCg_no() + ",");
-        System.out.println(chat_Group_ItemVO3.getMem_no());
-        System.out.println("---------------------");
+        // 琩高 cg_no OK
+//		List<Chat_Group_ItemVO> list = dao.findByCgNo("CG000006");
+//		for (Chat_Group_ItemVO chat_group_itemVO : list) {
+//			System.out.print(chat_group_itemVO.getCg_no() + ",");
+//			System.out.print(chat_group_itemVO.getMem_no());
+//			System.out.println();
+//		}
+		
+        // 琩高 mem_no OK
+//		List<Chat_Group_ItemVO> list = dao.findByMemNo("M0000004");
+//		for (Chat_Group_ItemVO chat_group_itemVO : list) {
+//			System.out.print(chat_group_itemVO.getCg_no() + ",");
+//			System.out.print(chat_group_itemVO.getMem_no());
+//			System.out.println();
+//		}
 
-        // 琩高场
-//		List<bbq.chat.model.Chat_Group_ItemVO> list = dao.getAll();
-//		for (bbq.chat.model.Chat_Group_ItemVO cgi : list) {
-//			System.out.print(cgi.getCg_no() + ",");
-//			System.out.print(cgi.getMem_no());
+        // 琩高场 OK
+//		List<Chat_Group_ItemVO> list = dao.getAll();
+//		for (Chat_Group_ItemVO chat_group_itemVO : list) {
+//			System.out.print(chat_group_itemVO.getCg_no() + ",");
+//			System.out.print(chat_group_itemVO.getMem_no());
 //			System.out.println();
 //		}
 

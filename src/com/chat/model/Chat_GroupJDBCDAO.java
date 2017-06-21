@@ -1,53 +1,50 @@
-package com.chat.jdbcdao;
+package com.chat.model;
 
-import com.chat.model.Chat_GroupDAO_interface;
-import com.chat.model.Chat_GroupVO;
-
-import java.util.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String URL = "jdbc:oracle:thin:@localhost:1522:xe";
-    //    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
-    // ·s¼W¸ê®Æ
-    private static final String INSERT_STMT = "INSERT INTO Chat_Group " +
+    // ï¿½sï¿½Wï¿½ï¿½ï¿½
+    private static final String INSERT_STMT = "INSERT INTO chat_group " +
             "(cg_no, cg_name, cg_year, cg_is_ar, cg_is_ab, cg_is_ac, cg_is_sf, cg_is_ad, cg_baby_rd) " +
-            "VALUES ('cg'||LPAD(to_char(cg_no_seq.NEXTVAL),3,'0'), ?, ?, ?, ?, ?, ?, ?, ?)";
-    // ¬d¸ß¸ê®Æ
-    private static final String GET_ALL_STMT = "SELECT cg_no , cg_name FROM chat_group";
-    private static final String GET_ONE_STMT = "SELECT cg_no, cg_name FROM chat_group WHERE cg_no = ?";
-    // §R°£¸ê®Æ »Ý³s°Ê
-    private static final String DELETE_CHAT_RECORD = "DELETE FROM chat_record WHERE cg_no = ?";
-    private static final String DELETE_CHAT_NOTEBOOK = "DELETE FROM chat_notebook WHERE cg_no = ?";
-    private static final String DELETE_GROUP_ITEM = "DELETE FROM chat_group_item WHERE cg_no = ?";
+            "VALUES ('CG'||LPAD(to_char(cg_no_seq.NEXTVAL), 6, '0'), ?, ?, ?, ?, ?, ?, ?, ?)";
+    // ï¿½dï¿½ß¸ï¿½ï¿½
+    private static final String GET_ALL_STMT = "SELECT * FROM chat_group";
+    private static final String GET_ONE_STMT = "SELECT * FROM chat_group WHERE cg_no = ?";
+    // ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý³sï¿½ï¿½
+    private static final String DELETE_CHAT_RECORDs = "DELETE FROM chat_record WHERE cg_no = ?";
+    private static final String DELETE_CHAT_NOTEBOOKs = "DELETE FROM chat_notebook WHERE cg_no = ?";
+    private static final String DELETE_GROUP_ITEMs = "DELETE FROM chat_group_item WHERE cg_no = ?";
     private static final String DELETE_CHAT_GROUP = "DELETE FROM chat_group WHERE cg_no = ?";
-    // ­×§ï¸ê®Æ
-    private static final String UPDATE = "UPDATE chat_group SET cg_name=? WHERE cg_no = ?";
+    // ï¿½×§ï¿½ï¿½ï¿½
+    private static final String UPDATE = "UPDATE chat_group SET cg_name=?, cg_year=?, cg_is_ar=?, cg_is_ab=?, " +
+    		"cg_is_ac=?, cg_is_sf=?, cg_is_ad=?, cg_baby_rd=? WHERE cg_no = ?";
 
     @Override
-    public void insert(Chat_GroupVO chat_GroupVO) {
+    public void insert(Chat_GroupVO chat_groupVO) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
 
         try {
-//        	(cg_no, CG_NAME, CG_YEAR, CG_IS_AR, CG_IS_AB, CG_IS_AC, CG_IS_SF, CG_IS_AD, BABY_RD
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
-            String[] cg = {"cg_no"}; // ¦³¨Ï¥Îsequence²£¥Í½s¸¹ªº¸Ü¤~­n¼g
-            pstmt = con.prepareStatement(INSERT_STMT, cg); // ¦³¨Ï¥Îsequence²£¥Í½s¸¹ªº¸Ü¤~­n¼g²Ä¤G­Ó°Ñ¼Æ
-            pstmt.setString(1, chat_GroupVO.getCg_name());
-            pstmt.setDate(2, chat_GroupVO.getCg_year());
-            pstmt.setString(3, chat_GroupVO.getCg_is_ar());
-            pstmt.setString(4, chat_GroupVO.getCg_is_ab());
-            pstmt.setString(5, chat_GroupVO.getCg_is_ac());
-            pstmt.setString(6, chat_GroupVO.getCg_is_sf());
-            pstmt.setString(7, chat_GroupVO.getCg_is_ad());
-            pstmt.setString(8, chat_GroupVO.getBaby_rd());
+            String[] cols = {"cg_no"}; // ï¿½ï¿½ï¿½Ï¥ï¿½sequenceï¿½ï¿½ï¿½Í½sï¿½ï¿½ï¿½ï¿½ï¿½Ü¤~ï¿½nï¿½g
+            pstmt = con.prepareStatement(INSERT_STMT, cols); // ï¿½ï¿½ï¿½Ï¥ï¿½sequenceï¿½ï¿½ï¿½Í½sï¿½ï¿½ï¿½ï¿½ï¿½Ü¤~ï¿½nï¿½gï¿½Ä¤Gï¿½Ó°Ñ¼ï¿½
+            pstmt.setString(1, chat_groupVO.getCg_name());
+            pstmt.setDate(2, chat_groupVO.getCg_year());
+            pstmt.setString(3, chat_groupVO.getCg_is_ar());
+            pstmt.setString(4, chat_groupVO.getCg_is_ab());
+            pstmt.setString(5, chat_groupVO.getCg_is_ac());
+            pstmt.setString(6, chat_groupVO.getCg_is_sf());
+            pstmt.setString(7, chat_groupVO.getCg_is_ad());
+            pstmt.setString(8, chat_groupVO.getCg_baby_rd());
             pstmt.executeUpdate();
 
             // Handle any DRIVER errors
@@ -78,7 +75,7 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
     }
 
     @Override
-    public void update(Chat_GroupVO chat_GroupVO) {
+    public void update(Chat_GroupVO chat_groupVO) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -89,8 +86,15 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(UPDATE);
 
-            pstmt.setString(1, chat_GroupVO.getCg_name());
-            pstmt.setString(2, chat_GroupVO.getCg_no());
+            pstmt.setString(1, chat_groupVO.getCg_name());
+            pstmt.setDate(2, chat_groupVO.getCg_year());
+            pstmt.setString(3, chat_groupVO.getCg_is_ar());
+            pstmt.setString(4, chat_groupVO.getCg_is_ab());
+            pstmt.setString(5, chat_groupVO.getCg_is_ac());
+            pstmt.setString(6, chat_groupVO.getCg_is_sf());
+            pstmt.setString(7, chat_groupVO.getCg_is_ad());
+            pstmt.setString(8, chat_groupVO.getCg_baby_rd());
+            pstmt.setString(9, chat_groupVO.getCg_no());
             pstmt.executeUpdate();
 
             // Handle any DRIVER errors
@@ -131,17 +135,17 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            // 1 ³]©w©ó pstm.executeUpdate()¤§«e
+            // 1 ï¿½]ï¿½wï¿½ï¿½ pstm.executeUpdate()ï¿½ï¿½ï¿½e
             con.setAutoCommit(false);
-            pstmt = con.prepareStatement(DELETE_CHAT_RECORD);
+            pstmt = con.prepareStatement(DELETE_CHAT_RECORDs);
             pstmt.setString(1, cg_no);
             pstmt.executeUpdate();
 
-            pstmt = con.prepareStatement(DELETE_CHAT_NOTEBOOK);
+            pstmt = con.prepareStatement(DELETE_CHAT_NOTEBOOKs);
             pstmt.setString(1, cg_no);
             pstmt.executeUpdate();
 
-            pstmt = con.prepareStatement(DELETE_GROUP_ITEM);
+            pstmt = con.prepareStatement(DELETE_GROUP_ITEMs);
             pstmt.setString(1, cg_no);
             pstmt.executeUpdate();
 
@@ -149,7 +153,7 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
             pstmt.setString(1, cg_no);
             pstmt.executeUpdate();
 
-            // 2 ³]©w©ó pstm.executeUpdate()¤§«á
+            // 2 ï¿½]ï¿½wï¿½ï¿½ pstm.executeUpdate()ï¿½ï¿½ï¿½ï¿½
             con.commit();
             con.setAutoCommit(true);
             System.out.println("Delete Chat_Group: " + cg_no);
@@ -162,7 +166,7 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
         } catch (SQLException se) {
             if (con != null) {
                 try {
-                    // 3 ³]©w©ó·í¦³exceptionµo¥Í®É¤§catch°Ï¶ô¤º
+                    // 3 ï¿½]ï¿½wï¿½ï¿½ï¿½exceptionï¿½oï¿½Í®É¤ï¿½catchï¿½Ï¶ï¿½ï¿½ï¿½
                     con.rollback();
                 } catch (SQLException excep) {
                     throw new RuntimeException("rollback error occured. "
@@ -192,7 +196,7 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
     @Override
     public Chat_GroupVO findByPrimaryKey(String cg_no) {
 
-        Chat_GroupVO chat_GroupVO = null;
+        Chat_GroupVO chat_groupVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -206,9 +210,16 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_GroupVO = new Chat_GroupVO();
-                chat_GroupVO.setCg_no(rs.getString("cg_no"));
-                chat_GroupVO.setCg_name(rs.getString("cg_name"));
+                chat_groupVO = new Chat_GroupVO();
+                chat_groupVO.setCg_no(rs.getString("cg_no"));
+                chat_groupVO.setCg_name(rs.getString("cg_name"));
+                chat_groupVO.setCg_year(rs.getDate("cg_year"));
+                chat_groupVO.setCg_is_ar(rs.getString("cg_is_ar"));
+                chat_groupVO.setCg_is_ab(rs.getString("cg_is_ab"));
+                chat_groupVO.setCg_is_ac(rs.getString("cg_is_ac"));
+                chat_groupVO.setCg_is_sf(rs.getString("cg_is_sf"));
+                chat_groupVO.setCg_is_ad(rs.getString("cg_is_ad"));
+                chat_groupVO.setCg_baby_rd(rs.getString("cg_baby_rd"));
             }
 
             // Handle any DRIVER errors
@@ -243,13 +254,13 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
                 }
             }
         }
-        return chat_GroupVO;
+        return chat_groupVO;
     }
 
     @Override
     public List<Chat_GroupVO> getAll() {
         List<Chat_GroupVO> list = new ArrayList<Chat_GroupVO>();
-        Chat_GroupVO chat_GroupVO = null;
+        Chat_GroupVO chat_groupVO = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -262,10 +273,17 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                chat_GroupVO = new Chat_GroupVO();
-                chat_GroupVO.setCg_no(rs.getString("cg_no"));
-                chat_GroupVO.setCg_name(rs.getString("cg_name"));
-                list.add(chat_GroupVO); // Store the row in the list
+                chat_groupVO = new Chat_GroupVO();
+                chat_groupVO.setCg_no(rs.getString("cg_no"));
+                chat_groupVO.setCg_name(rs.getString("cg_name"));
+                chat_groupVO.setCg_year(rs.getDate("cg_year"));
+                chat_groupVO.setCg_is_ar(rs.getString("cg_is_ar"));
+                chat_groupVO.setCg_is_ab(rs.getString("cg_is_ab"));
+                chat_groupVO.setCg_is_ac(rs.getString("cg_is_ac"));
+                chat_groupVO.setCg_is_sf(rs.getString("cg_is_sf"));
+                chat_groupVO.setCg_is_ad(rs.getString("cg_is_ad"));
+                chat_groupVO.setCg_baby_rd(rs.getString("cg_baby_rd"));
+                list.add(chat_groupVO); // Store the row in the list
             }
 
             // Handle any DRIVER errors
@@ -307,42 +325,63 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
 
         Chat_GroupJDBCDAO dao = new Chat_GroupJDBCDAO();
 
-        // ·s¼W(OK)
-//        bbq.chat.model.Chat_GroupVO chat_GroupVO1 = new bbq.chat.model.Chat_GroupVO();
-//        chat_GroupVO1.setCg_name("¸s²Õ´ú¸Õ1");
-//        chat_GroupVO1.setCg_year(java.sql.Date.valueOf("2002-02-01"));
-//        chat_GroupVO1.setCg_is_ab("0");
-//        chat_GroupVO1.setCg_is_ac("1");
-//        chat_GroupVO1.setCg_is_sf("0");
-//        chat_GroupVO1.setCg_is_ad("1");
-//        chat_GroupVO1.setCg_is_ar("1");
-//        chat_GroupVO1.setBaby_rd("¨S®É¶¡ºÎÄ±¯g");
-//        dao.insert(chat_GroupVO1);
+        // ï¿½sï¿½W  OK
+//        Chat_GroupVO chat_groupVO1 = new Chat_GroupVO();
+//        chat_groupVO1.setCg_name("ï¿½sï¿½Õ´ï¿½ï¿½ï¿½1");
+//        chat_groupVO1.setCg_year(java.sql.Date.valueOf("2002-02-01"));
+//        chat_groupVO1.setCg_is_ab("0");
+//        chat_groupVO1.setCg_is_ac("1");
+//        chat_groupVO1.setCg_is_sf("0");
+//        chat_groupVO1.setCg_is_ad("1");
+//        chat_groupVO1.setCg_is_ar("1");
+//        chat_groupVO1.setCg_baby_rd("ï¿½Sï¿½É¶ï¿½ï¿½ï¿½Ä±ï¿½g");
+//        dao.insert(chat_groupVO1);
 //        System.out.println("insert");
 
-        // ­×§ï
-//		bbq.chat.model.Chat_GroupVO chat_GroupVO2 = new bbq.chat.model.Chat_GroupVO();
-//		chat_GroupVO2.setCg_no("cg002");
-//		chat_GroupVO2.setCg_name("11­×§ï¬Ý¬Ý");
-//		dao.update(chat_GroupVO2);
+        // ï¿½×§ï¿½ OK
+//		Chat_GroupVO chat_groupVO2 = new Chat_GroupVO();
+//		chat_groupVO2.setCg_no("CG000003");
+//		chat_groupVO2.setCg_name("ï¿½sï¿½Õ´ï¿½ï¿½ï¿½1");
+//		chat_groupVO2.setCg_year(java.sql.Date.valueOf("2002-02-01"));
+//		chat_groupVO2.setCg_is_ab("0");
+//		chat_groupVO2.setCg_is_ac("1");
+//		chat_groupVO2.setCg_is_sf("0");
+//		chat_groupVO2.setCg_is_ad("1");
+//		chat_groupVO2.setCg_is_ar("1");
+//		chat_groupVO2.setCg_baby_rd("ï¿½Sï¿½É¶ï¿½ï¿½ï¿½Ä±ï¿½g");
+//		dao.update(chat_groupVO2);
 //		System.out.println("update");
 
-        // §R°£
-		dao.delete("CG000001");
-		System.out.println("Delete");
+        // ï¿½Rï¿½ï¿½ OK
+//		dao.delete("CG000002");
+//		System.out.println("Delete");
 
-        // ¬d¸ß
-//        Chat_GroupVO chat_GroupVO3 = dao.findByPrimaryKey("CG000001");
-//        System.out.print(chat_GroupVO3.getCg_no() + ",");
-//        System.out.println(chat_GroupVO3.getCg_name());
+        // ï¿½dï¿½ï¿½ OK
+//        Chat_GroupVO chat_groupVO3 = dao.findByPrimaryKey("CG000002");
+//        System.out.print(chat_groupVO3.getCg_no() + ",");
+//        System.out.print(chat_groupVO3.getCg_name() + ",");
+//        System.out.print(chat_groupVO3.getCg_year() + ",");
+//        System.out.print(chat_groupVO3.getCg_is_ar() + ",");
+//        System.out.print(chat_groupVO3.getCg_is_ab() + ",");
+//        System.out.print(chat_groupVO3.getCg_is_ac() + ",");
+//        System.out.print(chat_groupVO3.getCg_is_sf() + ",");
+//        System.out.print(chat_groupVO3.getCg_is_ad() + ",");
+//        System.out.println(chat_groupVO3.getCg_baby_rd());
 //        System.out.println("---------------------");
 
-        // ¬d¸ß³¡ªù
-        List<Chat_GroupVO> list = dao.getAll();
-        for (Chat_GroupVO cg : list) {
-            System.out.print(cg.getCg_no() + ",");
-            System.out.print(cg.getCg_name());
-            System.out.println();
-        }
+        // ï¿½dï¿½ß¥ï¿½ï¿½ï¿½ OK
+//        List<Chat_GroupVO> list = dao.getAll();
+//        for (Chat_GroupVO chat_groupVO : list) {
+//            System.out.print(chat_groupVO.getCg_no() + ",");
+//            System.out.print(chat_groupVO.getCg_name() + ",");
+//            System.out.print(chat_groupVO.getCg_year() + ",");
+//            System.out.print(chat_groupVO.getCg_is_ar() + ",");
+//            System.out.print(chat_groupVO.getCg_is_ab() + ",");
+//            System.out.print(chat_groupVO.getCg_is_ac() + ",");
+//            System.out.print(chat_groupVO.getCg_is_sf() + ",");
+//            System.out.print(chat_groupVO.getCg_is_ad() + ",");
+//            System.out.print(chat_groupVO.getCg_baby_rd());
+//            System.out.println();
+//        }
     }
 }
