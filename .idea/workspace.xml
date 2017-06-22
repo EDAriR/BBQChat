@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="262204df-fcad-4d8d-a5d5-22b485f43f00" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/server/Client.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/server/MessageService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/server/RequestService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/server/Response.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/server/WebSocketServer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/server/WebSocketServerHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/server/WebSocketServerInitializer.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendDAO_interface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendJNDIDAO.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendJNDIDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendService.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_GroupVO.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_GroupVO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_Group_ItemDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_Group_ItemDAO_interface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_RecordDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_RecordDAO_interface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/User_ReportDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/User_ReportDAO_interface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendJDBCDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupJDBCDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupService.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_GroupService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_NotebookJDBCDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordJDBCDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordService.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_RecordService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/User_ReportJDBCDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/User_ReportJDBCDAO.java" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,8 +48,8 @@
       <file leaf-file-name="User_ReportVO.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/chat/model/User_ReportVO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+            <state relative-caret-position="140">
+              <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
               <folding>
                 <marker date="1498110460952" expanded="false" signature="545:556" ph=" { " />
                 <marker date="1498110460952" expanded="false" signature="564:570" ph=" }" />
@@ -874,7 +852,7 @@
       <workItem from="1497790819052" duration="267000" />
       <workItem from="1498052626033" duration="2651000" />
       <workItem from="1498101338935" duration="731000" />
-      <workItem from="1498104683969" duration="3609000" />
+      <workItem from="1498104683969" duration="3739000" />
     </task>
     <task id="LOCAL-00001" summary="cc">
       <created>1497707069545</created>
@@ -911,11 +889,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498054990907</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fuck big5">
+      <created>1498111013153</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1498111013153</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52084000" />
+    <option name="totallyTimeSpent" value="52214000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -930,7 +915,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -994,7 +979,8 @@
     <MESSAGE value="chat group" />
     <MESSAGE value="DAO JDBC package" />
     <MESSAGE value="bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug" />
+    <MESSAGE value="fuck big5" />
+    <option name="LAST_COMMIT_MESSAGE" value="fuck big5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1458,8 +1444,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chat/model/User_ReportVO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        <state relative-caret-position="140">
+          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
           <folding>
             <marker date="1498110460952" expanded="false" signature="545:556" ph=" { " />
             <marker date="1498110460952" expanded="false" signature="564:570" ph=" }" />
