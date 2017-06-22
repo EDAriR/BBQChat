@@ -69,7 +69,7 @@ Chat_GroupService cgSvc = new Chat_GroupService();
                 </c:forEach>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Chat_GroupServlet.do">
 			     <input type="submit" value="修改"> 
 			     <input type="hidden" name="empno" value="${chat_GroupVO.empno}">
 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
@@ -77,7 +77,7 @@ Chat_GroupService cgSvc = new Chat_GroupService();
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Chat_GroupServlet.do">
 			    <input type="submit" value="刪除">
 			    <input type="hidden" name="empno" value="${chat_GroupVO.empno}">
 			    <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->

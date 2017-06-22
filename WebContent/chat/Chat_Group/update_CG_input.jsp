@@ -33,28 +33,28 @@ Chat_GroupVO chat_GroupVO = (Chat_GroupVO) request.getAttribute("chat_GroupVO");
 	</font>
 </c:if>
 
-<FORM METHOD="post" ACTION="emp.do" name="form1">
+<FORM METHOD="post" ACTION="Chat_GroupServlet.do" name="form1">
 <table border="0">
 	<tr>
 		<td>員工編號:<font color=red><b>*</b></font></td>
-		<td><%=chat_GroupVO.getEmpno()%></td>
+		<td><%=chat_GroupVO.getCg_no()%></td>
 	</tr>
 	<tr>
 		<td>員工姓名:</td>
-		<td><input type="TEXT" name="ename" size="45" value="<%=chat_GroupVO.getEname()%>" /></td>
+		<td><input type="TEXT" name="cg_name" size="45" value="<%=chat_GroupVO.getCg_name()%>" /></td>
 	</tr>
 	<tr>
 		<td>職位:</td>
-		<td><input type="TEXT" name="job" size="45"	value="<%=chat_GroupVO.getJob()%>" /></td>
+		<td><input type="TEXT" name="cg_year" size="45"	value="<%=chat_GroupVO.getCg_year()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>薪水:</td>
-		<td><input type="TEXT" name="sal" size="45"	value="<%=empVO.getSal()%>" /></td>
+		<td><input type="TEXT" name="cg_is_ab" size="45"	value="<%=chat_GroupVO.getCg_is_ab()%>" /></td>
 	</tr>
 	<tr>
 		<td>獎金:</td>
-		<td><input type="TEXT" name="comm" size="45" value="<%=empVO.getComm()%>" /></td>
+		<td><input type="TEXT" name="cg_is_ac" size="45" value="<%=chat_GroupVO.getCg_is_ac()%>" /></td>
 	</tr>
 
 	<jsp:useBean id="cgiSvc" scope="page" class="com.chat.model.Chat_Group_ItemService" />
@@ -62,7 +62,7 @@ Chat_GroupVO chat_GroupVO = (Chat_GroupVO) request.getAttribute("chat_GroupVO");
 		<td>部門:<font color=red><b>*</b></font></td>
 		<td><select size="1" name="deptno">
 			<c:forEach var="deptVO" items="${cgiSvc.all}">
-				<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)?'selected':'' } >${deptVO.dname}
+				<option value="${chat_Group_ItemVO.deptno}" ${(chat_GroupVO.deptno==chat_Group_ItemVO.deptno)?'selected':'' } >${chat_Group_ItemVO.dname}
 			</c:forEach>
 		</select></td>
 	</tr>
@@ -70,7 +70,7 @@ Chat_GroupVO chat_GroupVO = (Chat_GroupVO) request.getAttribute("chat_GroupVO");
 </table>
 <br>
 <input type="hidden" name="action" value="update">
-<input type="hidden" name="empno" value="<%=empVO.getEmpno()%>">
+<input type="hidden" name="chat_GroupVO" value="<%=chat_GroupVO.getCg_no()%>">
 <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"><!--接收原送出修改的來源網頁路徑後,再送給Controller準備轉交之用-->
 <input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>">  <!--用於:istAllEmp.jsp 與 複合查詢 listEmps_ByCompositeQuery.jsp-->
 <input type="submit" value="送出修改"></FORM>

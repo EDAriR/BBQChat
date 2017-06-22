@@ -30,7 +30,7 @@
 
 	<table border='1' bordercolor='#CCCCFF' width='800'>
 		<tr>
-			<th>群組編號/th>
+			<th>群組編號</th>
 			<th>群組名稱</th>
 			<th>嬰兒所屬年份</th>
 			<th>是否有過敏性鼻炎</th>
