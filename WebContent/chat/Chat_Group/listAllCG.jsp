@@ -52,7 +52,7 @@ Chat_GroupService cgSvc = new Chat_GroupService();
 	</tr>
 	<%@ include file="pages/page1.file" %> 
 	<c:forEach var="chat_GroupVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-		<tr align='center' valign='middle' ${(chat_GroupVO.empno==param.empno) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
+		<tr align='center' valign='middle' ${(chat_GroupVO.cg_no==param.cg_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
 			<td>${chat_GroupVO.cg_no}</td>
 			<td>${chat_GroupVO.cg_name}</td>
 			<td>${chat_GroupVO.cg_year}</td>
@@ -62,16 +62,11 @@ Chat_GroupService cgSvc = new Chat_GroupService();
 			<td>${chat_GroupVO.cg_is_sf}</td>
 			<td>${chat_GroupVO.cg_is_ad}</td>
 			<td>${chat_GroupVO.cg_baby_rd}</td>			
-			<td><c:forEach var="chat_Group_ItemVO" items="${chat_Group_ItemSvc.all}">
-                    <c:if test="${chat_GroupVO.deptno==chat_Group_ItemVO.deptno}">
-	                    ${chat_Group_ItemVO.deptno}【${chat_Group_ItemVO.dname} - ${chat_Group_ItemVO.loc}】
-                    </c:if>
-                </c:forEach>
-			</td>
+			
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Chat_GroupServlet.do">
 			     <input type="submit" value="修改"> 
-			     <input type="hidden" name="empno" value="${chat_GroupVO.empno}">
+			     <input type="hidden" name="empno" value="${chat_GroupVO.cg_no}">
 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
@@ -79,7 +74,7 @@ Chat_GroupService cgSvc = new Chat_GroupService();
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Chat_GroupServlet.do">
 			    <input type="submit" value="刪除">
-			    <input type="hidden" name="empno" value="${chat_GroupVO.empno}">
+			    <input type="hidden" name="empno" value="${chat_GroupVO.cg_no}">
 			    <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 			    <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 			    <input type="hidden" name="action"value="delete"></FORM>

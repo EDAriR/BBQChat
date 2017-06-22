@@ -55,7 +55,7 @@ public class Chat_GroupService {
         return chat_GroupVO;
     }
 
-    public void deleteCF(String cg_no) {
+    public void deleteCG(String cg_no) {
         dao.delete(cg_no);
     }
 

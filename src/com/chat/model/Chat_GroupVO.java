@@ -15,15 +15,13 @@ public class Chat_GroupVO implements Serializable {
     private String cg_is_ac;    //	"Not Null 0¡G§_ 1¡G¬O"
     private String cg_is_sf;    //	"Not Null 0¡G§_ 1¡G¬O"
     private String cg_is_ad;    //	"Not Null 0¡G§_ 1¡G¬O"
-    private String cg_baby_rd; 
+    private String cg_baby_rd;
 
     public Chat_GroupVO() {
         super();
     }
 
-    public String getCg_no() {
-        return cg_no;
-    }
+    public String getCg_no() { return cg_no; }
 
     public void setCg_no(String cg_no) {
         this.cg_no = cg_no;

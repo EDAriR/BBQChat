@@ -188,7 +188,7 @@ public class Chat_GroupServlet extends HttpServlet {
 				 * 3.修改完成,準備轉交(Send the Success view)
 				 *************/
 				Chat_Group_ItemService cgiSvc = new Chat_Group_ItemService();
-				if (requestURL.equals("/dept/listEmps_ByDeptno.jsp")
+				if (requestURL.equals("/chat/Chat_Group/listCGs_Bycg_no.jsp")
 						|| requestURL.equals("/chat/Chat_group/listtAllCG.jsp"))
 					req.setAttribute("listEmps_ByDeptno", cgiSvc.getOneChat_Group_Mem(mem_no)); // 資料庫取出的list物件,存入request
 
@@ -309,21 +309,21 @@ public class Chat_GroupServlet extends HttpServlet {
 				String cg_no = new String(req.getParameter("cg_no"));
 
 				/*************************** 2.開始刪除資料 ***************************************/
-				EmpService empSvc = new EmpService();
-				EmpVO empVO = empSvc.getOneEmp(empno);
-				empSvc.deleteEmp(empno);
+				Chat_GroupService   cgSvc = new Chat_GroupService  ();
+				Chat_GroupVO chat_GroupVO = cgSvc.getOneCG(cg_no);
+				cgSvc.deleteCG(cg_no);
 
 				/***************************
 				 * 3.刪除完成,準備轉交(Send the Success view)
 				 ***********/
-				DeptService deptSvc = new DeptService();
+				Chat_Group_ItemService  cgiSvc = new Chat_Group_ItemService ();
 				if (requestURL.equals("/dept/listEmps_ByDeptno.jsp") || requestURL.equals("/dept/listAllDept.jsp"))
-					req.setAttribute("listEmps_ByDeptno", deptSvc.getEmpsByDeptno(empVO.getDeptno())); // 資料庫取出的list物件,存入request
+					req.setAttribute("listEmps_ByDeptno", cgiSvc.getOneChat_Group_No(chat_GroupVO.getCg_no())); // 資料庫取出的list物件,存入request
 
 				if (requestURL.equals("/emp/listEmps_ByCompositeQuery.jsp")) {
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>) session.getAttribute("map");
-					List<EmpVO> list = empSvc.getAll(map);
+					List<Chat_GroupVO> list = cgSvc.getAll(map);
 					req.setAttribute("listEmps_ByCompositeQuery", list); // 複合查詢,
 																			// 資料庫取出的list物件,存入request
 				}
