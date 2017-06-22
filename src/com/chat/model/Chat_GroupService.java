@@ -47,7 +47,7 @@ public class Chat_GroupService {
         dao.delete(cg_no);
     }
 
-    public Chat_GroupVO getOneCF(String cg_no) {
+    public Chat_GroupVO getOneCG(String cg_no) {
         return dao.findByPrimaryKey(cg_no);
     }
 

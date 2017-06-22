@@ -18,16 +18,11 @@ public class Chat_RecordDAO implements Chat_RecordDAO_interface {
     static {
         try {
             Context ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB3");
+            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDBG3");
         } catch (NamingException e) {
             e.printStackTrace();
         }
     }
-
-    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-    private static final String USER = "ba101g3";
-    private static final String PASSWORD = "baby";
     // 新增資料
     private static final String INSERT_STMT = "INSERT INTO chat_record " +
             "(cr_no, cf_no, cg_no, cr_date, cr_cnt) " +
