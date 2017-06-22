@@ -28,7 +28,7 @@ public class Chat_RecordService {
         return chat_RecordVO;
     }
 
-    public Chat_RecordVO updateChat_Record(String cr_no, String cr_cnt) {
+    /*public Chat_RecordVO updateChat_Record(String cr_no, String cr_cnt) {
 
         Chat_RecordVO chat_RecordVO = new Chat_RecordVO();
 
@@ -38,7 +38,7 @@ public class Chat_RecordService {
         dao.update(chat_RecordVO);
 
         return chat_RecordVO;
-    }
+    }*/
 
     public void deleteCR(String cr_no) {
         dao.delete(cr_no);

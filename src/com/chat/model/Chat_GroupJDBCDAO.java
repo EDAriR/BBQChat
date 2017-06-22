@@ -1,8 +1,7 @@
 package com.chat.model;
 
+import java.util.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
@@ -10,21 +9,21 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
     private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
-    // �s�W���
+    // 新增資料
     private static final String INSERT_STMT = "INSERT INTO chat_group " +
             "(cg_no, cg_name, cg_year, cg_is_ar, cg_is_ab, cg_is_ac, cg_is_sf, cg_is_ad, cg_baby_rd) " +
             "VALUES ('CG'||LPAD(to_char(cg_no_seq.NEXTVAL), 6, '0'), ?, ?, ?, ?, ?, ?, ?, ?)";
-    // �d�߸��
+    // 查詢資料
     private static final String GET_ALL_STMT = "SELECT * FROM chat_group";
     private static final String GET_ONE_STMT = "SELECT * FROM chat_group WHERE cg_no = ?";
-    // �R����� �ݳs��
+    // 刪除資料 需連動
     private static final String DELETE_CHAT_RECORDs = "DELETE FROM chat_record WHERE cg_no = ?";
     private static final String DELETE_CHAT_NOTEBOOKs = "DELETE FROM chat_notebook WHERE cg_no = ?";
     private static final String DELETE_GROUP_ITEMs = "DELETE FROM chat_group_item WHERE cg_no = ?";
     private static final String DELETE_CHAT_GROUP = "DELETE FROM chat_group WHERE cg_no = ?";
-    // �ק���
+    // 修改資料
     private static final String UPDATE = "UPDATE chat_group SET cg_name=?, cg_year=?, cg_is_ar=?, cg_is_ab=?, " +
-    		"cg_is_ac=?, cg_is_sf=?, cg_is_ad=?, cg_baby_rd=? WHERE cg_no = ?";
+            "cg_is_ac=?, cg_is_sf=?, cg_is_ad=?, cg_baby_rd=? WHERE cg_no = ?";
 
     @Override
     public void insert(Chat_GroupVO chat_groupVO) {
@@ -35,8 +34,8 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
         try {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
-            String[] cols = {"cg_no"}; // ���ϥ�sequence���ͽs�����ܤ~�n�g
-            pstmt = con.prepareStatement(INSERT_STMT, cols); // ���ϥ�sequence���ͽs�����ܤ~�n�g�ĤG�ӰѼ�
+            String[] cols = {"cg_no"}; // 有使用sequence產生編號的話才要寫
+            pstmt = con.prepareStatement(INSERT_STMT, cols); // 有使用sequence產生編號的話才要寫第二個參數
             pstmt.setString(1, chat_groupVO.getCg_name());
             pstmt.setDate(2, chat_groupVO.getCg_year());
             pstmt.setString(3, chat_groupVO.getCg_is_ar());
@@ -135,7 +134,7 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            // 1 �]�w�� pstm.executeUpdate()���e
+            // 1 設定於 pstm.executeUpdate()之前
             con.setAutoCommit(false);
             pstmt = con.prepareStatement(DELETE_CHAT_RECORDs);
             pstmt.setString(1, cg_no);
@@ -153,7 +152,7 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
             pstmt.setString(1, cg_no);
             pstmt.executeUpdate();
 
-            // 2 �]�w�� pstm.executeUpdate()����
+            // 2 設定於 pstm.executeUpdate()之後
             con.commit();
             con.setAutoCommit(true);
             System.out.println("Delete Chat_Group: " + cg_no);
@@ -166,7 +165,7 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
         } catch (SQLException se) {
             if (con != null) {
                 try {
-                    // 3 �]�w���exception�o�ͮɤ�catch�϶���
+                    // 3 設定於當有exception發生時之catch區塊內
                     con.rollback();
                 } catch (SQLException excep) {
                     throw new RuntimeException("rollback error occured. "
@@ -325,38 +324,38 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
 
         Chat_GroupJDBCDAO dao = new Chat_GroupJDBCDAO();
 
-        // �s�W  OK
+        // 新增  OK
 //        Chat_GroupVO chat_groupVO1 = new Chat_GroupVO();
-//        chat_groupVO1.setCg_name("�s�մ���1");
+//        chat_groupVO1.setCg_name("群組測試1");
 //        chat_groupVO1.setCg_year(java.sql.Date.valueOf("2002-02-01"));
 //        chat_groupVO1.setCg_is_ab("0");
 //        chat_groupVO1.setCg_is_ac("1");
 //        chat_groupVO1.setCg_is_sf("0");
 //        chat_groupVO1.setCg_is_ad("1");
 //        chat_groupVO1.setCg_is_ar("1");
-//        chat_groupVO1.setCg_baby_rd("�S�ɶ���ı�g");
+//        chat_groupVO1.setCg_baby_rd("沒時間睡覺症");
 //        dao.insert(chat_groupVO1);
 //        System.out.println("insert");
 
-        // �ק� OK
+        // 修改 OK
 //		Chat_GroupVO chat_groupVO2 = new Chat_GroupVO();
 //		chat_groupVO2.setCg_no("CG000003");
-//		chat_groupVO2.setCg_name("�s�մ���1");
+//		chat_groupVO2.setCg_name("群組測試1");
 //		chat_groupVO2.setCg_year(java.sql.Date.valueOf("2002-02-01"));
 //		chat_groupVO2.setCg_is_ab("0");
 //		chat_groupVO2.setCg_is_ac("1");
 //		chat_groupVO2.setCg_is_sf("0");
 //		chat_groupVO2.setCg_is_ad("1");
 //		chat_groupVO2.setCg_is_ar("1");
-//		chat_groupVO2.setCg_baby_rd("�S�ɶ���ı�g");
+//		chat_groupVO2.setCg_baby_rd("沒時間睡覺症");
 //		dao.update(chat_groupVO2);
 //		System.out.println("update");
 
-        // �R�� OK
+        // 刪除 OK
 //		dao.delete("CG000002");
 //		System.out.println("Delete");
 
-        // �d�� OK
+        // 查詢 OK
 //        Chat_GroupVO chat_groupVO3 = dao.findByPrimaryKey("CG000002");
 //        System.out.print(chat_groupVO3.getCg_no() + ",");
 //        System.out.print(chat_groupVO3.getCg_name() + ",");
@@ -369,7 +368,7 @@ public class Chat_GroupJDBCDAO implements Chat_GroupDAO_interface {
 //        System.out.println(chat_groupVO3.getCg_baby_rd());
 //        System.out.println("---------------------");
 
-        // �d�ߥ��� OK
+        // 查詢全部 OK
 //        List<Chat_GroupVO> list = dao.getAll();
 //        for (Chat_GroupVO chat_groupVO : list) {
 //            System.out.print(chat_groupVO.getCg_no() + ",");

@@ -1,22 +1,21 @@
 package com.chat.model;
 
+import java.util.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class User_ReportJDBCDAO implements User_ReportDAO_interface {
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
-    // �s�W���
+    // 新增資料
     private static final String INSERT_STMT = "INSERT INTO user_report "
             + "(mem_no_ed, mem_no_ing, urpt_cnt, urpt_date, urpt_rsn, urpt_is_cert, urpt_unrsn) "
             + "VALUES (?, ?, ?, SYSDATE, ?, ?, ?)";
-    // �d�߸��
+    // 查詢資料
     private static final String GET_ALL_STMT = "SELECT * FROM user_report";
     private static final String GET_ONE_STMT = "SELECT * FROM User_Report WHERE mem_no_ed = ? AND mem_no_ing=?";
-    // �ק���
+    // 刪除資料
     private static final String UPDATE = "UPDATE User_Report SET urpt_is_cert=?, urpt_unrsn=? WHERE mem_no_ed = ? AND mem_no_ing =?";
 
     @Override
@@ -75,12 +74,12 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             pstmt = con.prepareStatement(UPDATE);
-            
+
             pstmt.setString(1, user_reportVO.getUrpt_is_cert());
             pstmt.setString(2, user_reportVO.getUrpt_unrsn());
             pstmt.setString(3, user_reportVO.getMem_no_ed());
             pstmt.setString(4, user_reportVO.getMem_no_ing());
-            
+
             pstmt.executeUpdate();
 
             // Handle any DRIVER errors
@@ -197,7 +196,7 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
                 user_reportVO.setUrpt_unrsn(rs.getString("urpt_unrsn"));
                 list.add(user_reportVO); // Store the row in the list
             }
-//			 mem_no_ed, URPT_CNT, URPT_RSN, 
+//			 mem_no_ed, URPT_CNT, URPT_RSN,
 
             // Handle any DRIVER errors
         } catch (ClassNotFoundException e) {
@@ -235,24 +234,24 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
 
         User_ReportJDBCDAO dao = new User_ReportJDBCDAO();
 
-        // �s�W  OK
+        // 新增  OK
 //		User_ReportVO user_reportVO1 = new User_ReportVO();
 //		user_reportVO1.setMem_no_ed("M0000001");
 //		user_reportVO1.setMem_no_ing("M0000009");
-//		user_reportVO1.setUrpt_cnt("787846sas�^");
-//		user_reportVO1.setUrpt_rsn("�ýX�d��");
+//		user_reportVO1.setUrpt_cnt("787846sas");
+//		user_reportVO1.setUrpt_rsn("睹絏痙ē");
 //		user_reportVO1.setUrpt_is_cert("0");
 //		dao.insert(user_reportVO1);
 //		System.out.println("insert OK");
 
-        // �ק� OK
+        // 刪除 OK
 //        User_ReportVO user_reportVO2 = new User_ReportVO();
 //        user_reportVO2.setMem_no_ed("M0000001");
 //        user_reportVO2.setMem_no_ing("M0000009");
 //        user_reportVO2.setUrpt_is_cert("1");
 //        dao.update(user_reportVO2);
 
-        // �d�� OK
+        // 查詢 OK
 //		 User_ReportVO user_reportVO3 = dao.findByPrimaryKey("M0000001", "M0000002");
 //		 System.out.print(user_reportVO3.getMem_no_ed() + ",");
 //		 System.out.print(user_reportVO3.getMem_no_ing() + ",");
@@ -263,7 +262,7 @@ public class User_ReportJDBCDAO implements User_ReportDAO_interface {
 //		 System.out.println(user_reportVO3.getUrpt_unrsn());
 //		 System.out.println("---------------------");
 
-        // �d�ߥ��� OK
+        // 查詢全部 OK
 //		 List<User_ReportVO> list = dao.getAll();
 //		 for (User_ReportVO user_reportVO : list) {
 //		 System.out.print(user_reportVO.getMem_no_ed() + ",");

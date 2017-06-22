@@ -105,7 +105,6 @@ public class Chat_FriendJDBCDAO implements Chat_FriendDAO_interface {
                 }
             }
         }
-
     }
 
 

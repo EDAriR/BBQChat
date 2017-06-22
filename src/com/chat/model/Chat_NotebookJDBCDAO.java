@@ -1,8 +1,7 @@
 package com.chat.model;
 
+import java.util.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Chat_NotebookJDBCDAO implements Chat_NotebookDAO_interface {
@@ -10,15 +9,15 @@ public class Chat_NotebookJDBCDAO implements Chat_NotebookDAO_interface {
     private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String USER = "ba101g3";
     private static final String PASSWORD = "baby";
-    // ï¿½sï¿½Wï¿½ï¿½ï¿½
+    // ·s¼W¸ê®Æ
     private static final String INSERT_STMT = "INSERT INTO chat_notebook (cnb_no, cf_no, cg_no, cnb_cnt) " +
             "VALUES ('CNB'||LPAD(to_char(cnb_no_seq.NEXTVAL), 5, '0'), ?, ?, ?)";
-    // ï¿½dï¿½ß¸ï¿½ï¿½
+    // ¬d¸ß¸ê®Æ
     private static final String GET_ALL_STMT = "SELECT * FROM chat_notebook";
     private static final String GET_ONE_STMT = "SELECT * FROM chat_notebook WHERE cnb_no = ?";
-    // ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½
+    // §R°£¸ê®Æ
     private static final String DELETE_CHAT_NOTEBOOK = "DELETE FROM chat_notebook WHERE cnb_no = ?";
-    // ï¿½×§ï¿½ï¿½ï¿½
+    // ­×§ï¸ê®Æ
     private static final String UPDATE = "UPDATE chat_notebook SET cnb_cnt=? WHERE cnb_no = ?";
 
 
@@ -31,8 +30,8 @@ public class Chat_NotebookJDBCDAO implements Chat_NotebookDAO_interface {
 
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
-            String[] cnb = {"cnb_no"}; // ï¿½ï¿½ï¿½Ï¥ï¿½sequenceï¿½ï¿½ï¿½Í½sï¿½ï¿½ï¿½ï¿½ï¿½Ü¤~ï¿½nï¿½g
-            pstmt = con.prepareStatement(INSERT_STMT, cnb); // ï¿½ï¿½ï¿½Ï¥ï¿½sequenceï¿½ï¿½ï¿½Í½sï¿½ï¿½ï¿½ï¿½ï¿½Ü¤~ï¿½nï¿½gï¿½Ä¤Gï¿½Ó°Ñ¼ï¿½
+            String[] cnb = {"cnb_no"}; // ¦³¨Ï¥Îsequence²£¥Í½s¸¹ªº¸Ü¤~­n¼g
+            pstmt = con.prepareStatement(INSERT_STMT, cnb); // ¦³¨Ï¥Îsequence²£¥Í½s¸¹ªº¸Ü¤~­n¼g²Ä¤G­Ó°Ñ¼Æ
             pstmt.setString(1, chat_notebookVO.getCf_no());
             pstmt.setString(2, chat_notebookVO.getCg_no());
             pstmt.setString(3, chat_notebookVO.getCnb_cnt());
@@ -119,14 +118,14 @@ public class Chat_NotebookJDBCDAO implements Chat_NotebookDAO_interface {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            // 1 ï¿½]ï¿½wï¿½ï¿½ pstm.executeUpdate()ï¿½ï¿½ï¿½e
+            // 1 ³]©w©ó pstm.executeUpdate()¤§«e
             con.setAutoCommit(false);
 
             pstmt = con.prepareStatement(DELETE_CHAT_NOTEBOOK);
             pstmt.setString(1, cnb_no);
             pstmt.executeUpdate();
 
-            // 2ï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½ pstm.executeUpdate()ï¿½ï¿½ï¿½ï¿½
+            // 2¡´³]©w©ó pstm.executeUpdate()¤§«á
             con.commit();
             con.setAutoCommit(true);
             System.out.println("Delete" + cnb_no);
@@ -139,7 +138,7 @@ public class Chat_NotebookJDBCDAO implements Chat_NotebookDAO_interface {
         } catch (SQLException se) {
             if (con != null) {
                 try {
-                    // 3ï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½ï¿½exceptionï¿½oï¿½Í®É¤ï¿½catchï¿½Ï¶ï¿½ï¿½ï¿½
+                    // 3¡´³]©w©ó·í¦³exceptionµo¥Í®É¤§catch°Ï¶ô¤º
                     con.rollback();
                 } catch (SQLException excep) {
                     throw new RuntimeException("rollback error occured. "
@@ -288,25 +287,25 @@ public class Chat_NotebookJDBCDAO implements Chat_NotebookDAO_interface {
 
         Chat_NotebookJDBCDAO dao = new Chat_NotebookJDBCDAO();
 
-        // ï¿½sï¿½W OK
+        // ·s¼W OK
 //        Chat_NotebookVO chat_notebookVO1 = new Chat_NotebookVO();
 //        chat_notebookVO1.setCf_no("CF000007");
-//        chat_notebookVO1.setCnb_cnt("ï¿½Oï¿½Æ¥ï¿½ï¿½ï¿½ï¿½ï¿½https://img.kekeke.cc/t/x8JrPHoAAr.png");
+//        chat_notebookVO1.setCnb_cnt("°O¨Æ¥»´ú¸Õhttps://img.kekeke.cc/t/x8JrPHoAAr.png");
 //        dao.insert(chat_notebookVO1);
-//        System.out.println("ï¿½sï¿½Wï¿½ï¿½ï¿½ï¿½");
+//        System.out.println("·s¼W§¹¦¨");
 
-        // ï¿½×§ï¿½ OK
+        // ­×§ï OK
 //		Chat_NotebookVO chat_notebookVO2 = new Chat_NotebookVO();
 //		chat_notebookVO2.setCnb_no("CNB00005");
 //		chat_notebookVO2.setCnb_cnt("update");
 //		dao.update(chat_notebookVO2);
-//		System.out.println("ï¿½×§ï§¹ï¿½ï¿½");
+//		System.out.println("­×§ï§¹¦¨");
 
-        // ï¿½Rï¿½ï¿½ OK
+        // §R°£ OK
 //		dao.delete("CNB00005");
-//		System.out.println("ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+//		System.out.println("§R°£§¹¦¨");
 
-        // ï¿½dï¿½ï¿½ OK
+        // ¬d¸ß OK
 //		Chat_NotebookVO chat_notebookVO3 = dao.findByPrimaryKey("CNB00004");
 //		System.out.print(chat_notebookVO3.getCnb_no() + ",");
 //		System.out.print(chat_notebookVO3.getCf_no() + ",");
@@ -314,7 +313,7 @@ public class Chat_NotebookJDBCDAO implements Chat_NotebookDAO_interface {
 //		System.out.print(chat_notebookVO3.getCnb_cnt());
 //		System.out.println("---------------------");
 
-        // ï¿½dï¿½ß¥ï¿½ï¿½ï¿½ OK
+        // ¬d¸ß¥þ³¡ OK
 //		List<Chat_NotebookVO> list = dao.getAll();
 //		for (Chat_NotebookVO chat_notebookVO : list) {
 //			System.out.print(chat_notebookVO.getCnb_no() + ",");

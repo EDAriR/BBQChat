@@ -14,7 +14,7 @@ public class Chat_GroupService {
 
     public Chat_GroupVO addChat_Group(String cg_no, String cg_name, Date cg_year,
                                       String cg_is_aa, String cg_is_ab, String cg_is_ac,
-                                      String cg_is_sf, String cg_is_ad, String baby_rd) {
+                                      String cg_is_sf, String cg_is_ad) {
 
         Chat_GroupVO chat_GroupVO = new Chat_GroupVO();
 
@@ -27,7 +27,6 @@ public class Chat_GroupService {
         chat_GroupVO.setCg_is_ac(cg_is_ac);
         chat_GroupVO.setCg_is_sf(cg_is_sf);
         chat_GroupVO.setCg_is_ad(cg_is_ad);
-        chat_GroupVO.setBaby_rd(baby_rd);
         dao.insert(chat_GroupVO);
 
         return chat_GroupVO;
@@ -39,7 +38,6 @@ public class Chat_GroupService {
 
         chat_GroupVO.setCg_no(cg_no);
         chat_GroupVO.setCg_name(cg_name);
-        chat_GroupVO.setBaby_rd(baby_rd);
         dao.update(chat_GroupVO);
 
         return chat_GroupVO;
