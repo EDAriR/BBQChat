@@ -3,6 +3,7 @@
     <properties maven-id="org.apache.tomcat:tomcat-websocket-api:7.0.78" />
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/tomcat-websocket-api-7.0.78.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/tomcat-websocket-api-7.0.78.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
