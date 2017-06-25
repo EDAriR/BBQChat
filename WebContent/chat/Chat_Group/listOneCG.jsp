@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ page import="com.chat.model.*"%>
 <%-- 此頁練習採用 Script 的寫法取值 --%>
@@ -10,7 +11,7 @@
 <%-- 取出 對應的DeptVO物件--%>
 <%
 	Chat_Group_ItemService cgiSvc = new Chat_Group_ItemService();
-	List<Chat_Group_ItemVO> cgiVO = cgiSvc.getOneChat_Group_No(cgiVO.getCg_no());
+	List<Chat_Group_ItemVO> cgiVO_List = cgiSvc.getOneChat_Group_No(chat_GroupVO.getCg_no());
 %>
 <html>
 <head>

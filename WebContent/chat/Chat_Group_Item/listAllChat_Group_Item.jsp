@@ -9,7 +9,7 @@
 // List<EmpVO> list = empSvc.getAll();
 // pageContext.setAttribute("list",list);
 %>
-<jsp:useBean id="deptSvc" scope="page" class="com.chat.model.Chat_Group_ItemService" />
+<jsp:useBean id="cgiSvc" scope="page" class="com.chat.model.Chat_Group_ItemService" />
 
 <html>
 <head>
@@ -47,20 +47,20 @@
 	
 	<c:forEach var="cgiVO" items="${cgiSvc.all}">
 		<tr align='center' valign='middle'>
-			<td>${cgiVO.deptno}</td>
-			<td>${cgiVO.dname}</td>
-			<td>${cgiVO.loc}</td>
+			<td>${cgiVO.cg_no}</td>
+			<td>${cgiVO.mem_no}</td>
+			
 			
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/dept/dept.do">
 			    <input type="submit" value="§R°£">
-			    <input type="hidden" name="deptno" value="${deptVO.deptno}">
+			    <input type="hidden" name="cg_no" value="${cgiVO.cg_no}">
 			    <input type="hidden" name="action" value="delete_cgi">
 			</td></FORM>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/dept/dept.do">
 			    <input type="submit" value="°e¥X¬d¸ß"> 
-			    <input type="hidden" name="deptno" value="${deptVO.deptno}">
+			    <input type="hidden" name="deptno" value="${cgiVO.cg_no}">
 			    <input type="hidden" name="action" value="listCGs_ByCgno_B">
 			</td></FORM>
 		</tr>

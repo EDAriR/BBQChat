@@ -12,7 +12,7 @@ import com.chat.model.Chat_GroupService;
 import com.chat.model.Chat_GroupVO;
 import com.chat.model.Chat_Group_ItemService;
 
-@WebServlet("/Chat_GroupServlet.do")
+@WebServlet("/chat/Chat_Group/Chat_GroupServlet.do")
 public class Chat_GroupServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -150,7 +150,7 @@ public class Chat_GroupServlet extends HttpServlet {
 				 **********************/
 				String cg_no = req.getParameter("cg_no").trim();
 				String cg_name = req.getParameter("cg_name").trim();
-				Date cg_year = req.getParameter("cg_year").trim();
+				Date cg_year = java.sql.Date.valueOf(req.getParameter("cg_year").trim());
 				String cg_is_ar = req.getParameter("cg_is_ar").trim();
 				String cg_is_ab = req.getParameter("cg_is_ab").trim();
 				String cg_is_ac = req.getParameter("cg_is_ac").trim();
@@ -224,7 +224,7 @@ public class Chat_GroupServlet extends HttpServlet {
 				 * 1.接收請求參數 - 輸入格式的錯誤處理
 				 *************************/
 				String cg_name = req.getParameter("cg_name").trim();
-				Date cg_year = req.getParameter("cg_year").trim();
+				Date cg_year = Date.valueOf(req.getParameter("cg_year").trim());
 				String cg_is_ar = req.getParameter("cg_is_ar").trim();
 				String cg_is_ab = req.getParameter("cg_is_ab").trim();
 				String cg_is_ac = req.getParameter("cg_is_ac").trim();
