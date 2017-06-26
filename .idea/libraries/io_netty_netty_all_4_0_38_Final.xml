@@ -6,6 +6,8 @@
       <root url="jar://$PROJECT_DIR$/lib/jctools-core-1.2.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/netty-all-4.0.38.Final.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/jctools-core-1.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/netty-all-4.0.38.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jctools-core-1.2.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

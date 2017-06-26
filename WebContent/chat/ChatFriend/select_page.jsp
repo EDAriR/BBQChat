@@ -29,21 +29,21 @@
   
   <li>
     <FORM METHOD="post" ACTION="emp.do" >
-        <b>輸入員工編號 (如7001):</b>
-        <input type="text" name="empno">
+        <b>輸入好友編號 (如7001):</b>
+        <input type="text" name="cf_no">
         <input type="submit" value="送出">
         <input type="hidden" name="action" value="getOne_For_Display">
     </FORM>
   </li>
 
-  <jsp:useBean id="empSvc" scope="page" class="com.chat.model.Chat_FriendService" />
+  <jsp:useBean id="cfSvc" scope="page" class="com.chat.model.Chat_FriendService" />
    
   <li>
      <FORM METHOD="post" ACTION="emp.do" >
        <b>選擇員工編號:</b>
-       <select size="1" name="empno">
-         <c:forEach var="chat_FriendVO" items="${empSvc.all}" >
-          <option value="${chat_FriendVO.empno}">${chat_FriendVO.empno}
+       <select size="1" name="cf_no">
+         <c:forEach var="chat_FriendVO" items="${cfSvc.all}" >
+          <option value="${chat_FriendVO.cf_no}">${chat_FriendVO.cf_no}
          </c:forEach>   
        </select>
        <input type="submit" value="送出">
@@ -54,9 +54,9 @@
   <li>
      <FORM METHOD="post" ACTION="emp.do" >
        <b>選擇員工姓名:</b>
-       <select size="1" name="empno">
-         <c:forEach var="chat_FriendVO" items="${empSvc.all}" >
-          <option value="${chat_FriendVO.empno}">${chat_FriendVO.ename}
+       <select size="1" name="cf_no">
+         <c:forEach var="chat_FriendVO" items="${cfSvc.all}" >
+          <option value="${chat_FriendVO.cf_no}">${chat_FriendVO.mem_no_o}
          </c:forEach>   
        </select>
        <input type="submit" value="送出">

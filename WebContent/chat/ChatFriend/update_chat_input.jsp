@@ -41,31 +41,14 @@
             <td>好友編號:<font color=red><b>*</b></font></td>
             <td><%=chat_FriendVO.getCf_no()%></td>
         </tr>
-        <tr>
-            <td>會員編號Ｓ:</td>
-            <td><input type="TEXT" name="mem_no_s" size="45" value="<%=chat_FriendVO.getMem_no_s()%>"/></td>
-        </tr>
-        <tr>
-            <td>會員編號Ｏ:</td>
-            <td><input type="TEXT" name="mem_no_o" size="45" value="<%=chat_FriendVO.getMem_no_o()%>"/></td>
-        </tr>
+
         <tr>
             <td>狀態碼:</td>
-            <td><input type="TEXT" name="cf_is_del" size="45" value="<%=chat_FriendVO.getCf_is_del()%>"/></td>
+            <td><input type="TEXT" name="cfdel" size="45" value="<%=chat_FriendVO.getCf_is_del()%>"/></td>
         </tr>
 
         <jsp:useBean id="memberSvc" scope="page" class="com.member.model.MemberService"/>
-        <tr>
-            <td>部門:<font color=red><b>*</b></font></td>
-            <td>
-                <select size="1" name="mem_no">
-                    <c:forEach var="memberVO" items="${memberSvc.all}">
-                    <option value="${memberVO.mem_no}" ${(chat_FriendVO.mem_no_o==memberVO.mem_no)?'selected':'' } >
-                            ${memberVO.mem_name}
-                        </c:forEach>
-                </select>
-            </td>
-        </tr>
+
     </table>
     <br>
     <input type="hidden" name="action" value="update">
@@ -73,5 +56,4 @@
     <input type="submit" value="送出修改"></FORM>
 
 </body>
-<script language="JavaScript" src="js/calendarcode.js"></script>
 </html>

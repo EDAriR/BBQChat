@@ -65,8 +65,8 @@ public class Chat_FriendServlet extends HttpServlet {
                 }
 
                 /***************************2.開始查詢資料*****************************************/
-                Chat_FriendService chat_FriendSvc = new Chat_FriendService();
-                Chat_FriendVO chat_FriendVO = chat_FriendSvc.getOneCF(cf_no);
+                Chat_FriendService cfSvc = new Chat_FriendService();
+                Chat_FriendVO chat_FriendVO = cfSvc.getOneChat_Friend(cf_no);
                 if (chat_FriendVO == null) {
                     errorMsgs.add("查無資料");
                 }
@@ -106,7 +106,7 @@ public class Chat_FriendServlet extends HttpServlet {
 
                 /***************************2.開始查詢資料****************************************/
                 Chat_FriendService chat_FriendSvc = new Chat_FriendService();
-                Chat_FriendVO chat_FriendVO = chat_FriendSvc.getOneCF(cf_no);
+                Chat_FriendVO chat_FriendVO = chat_FriendSvc.getOneChat_Friend(cf_no);
 
                 /***************************3.查詢完成,準備轉交(Send the Success view)************/
                 req.setAttribute("chat_FriendVO", chat_FriendVO);         // 資料庫取出的chat_FriendVO物件,存入req
@@ -190,16 +190,16 @@ public class Chat_FriendServlet extends HttpServlet {
 
 
             /***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-            String cf_no = req.getParameter("cf_no").trim();
-            String mem_no_s = req.getParameter("mem_no_s").trim();
-            String mem_no_o = req.getParameter("mem_no_o").trim();
-            String cf_is_del = "0";
+            String cf_no = req.getParameter("cf_no");
+            String mem_no_s = req.getParameter("mem_no_s");
+            String mem_no_o = req.getParameter("mem_no_o");
+            String cfdel = req.getParameter("cfdel");
 
             Chat_FriendVO chat_FriendVO = new Chat_FriendVO();
             chat_FriendVO.setCf_no(cf_no);
             chat_FriendVO.setMem_no_s(mem_no_s);
             chat_FriendVO.setMem_no_o(mem_no_o);
-            chat_FriendVO.setCf_is_del(cf_is_del);
+            chat_FriendVO.setCf_is_del(cfdel);
 
             // Send the use back to the form, if there were errors
             if (!errorMsgs.isEmpty()) {
@@ -212,7 +212,7 @@ public class Chat_FriendServlet extends HttpServlet {
 
             /***************************2.開始新增資料***************************************/
             Chat_FriendService chat_FriendSvc = new Chat_FriendService();
-            chat_FriendVO = chat_FriendSvc.addChat_Friend(cf_no, mem_no_s, mem_no_o, cf_is_del);
+            chat_FriendVO = chat_FriendSvc.addChat_Friend(cf_no, mem_no_s, mem_no_o, cfdel);
 
             /***************************3.新增完成,準備轉交(Send the Success view)***********/
             String url = "/chat/listAllChat_Friend.jsp";
@@ -224,31 +224,6 @@ public class Chat_FriendServlet extends HttpServlet {
 
         if ("delete".equals(action)) { // 來自listAllChat_Friend.jsp
 
-            List<String> errorMsgs = new LinkedList<String>();
-            // Store this set in the request scope, in case we need to
-            // send the ErrorPage view.
-            req.setAttribute("errorMsgs", errorMsgs);
-
-            try {
-                /***************************1.接收請求參數***************************************/
-                String cf_no = new String(req.getParameter("cf_no"));
-
-                /***************************2.開始刪除資料***************************************/
-                Chat_FriendService chat_FriendSvc = new Chat_FriendService();
-                chat_FriendSvc.deleteCF(cf_no);
-
-                /***************************3.刪除完成,準備轉交(Send the Success view)***********/
-                String url = "/emp/listAllEmp.jsp";
-                RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
-                successView.forward(req, res);
-
-                /***************************其他可能的錯誤處理**********************************/
-            } catch (Exception e) {
-                errorMsgs.add("刪除資料失敗:" + e.getMessage());
-                RequestDispatcher failureView = req
-                        .getRequestDispatcher("/chat/listAllChat_Friend.jsp");
-                failureView.forward(req, res);
-            }
         }
     }
 }

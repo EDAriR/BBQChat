@@ -150,7 +150,7 @@ public class Chat_GroupServlet extends HttpServlet {
 				 **********************/
 				String cg_no = req.getParameter("cg_no").trim();
 				String cg_name = req.getParameter("cg_name").trim();
-				Date cg_year = req.getParameter("cg_year").trim();
+				Date cg_year = java.sql.Date.valueOf(req.getParameter("cg_year").trim());
 				String cg_is_ar = req.getParameter("cg_is_ar").trim();
 				String cg_is_ab = req.getParameter("cg_is_ab").trim();
 				String cg_is_ac = req.getParameter("cg_is_ac").trim();
@@ -194,8 +194,8 @@ public class Chat_GroupServlet extends HttpServlet {
 
 				if (requestURL.equals("/chat/Chat_group/listEmps_ByCompositeQuery.jsp")) {
 					HttpSession session = req.getSession();
-					Map<String, String[]> map = (Map<String, String[]>) session.getAttribute("map");
-					List<Chat_GroupVO> list = cgSvc.getAll(map);
+					List< String[]> map = (List< String[]>) session.getAttribute("map");
+					List<Chat_GroupVO> list = cgSvc.getAll();
 					req.setAttribute("listEmps_ByCompositeQuery", list); // 複合查詢,
 																			// 資料庫取出的list物件,存入request
 				}
@@ -224,7 +224,7 @@ public class Chat_GroupServlet extends HttpServlet {
 				 * 1.接收請求參數 - 輸入格式的錯誤處理
 				 *************************/
 				String cg_name = req.getParameter("cg_name").trim();
-				Date cg_year = req.getParameter("cg_year").trim();
+				Date cg_year = Date.valueOf(req.getParameter("cg_year").trim());
 				String cg_is_ar = req.getParameter("cg_is_ar").trim();
 				String cg_is_ab = req.getParameter("cg_is_ab").trim();
 				String cg_is_ac = req.getParameter("cg_is_ac").trim();
@@ -323,7 +323,7 @@ public class Chat_GroupServlet extends HttpServlet {
 				if (requestURL.equals("/emp/listEmps_ByCompositeQuery.jsp")) {
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>) session.getAttribute("map");
-					List<Chat_GroupVO> list = cgSvc.getAll(map);
+					List<Chat_GroupVO> list = cgSvc.getAll();
 					req.setAttribute("listEmps_ByCompositeQuery", list); // 複合查詢,
 																			// 資料庫取出的list物件,存入request
 				}
@@ -364,7 +364,7 @@ public class Chat_GroupServlet extends HttpServlet {
 
 				/*************************** 2.開始複合查詢 ***************************************/
 				Chat_GroupService cgSvc = new Chat_GroupService();
-				List<Chat_GroupVO> list = cgSvc.getAll(map);
+				List<Chat_GroupVO> list = cgSvc.getAll();
 
 				/***************************
 				 * 3.查詢完成,準備轉交(Send the Success view)
