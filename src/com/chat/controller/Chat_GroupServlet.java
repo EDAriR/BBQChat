@@ -12,7 +12,7 @@ import com.chat.model.Chat_GroupService;
 import com.chat.model.Chat_GroupVO;
 import com.chat.model.Chat_Group_ItemService;
 
-@WebServlet("/Chat_GroupServlet.do")
+@WebServlet("/chat/Chat_Group/Chat_GroupServlet.do")
 public class Chat_GroupServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

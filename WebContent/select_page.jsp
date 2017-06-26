@@ -68,7 +68,7 @@
   </li>
   
   
-   <jsp:useBean id="cgiSvc" scope="page" class="com.chat.model.chat_Group_ItemService" />
+   <jsp:useBean id="cgiSvc" scope="page" class="com.chat.model.Chat_Group_ItemService" />
   
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/dept/dept.do" >
@@ -97,27 +97,10 @@
        
        <b>輸入員工職位:</b>
        <input type="text" name="job" value="PRESIDENT"><br>
-    
-       <b>選擇部門:</b>
-       <select size="1" name="deptno" >
-          <option value="">
-         <c:forEach var="deptVO" items="${deptSvc.all}" > 
-          <option value="${deptVO.deptno}">${deptVO.dname}
-         </c:forEach>   
-       </select><br>
-           
-       <b>雇用日期:</b>
-		    <input class="cal-TextBox"
-			onFocus="this.blur()" size="9" readonly type="text" name="hiredate" value="1981-11-17">
-			<a class="so-BtnLink"
-			href="javascript:calClick();return false;"
-			onmouseover="calSwapImg('BTN_date', 'img_Date_OVER',true);"
-			onmouseout="calSwapImg('BTN_date', 'img_Date_UP',true);"
-			onclick="calSwapImg('BTN_date', 'img_Date_DOWN');showCalendar('form1','hiredate','BTN_date');return false;">
-		    <img align="middle" border="0" name="BTN_date"	src="images/btn_date_up.gif" width="22" height="17" alt="開始日期"></a>
-		        
-        <input type="submit" value="送出">
-        <input type="hidden" name="action" value="listEmps_ByCompositeQuery">
+       
+       <input type="submit" value="送出">
+       <input type="hidden" name="action" value="listEmps_ByCompositeQuery">
+       
      </FORM>
   </li>
 </ul>
