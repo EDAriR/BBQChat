@@ -1,7 +1,6 @@
 package com.chat.controller;
 
-import com.chat.model.Chat_FriendService;
-import com.chat.model.Chat_FriendVO;
+import com.chat.model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -93,6 +92,47 @@ public class Chat_FriendServlet extends HttpServlet {
             }
         }
 
+        if ("getOneCG_For_Display".equals(action)) { // 來自select_page.jsp的請求
+
+            List<String> errorMsgs = new LinkedList<String>();
+            // Store this set in the request scope, in case we need to
+            // send the ErrorPage view.
+            req.setAttribute("errorMsgs", errorMsgs);
+
+            try {
+                /***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+                String cgno = req.getParameter("cgno");
+
+
+                /***************************2.開始查詢資料*****************************************/
+                Chat_GroupService cgSvc = new Chat_GroupService();
+                Chat_GroupVO chatGroupVO = cgSvc.getOneCG(cgno);
+                if (chatGroupVO == null) {
+                    errorMsgs.add("查無資料");
+                }
+                // Send the use back to the form, if there were errors
+                if (!errorMsgs.isEmpty()) {
+                    RequestDispatcher failureView = req
+                            .getRequestDispatcher("/chat/select_page.jsp");
+                    failureView.forward(req, res);
+                    return;//程式中斷
+                }
+
+                /***************************3.查詢完成,準備轉交(Send the Success view)*************/
+                req.setAttribute("chatGroupVO", chatGroupVO); // 資料庫取出的empVO物件,存入req
+                String url = "/chat/Chat_Group/listOneCG.jsp";
+                RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+                successView.forward(req, res);
+
+                /***************************其他可能的錯誤處理*************************************/
+            } catch (Exception e) {
+                errorMsgs.add("無法取得資料:" + e.getMessage());
+                RequestDispatcher failureView = req
+                        .getRequestDispatcher("/chat/select_page.jsp");
+                failureView.forward(req, res);
+            }
+        }
+
         if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
 
             List<String> errorMsgs = new LinkedList<String>();
@@ -103,6 +143,7 @@ public class Chat_FriendServlet extends HttpServlet {
             try {
                 /***************************1.接收請求參數****************************************/
                 String cf_no = new String(req.getParameter("cf_no"));
+System.out.println("getOne_For_Update in C :" + cf_no);
 
                 /***************************2.開始查詢資料****************************************/
                 Chat_FriendService chat_FriendSvc = new Chat_FriendService();
@@ -110,8 +151,11 @@ public class Chat_FriendServlet extends HttpServlet {
 
                 /***************************3.查詢完成,準備轉交(Send the Success view)************/
                 req.setAttribute("chat_FriendVO", chat_FriendVO);         // 資料庫取出的chat_FriendVO物件,存入req
-                String url = "/emp/update_emp_input.jsp";
+                String url = "/chat/ChatFriend/update_cf_input0403.jsp";
+//                String url = "/chat/ChatFriend/update_chat_input.jsp";
                 RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+System.out.println("chat_FriendVO: "+chat_FriendVO+"\n"+"req:" + req +"\n"+"res: " + res );
+System.out.println("successView: "+successView);
                 successView.forward(req, res);
 
                 /***************************其他可能的錯誤處理**********************************/
@@ -125,7 +169,7 @@ public class Chat_FriendServlet extends HttpServlet {
 
 
         if ("update".equals(action)) { // 來自update_emp_input.jsp的請求
-
+System.out.println("action:" + action);
             List<String> errorMsgs = new LinkedList<String>();
             // Store this set in the request scope, in case we need to
             // send the ErrorPage view.
@@ -134,13 +178,13 @@ public class Chat_FriendServlet extends HttpServlet {
             try {
                 /***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
                 String cf_no = new String(req.getParameter("cf_no").trim());
-                String mem_no_s = req.getParameter("mem_no_s").trim();
-                String mem_no_o = req.getParameter("mem_no_o").trim();
-                String cf_is_del = req.getParameter("cf_is_del").trim();
-
+               
+                String cfdel = req.getParameter("cfdel").trim();
+System.out.println("cf_no:" + cf_no);
+System.out.println("cfdel:" + cfdel);
                 Integer del = null;
                 try {
-                    del = new Integer(req.getParameter("cf_is_del").trim());
+                    del = new Integer(req.getParameter("cfdel").trim());
                 } catch (NumberFormatException e) {
                     del = 0;
                     errorMsgs.add("請填數字 0 or 1");
@@ -148,9 +192,7 @@ public class Chat_FriendServlet extends HttpServlet {
 
                 Chat_FriendVO chat_FriendVO = new Chat_FriendVO();
                 chat_FriendVO.setCf_no(cf_no);
-                chat_FriendVO.setMem_no_s(mem_no_s);
-                chat_FriendVO.setMem_no_o(mem_no_o);
-                chat_FriendVO.setCf_is_del(cf_is_del);
+                chat_FriendVO.setCf_is_del(cfdel);
 
                 // Send the use back to the form, if there were errors
                 if (!errorMsgs.isEmpty()) {
@@ -163,12 +205,11 @@ public class Chat_FriendServlet extends HttpServlet {
 
                 /***************************2.開始修改資料*****************************************/
                 Chat_FriendService chat_FriendSvc = new Chat_FriendService();
-                chat_FriendVO = chat_FriendSvc.updateChat_Friend(cf_no,
-                        mem_no_s, mem_no_o, cf_is_del);
+                chat_FriendVO = chat_FriendSvc.updateChat_Friend(cf_no, cfdel);
 
                 /***************************3.修改完成,準備轉交(Send the Success view)*************/
                 req.setAttribute("chat_FriendVO", chat_FriendVO); // 資料庫update成功後,正確的的empVO物件,存入req
-                String url = "/chat/listOneChat_Friend.jsp";
+                String url = "/chat/ChatFriend/listCF0403.jsp";
                 RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
                 successView.forward(req, res);
 
@@ -176,7 +217,7 @@ public class Chat_FriendServlet extends HttpServlet {
             } catch (Exception e) {
                 errorMsgs.add("修改資料失敗:" + e.getMessage());
                 RequestDispatcher failureView = req
-                        .getRequestDispatcher("/emp/update_emp_input.jsp");
+                        .getRequestDispatcher("/chat/ChatFriend/update_chat_input.jsp");
                 failureView.forward(req, res);
             }
         }

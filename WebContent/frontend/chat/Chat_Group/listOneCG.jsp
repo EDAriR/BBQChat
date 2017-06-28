@@ -15,7 +15,7 @@
 %>
 <html>
 <head>
-<title>員工資料 - listOneCG.jsp</title>
+<title>群組資料 - listOneCG.jsp</title>
 </head>
 <body bgcolor='white'>
 	<b><font color=red>此頁練習採用 Script 的寫法取值:</font></b>

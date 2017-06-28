@@ -7,16 +7,17 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="js/calendar.css">
-    <title>員工資料修改 - update_chat_Frien_input.jsp</title>
+    <title>員工資料修改 - update_chat_input.jsp</title>
 </head>
 <body>
 
-<div id="popupcalendar" class="text"></div>
+
 <table border='1' cellpadding='5' cellspacing='0' width='400'>
     <tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
         <td>
             <h3>員工資料修改 - update_chat_Frien_input.jsp</h3>
-            <a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">
+            <a href="listCF0403.jsp">
+            <img src="images/back1.gif" width="100" height="32" border="0">
                 回首頁
             </a>
         </td>
@@ -35,7 +36,7 @@
     </font>
 </c:if>
 
-<FORM METHOD="post" ACTION="Chat_FrienServlet.do" name="form1">
+<FORM METHOD="post" ACTION="/chat/ChatFriend/Chat_FriendServlet.do" name="form1">
     <table border="0">
         <tr>
             <td>好友編號:<font color=red><b>*</b></font></td>
@@ -46,8 +47,6 @@
             <td>狀態碼:</td>
             <td><input type="TEXT" name="cfdel" size="45" value="<%=chat_FriendVO.getCf_is_del()%>"/></td>
         </tr>
-
-        <jsp:useBean id="memberSvc" scope="page" class="com.member.model.MemberService"/>
 
     </table>
     <br>

@@ -134,6 +134,7 @@ public class Chat_FriendDAO implements Chat_FriendDAO_interface {
                 chat_FriendVO = new Chat_FriendVO();
                 chat_FriendVO.setCf_no(rs.getString("cf_no"));
                 chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
+                chat_FriendVO.setCf_is_del(rs.getString("cf_is_del"));
             }
             // Handle any SQL errors
         } catch (SQLException se) {
@@ -183,7 +184,9 @@ public class Chat_FriendDAO implements Chat_FriendDAO_interface {
             while (rs.next()) {
                 chat_FriendVO = new Chat_FriendVO();
                 chat_FriendVO.setCf_no(rs.getString("cf_no"));
+                chat_FriendVO.setMem_no_s(rs.getString("mem_no_s"));
                 chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
+                chat_FriendVO.setCf_is_del(rs.getString("cf_is_del"));
                 list.add(chat_FriendVO); // Store the row in the list
             }
             // Handle any SQL errors
