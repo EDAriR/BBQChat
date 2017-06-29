@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=Big5"%>
 <%@ page import="com.chat.model.*"%>
 <%
-Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("cf_no"); //EmpServlet.java(Concroller), 存入req的empVO物件
+Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("chat_FriendVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
 %>
 <html>
 <head>
@@ -12,7 +12,7 @@ Chat_FriendVO chat_FriendVO = (Chat_FriendVO) request.getAttribute("cf_no"); //E
 <table border='1' cellpadding='5' cellspacing='0' width='600'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>員工資料 - ListOneEmp.jsp</h3>
+		<h3>員工資料 - listOneChat_Friend.jsp</h3>
 		<a href="listCF0403.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a>
 		</td>
 	</tr>

@@ -50,11 +50,29 @@
     <br><br>
 
     <li>
-        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/Chat_Group/Chat_GroupServlet.do">
-            <p>輸入群組編號 (如7001):</p>
-            <input type="text" name="cg_no">getOne_For_Display
-            <input type="submit" value="送出">
+        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/chat/Chat_Group/Chat_GroupServlet.do">
+            <p>輸入群組編號 (如 CG000001 ):</p>
+            <input type="text" name="cg_no">
+            <input type="submit" value="送出">getOne_For_Display  Chat_Group
             <input type="hidden" name="action" value="getOne_For_Display">
+        </FORM>
+    </li>
+
+    <li>
+        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_FriendServlet.do">
+            <p>輸入好友編號 (如 CF000001 ):</p>
+            <input type="text" name="cf_no">
+            <input type="submit" value="送出">getOne_For_Display ChatFriend
+            <input type="hidden" name="action" value="getOne_For_Display">
+        </FORM>
+    </li>
+
+    <li>
+        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_FriendServlet.do">
+            <p>輸入自己會員編號 (如 M0000001 ):</p>
+            <input type="text" name="memNoS" value="">getCF_For_Display
+            <input type="submit" value="送出">
+            <input type="hidden" name="action" value="getCF_For_Display">
         </FORM>
     </li>
 
@@ -72,7 +90,7 @@
     </li>
 
     <li>
-        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_FriendServlet.do">
+        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/chat/ChatFriend/Chat_FriendServlet.do">
 
             <%--end dropdown--%>
             <div class="dropdown">

@@ -80,7 +80,7 @@ public class MemberService {
 //		dao.delete(mem_no);
 //	}
 
-	public MemberVO getOneEmp(String mem_no) {
+	public MemberVO getOneMem(String mem_no) {
 		return dao.findByPrimaryKey(mem_no);
 	}
 
