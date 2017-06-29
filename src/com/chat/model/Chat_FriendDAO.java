@@ -32,6 +32,7 @@ public class Chat_FriendDAO implements Chat_FriendDAO_interface {
     // 查詢資料
     private static final String GET_ALL_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend";
     private static final String GET_ONE_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend WHERE cf_no = ?";
+    private static final String GET_MNS_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend WHERE mem_no_s = ?";
     // 刪除資料
     private static final String DELETE_PROC = "DELETE FROM chat_friend WHERE cf_no = ?";
     // 修改資料
@@ -165,6 +166,59 @@ public class Chat_FriendDAO implements Chat_FriendDAO_interface {
             }
         }
         return chat_FriendVO;
+    }
+
+    @Override
+    public List<Chat_FriendVO> findByMemNoS(String mem_no_s) {
+
+        List<Chat_FriendVO> list = new ArrayList<Chat_FriendVO>();
+        Chat_FriendVO chat_FriendVO = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            con = ds.getConnection();
+            pstmt = con.prepareStatement(GET_MNS_STMT);
+            pstmt.setString(1, mem_no_s);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                chat_FriendVO = new Chat_FriendVO();
+                chat_FriendVO.setCf_no(rs.getString("cf_no"));
+                chat_FriendVO.setMem_no_s(rs.getString("mem_no_s"));
+                chat_FriendVO.setMem_no_o(rs.getString("mem_no_o"));
+                chat_FriendVO.setCf_is_del(rs.getString("cf_is_del"));
+                list.add(chat_FriendVO); // Store the row in the list
+            }
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return list;
     }
 
     @Override

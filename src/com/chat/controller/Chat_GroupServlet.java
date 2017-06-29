@@ -25,7 +25,7 @@ public class Chat_GroupServlet extends HttpServlet {
 		String action = req.getParameter("action");
 
 		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
-
+System.out.println("getOne_For_Display \"action\" in C :" + action);
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -54,7 +54,7 @@ public class Chat_GroupServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/listtAllCG.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("chat/Chat_Group/listtAllCG.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -67,7 +67,7 @@ public class Chat_GroupServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/listtAllCG.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("chat/listtAllCG.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -76,7 +76,7 @@ public class Chat_GroupServlet extends HttpServlet {
 				 * 3.查詢完成,準備轉交(Send the Success view)
 				 *************/
 				req.setAttribute("chat_GroupVO", chat_GroupVO); // 資料庫取出的empVO物件,存入req
-				String url = "/chat/Chat_Group/listOneCG.jsp";
+				String url = "/frontend/chat/Chat_Group/listOneCG.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
 				successView.forward(req, res);
 

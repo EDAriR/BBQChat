@@ -3,14 +3,19 @@
 <html>
 <head>
     <title>IBM Emp: Home</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/babeq.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body bgcolor='white'>
 
 <table border='1' cellpadding='5' cellspacing='0' width='400'>
-    <tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
+    <tr bgcolor='#CCCCFF' valign='middle' height='20'>
         <td><h3>IBM Emp: Home</h3><font color=red>( MVC )</font></td>
     </tr>
 </table>
@@ -45,23 +50,9 @@
     <br><br>
 
     <li>
-        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_FriendServlet.doo">
-            <p>輸入群組編號 (如7001):</p>
-            <input type="text" name="cg_no">
-            <input type="submit" value="送出">
-            <input type="hidden" name="action" value="getOne_For_Display">
-        </FORM>
-    </li>
-
-
-    <li>
         <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/Chat_Group/Chat_GroupServlet.do">
-            <b>選擇員工編號:</b>
-            <select size="1" name="empno">
-                <c:forEach var="cgVO" items="${cgSvc.all}">
-                <option value="${cgVO.cg_no}">${cgVO.cg_name}
-                </c:forEach>
-            </select>
+            <p>輸入群組編號 (如7001):</p>
+            <input type="text" name="cg_no">getOne_For_Display
             <input type="submit" value="送出">
             <input type="hidden" name="action" value="getOne_For_Display">
         </FORM>
@@ -70,10 +61,10 @@
     <li>
         <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/Chat_Group/Chat_GroupServlet.do">
             <p>選擇群組名稱:</p>
-            <select size="1" name="cgno">
+            <select size="1" name="cg_no">
                 <c:forEach var="cgVO" items="${cgSvc.all}">
-                    <option value="${cgVO.cg_no}">${cgVO.cg_name}
-                </c:forEach>
+                <option value="${cgVO.cg_no}">${cgVO.cg_name}
+                    </c:forEach>
             </select>
             <input type="submit" value="送出">
             <input type="hidden" name="action" value="getOneCG_For_Display">
@@ -96,11 +87,11 @@
                         <button class="dropdown-item" type="submit" value="${cgVO.cg_no}">${cgVO.cg_name}</button>
                     </c:forEach>
                 </div>
-                
+
                 <div class="dropdown">
-                
-            </div>
-            <%--end dropdown--%>
+
+                </div>
+                <%--end dropdown--%>
         </FORM>
     </li>
 
