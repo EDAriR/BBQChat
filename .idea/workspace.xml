@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="262204df-fcad-4d8d-a5d5-22b485f43f00" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendDAO_interface.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendDAO_interface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendJNDIDAO.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendJNDIDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendService.class" afterPath="$PROJECT_DIR$/build/classes/com/chat/model/Chat_FriendService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneChat_Friend.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneChat_Friend.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java" afterPath="$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/member/model/MemberService.java" afterPath="$PROJECT_DIR$/src/com/member/model/MemberService.java" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -119,8 +111,8 @@
       <file leaf-file-name="Chat_FriendDAO.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="198" column="4" lean-forward="false" selection-start-line="198" selection-start-column="4" selection-end-line="198" selection-end-column="4" />
+            <state relative-caret-position="246">
+              <caret line="185" column="31" lean-forward="true" selection-start-line="185" selection-start-column="31" selection-end-line="185" selection-end-column="31" />
               <folding>
                 <marker date="1498724921207" expanded="true" signature="774:916" ph="INSERT INTO chat_friend... " />
                 <marker date="1498724921207" expanded="true" signature="979:1039" ph="SELECT cf_no... chat_friend" />
@@ -245,9 +237,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -364,6 +354,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -911,7 +903,8 @@
       <workItem from="1498724768384" duration="3571000" />
       <workItem from="1498728489949" duration="533000" />
       <workItem from="1498729116000" duration="1663000" />
-      <workItem from="1498745255250" duration="145000" />
+      <workItem from="1498745255250" duration="192000" />
+      <workItem from="1498745504510" duration="93000" />
     </task>
     <task id="LOCAL-00001" summary="cc">
       <created>1497707069545</created>
@@ -1025,15 +1018,21 @@
       <option name="project" value="LOCAL" />
       <updated>1498725171929</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="CF list MENS">
+      <created>1498745433685</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1498745433685</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94033000" />
+    <option name="totallyTimeSpent" value="94173000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1050,7 +1049,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27297297" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27783784" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1086,7 +1085,8 @@
     <MESSAGE value="select 1/2" />
     <MESSAGE value="List&lt;Chat_FriendVO&gt;" />
     <MESSAGE value="GET_MNS_STMT model" />
-    <option name="LAST_COMMIT_MESSAGE" value="GET_MNS_STMT model" />
+    <MESSAGE value="CF list MENS" />
+    <option name="LAST_COMMIT_MESSAGE" value="CF list MENS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1450,8 +1450,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="198" column="4" lean-forward="false" selection-start-line="198" selection-start-column="4" selection-end-line="198" selection-end-column="4" />
+        <state relative-caret-position="246">
+          <caret line="185" column="31" lean-forward="true" selection-start-line="185" selection-start-column="31" selection-end-line="185" selection-end-column="31" />
           <folding>
             <marker date="1498724921207" expanded="true" signature="774:916" ph="INSERT INTO chat_friend... " />
             <marker date="1498724921207" expanded="true" signature="979:1039" ph="SELECT cf_no... chat_friend" />
