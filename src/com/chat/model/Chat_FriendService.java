@@ -42,7 +42,7 @@ public class Chat_FriendService {
         return dao.findByPrimaryKey(cf_no);
     }
 
-    public List<Chat_FriendVO> getAll() {
-        return dao.getAll();
-    }
+    public List<Chat_FriendVO> getOneMCF(String mem_no_s) { return dao.findByMemNoS(mem_no_s); }
+
+    public List<Chat_FriendVO> getAll() { return dao.getAll(); }
 }

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="262204df-fcad-4d8d-a5d5-22b485f43f00" name="Default" comment="List&lt;Chat_FriendVO&gt;">
+    <list default="true" id="262204df-fcad-4d8d-a5d5-22b485f43f00" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/controller/Chat_GroupServlet.java" afterPath="$PROJECT_DIR$/src/com/chat/controller/Chat_GroupServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO_interface.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO_interface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java" afterPath="$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chat_FriendDAO.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Chat_FriendDAO.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="174" column="43" lean-forward="true" selection-start-line="174" selection-start-column="43" selection-end-line="174" selection-end-column="43" />
+            <state relative-caret-position="218">
+              <caret line="34" column="44" lean-forward="false" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="44" />
               <folding>
                 <element signature="method#getAll#0;class#Chat_FriendDAO#0" expanded="false" />
                 <marker date="1498724921207" expanded="true" signature="774:916" ph="INSERT INTO chat_friend... " />
@@ -46,11 +44,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chat_FriendDAO_interface.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Chat_FriendService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Chat_FriendDAO_interface.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO_interface.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
-              <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="43" />
+              <caret line="11" column="59" lean-forward="false" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -102,7 +110,6 @@
         <option value="$PROJECT_DIR$/src/server/Client.java" />
         <option value="$PROJECT_DIR$/src/server/RequestService.java" />
         <option value="$PROJECT_DIR$/src/server/MyWebSocketServer.java" />
-        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java" />
         <option value="$PROJECT_DIR$/src/server/WebSocketServerHandler.java" />
         <option value="$PROJECT_DIR$/src/com/chat/dao/User_ReportDAO.java" />
         <option value="$PROJECT_DIR$/src/com/chat/jdbcdao/User_ReportJDBCDAO.java" />
@@ -137,6 +144,7 @@
         <option value="$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp" />
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java" />
         <option value="$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO_interface.java" />
+        <option value="$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java" />
       </list>
     </option>
   </component>
@@ -793,7 +801,7 @@
       <workItem from="1498381989701" duration="607000" />
       <workItem from="1498622666676" duration="8158000" />
       <workItem from="1498713316646" duration="3015000" />
-      <workItem from="1498724768384" duration="168000" />
+      <workItem from="1498724768384" duration="392000" />
     </task>
     <task id="LOCAL-00001" summary="cc">
       <created>1497707069545</created>
@@ -893,11 +901,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498652342059</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="List&lt;Chat_FriendVO&gt;">
+      <created>1498724941851</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1498724941851</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88289000" />
+    <option name="totallyTimeSpent" value="88513000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -952,7 +967,8 @@
     <MESSAGE value="BUG V" />
     <MESSAGE value="model bug + bug v" />
     <MESSAGE value="select 1/2" />
-    <option name="LAST_COMMIT_MESSAGE" value="select 1/2" />
+    <MESSAGE value="List&lt;Chat_FriendVO&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="List&lt;Chat_FriendVO&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1179,6 +1195,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1186,16 +1203,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="890">
           <caret line="52" column="12" lean-forward="true" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="e#1199#1200#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1232,6 +1239,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
           <caret line="30" column="31" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1239,6 +1247,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
           <caret line="37" column="52" lean-forward="false" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+          <folding>
+            <marker date="1498718149062" expanded="true" signature="3106:3191" ph="//..." />
+            <marker date="1498718149062" expanded="false" signature="3235:3243" ph="&lt;~&gt;" />
+            <marker date="1498718149062" expanded="true" signature="3250:3339" ph="//..." />
+            <marker date="1498718149062" expanded="true" signature="3473:3635" ph="//..." />
+            <marker date="1498718149062" expanded="false" signature="4712:4720" ph="&lt;~&gt;" />
+            <marker date="1498718149062" expanded="true" signature="4727:4816" ph="//..." />
+            <marker date="1498718149062" expanded="true" signature="4950:5190" ph="//..." />
+            <marker date="1498718149062" expanded="false" signature="8223:8231" ph="&lt;~&gt;" />
+            <marker date="1498718149062" expanded="true" signature="8238:8327" ph="//..." />
+            <marker date="1498718149062" expanded="true" signature="10908:10973" ph="//..." />
+            <marker date="1498718149062" expanded="false" signature="11017:11025" ph="&lt;~&gt;" />
+            <marker date="1498718149062" expanded="true" signature="11032:11121" ph="//..." />
+            <marker date="1498718149062" expanded="true" signature="11255:11495" ph="//..." />
+            <marker date="1498718149062" expanded="false" signature="13174:13182" ph="&lt;~&gt;" />
+            <marker date="1498718149062" expanded="true" signature="13189:13278" ph="//..." />
+            <marker date="1498718149062" expanded="true" signature="13421:13562" ph="//..." />
+            <marker date="1498718149062" expanded="false" signature="13879:13897" ph="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1271,10 +1298,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO_interface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="11" column="59" lean-forward="false" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="174" column="43" lean-forward="true" selection-start-line="174" selection-start-column="43" selection-end-line="174" selection-end-column="43" />
+        <state relative-caret-position="218">
+          <caret line="34" column="44" lean-forward="false" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="44" />
           <folding>
             <element signature="method#getAll#0;class#Chat_FriendDAO#0" expanded="false" />
             <marker date="1498724921207" expanded="true" signature="774:916" ph="INSERT INTO chat_friend... " />
@@ -1283,14 +1326,6 @@
             <marker date="1498724921207" expanded="true" signature="1217:1296" ph="SELECT cf_no... chat_friend" />
             <marker date="1498724921207" expanded="true" signature="1454:1504" ph="UPDATE chat_... " />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_FriendDAO_interface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
