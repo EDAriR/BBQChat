@@ -12,7 +12,7 @@ public class MemberService {
 	}
 	
 	public MemberVO addMember(String exp_no, String memg_gr, String mem_acct,
-			String mem_pwd, Date mem_updated, String mem_name, String mem_aka,
+			String mem_pwd, Date mem_updated, String mem_name, String mem_aka, byte[] mem_photo,
 			String mem_adds, String mem_addc, String mem_phone, String mem_mail,
 			String mem_intro_b, String mem_is_sell, String mem_acct_s, String mem_intro_s,
 			Integer mem_point_s, String mem_intro_e, Integer mem_point_b){
@@ -21,11 +21,12 @@ public class MemberService {
 
 		memberVO.setExp_no(exp_no);
 		memberVO.setMemg_gr(memg_gr);
-		memberVO.setMem_acct(mem_acct_s);
+		memberVO.setMem_acct(mem_acct);
 		memberVO.setMem_pwd(mem_pwd);
 		memberVO.setMem_updated(mem_updated);
 		memberVO.setMem_name(mem_name);
 		memberVO.setMem_aka(mem_aka);
+		memberVO.setMem_photo(mem_photo);
 		memberVO.setMem_adds(mem_adds);
 		memberVO.setMem_addc(mem_addc);
 		memberVO.setMem_phone(mem_phone);
@@ -42,8 +43,8 @@ public class MemberService {
 		return memberVO;
 	}
 	
-	public MemberVO UpdateMember(String mem_no, String exp_no, String memg_gr, String mem_acct,
-			String mem_pwd, Date mem_joind, Date mem_updated, String mem_name, String mem_aka,
+	public MemberVO updateMember(String mem_no, String exp_no, String memg_gr, String mem_acct,
+			String mem_pwd, Date mem_joind, Date mem_updated, String mem_name, String mem_aka, byte[] mem_photo,
 			String mem_adds, String mem_addc, String mem_phone, String mem_mail,
 			String mem_intro_b, String mem_is_sell, String mem_acct_s, String mem_intro_s,
 			Integer mem_point_s, String mem_intro_e, String mem_is_stop, Integer mem_point_b){
@@ -53,12 +54,13 @@ public class MemberService {
 		memberVO.setMem_no(mem_no);
 		memberVO.setExp_no(exp_no);
 		memberVO.setMemg_gr(memg_gr);
-		memberVO.setMem_acct(mem_acct_s);
+		memberVO.setMem_acct(mem_acct);
 		memberVO.setMem_pwd(mem_pwd);
 		memberVO.setMem_joind(mem_joind);
 		memberVO.setMem_updated(mem_updated);
 		memberVO.setMem_name(mem_name);
 		memberVO.setMem_aka(mem_aka);
+		memberVO.setMem_photo(mem_photo);
 		memberVO.setMem_adds(mem_adds);
 		memberVO.setMem_addc(mem_addc);
 		memberVO.setMem_phone(mem_phone);
@@ -71,16 +73,11 @@ public class MemberService {
 		memberVO.setMem_intro_e(mem_intro_e);
 		memberVO.setMem_is_stop(mem_is_stop);
 		memberVO.setMem_point_b(mem_point_b);
-		
 		dao.update(memberVO);
 		return memberVO;
 	}
-	
-//	public void deleteEmp(String mem_no) {
-//		dao.delete(mem_no);
-//	}
 
-	public MemberVO getOneMem(String mem_no) {
+	public MemberVO getOneMember(String mem_no) {
 		return dao.findByPrimaryKey(mem_no);
 	}
 

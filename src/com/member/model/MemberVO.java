@@ -12,6 +12,7 @@ public class MemberVO implements java.io.Serializable{
 	private Date mem_updated;
 	private String mem_name; // Not Null
 	private String mem_aka;
+	private byte[] mem_photo; 
 	private String mem_adds; // Not Null
 	private String mem_addc;
 	private String mem_phone;
@@ -28,6 +29,17 @@ public class MemberVO implements java.io.Serializable{
 	public MemberVO() {
 		super();
 	}
+
+	
+	public byte[] getMem_photo() {
+		return mem_photo;
+	}
+
+
+	public void setMem_photo(byte[] mem_photo) {
+		this.mem_photo = mem_photo;
+	}
+
 
 	public String getMem_no() {
 		return mem_no;
