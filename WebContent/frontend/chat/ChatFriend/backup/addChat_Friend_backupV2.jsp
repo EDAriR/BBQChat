@@ -8,8 +8,8 @@
 <html>
 <head>
     <title>員工資料新增 - addEmp.jsp</title></head>
-<link rel="stylesheet" type="text/css" href="js/calendar.css">
-<script language="JavaScript" src="js/calendarcode.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/calendar.css">
+<script language="JavaScript" src="../js/calendarcode.js"></script>
 <div id="popupcalendar" class="text"></div>
 
 <body bgcolor='white'>
@@ -20,7 +20,7 @@
             <h3>好友資料新增 - addEmp.jsp</h3>
         </td>
         <td>
-            <a href="select_page.jsp"><img src="images/tomcat.gif" width="100" height="100" border="1">回首頁</a>
+            <a href="../select_page.jsp"><img src="../images/tomcat.gif" width="100" height="100" border="1">回首頁</a>
         </td>
     </tr>
 </table>
@@ -85,7 +85,7 @@
 <c:forEach var="memberVO" items="${memberSvc.all}">
     <label for="${memberVO.mem_no}">${memberVO.mem_name}</label>
     <input type="hidden" name="action" value="insert">
-    <input type="hidden" name="mem_no_o" value="${memberVO.mem_no}"> <%--之後要改直接從C取session--%>
+    <input type="hidden" name="mem_no_o" value="${memberVO.mem_no}">
     <input type="hidden" name="cfdel" value="0">
     <button class="btn btn-danger btn-large"
             name="${memberVO.mem_no}" id="${memberVO.mem_no}">

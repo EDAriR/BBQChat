@@ -27,8 +27,6 @@
     <!-- bootstrapcdn Latest compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../../css/babeq.css">
-
 </head>
 <body bgcolor='white'>
 <b><font color=red>此頁練習採用 Script 的寫法取值:</font></b>
@@ -37,7 +35,7 @@
         <td>
             <h3>員工資料 - listOneMCF.jsp</h3> <a
                 href="<%=request.getContextPath()%>/select_page.jsp"><img
-                src="images/back1.gif" width="100" height="32" border="0">回首頁</a>
+                src="../images/back1.gif" width="100" height="32" border="0">回首頁</a>
         </td>
     </tr>
 </table>
@@ -46,7 +44,6 @@
 </tr>
 <table border='1' bordercolor='#CCCCFF' width='800'>
     <tr>
-    <th>編號</th>
         <th>好友編號</th>
         <th>好友會員編號</th>
         <th>狀態碼</th>
@@ -57,10 +54,9 @@
     <c:forEach var="cflsit" items="${list}">
         <tr align='center' valign='middle' ${(cflsit.cf_no==param.cf_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
             <td>${cflsit.cf_no}</td>
-            <td>${cflsit.mem_no_s}</td>
             <td>${cflsit.mem_no_o}</td>
 
-            <td>
+            <td><%-- ${memSvc.all} --%>
                 <c:forEach var="memVO" items="${memSvc.all}">
                     <c:if test="${cflsit.mem_no_o==memVO.mem_no}">
                         ${memVO.mem_name}
@@ -68,23 +64,13 @@
                 </c:forEach>
             </td>
 
-            <td>
-                <c:if test="${cflsit.cf_is_del==0}">
-                    顯示
-                </c:if>
-                <c:if test="${cflsit.cf_is_del==1}">
-                    隱藏
-                </c:if>
-
-            </td>
+            <td>${cflsit.cf_is_del}</td>
             <td>
                 <FORM METHOD="post"
                       ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_FriendServlet.do">  <%--QQ--%>
+                    <input type="submit" value="修改">
                     <input type="hidden" name="cf_no" value="${cflsit.cf_no}">
-                    <input type="hidden" name="memNoS" value="${cflsit.mem_no_s}">
-                    <input type="hidden" name="action" value="update">
-                    <input type="hidden" name="cfdel" value="1">
-                    <input type="submit" value="刪除好友">
+                    <input type="hidden" name="action" value="getOne_For_Update">
                 </FORM>
             </td>
         </tr>
@@ -170,6 +156,7 @@
         font-family: 'Open Sans', sans-serif;
     }
 
+
     .round.hollow a {
         border: 2px solid #ff6701;
         border-radius: 35px;
@@ -248,6 +235,7 @@
         width: 95% !important;
     }
 
+
     .popup-box .popup-messages {
         background: #3f9684 none repeat scroll 0 0;
         height: 90%;
@@ -302,7 +290,8 @@
         color: #303030;
     }
 
-    .popup-messages {
+
+    .popup-messages{
         background: #3f9684 none repeat scroll 0 0;
         border-bottom: 1px solid #a4c6b5;
         height: 12px;
@@ -318,7 +307,7 @@
         height: auto;
     }
 
-    .popup-messages {
+    .popup-messages  {
         background: #dfece7 none repeat scroll 0 0;
         border: 1px solid #dfece7;
         border-radius: 2px;

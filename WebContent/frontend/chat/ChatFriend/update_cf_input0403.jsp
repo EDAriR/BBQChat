@@ -43,13 +43,9 @@
         </tr>
         <tr>
             <td>cfdel:</td>
-            <td>
-            
+            <td>            
             	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_FriendServlet.do" name="form1">
             		<input type="TEXT" name="cfdel" size="45" value="<%=cfVO.getCf_is_del()%>"/>
-            		
-            		         	
-            
             </td>
                         
         </tr>

@@ -219,18 +219,12 @@ System.out.println("action:" + action);
 
             try {
                 /***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-                String cf_no = new String(req.getParameter("cf_no").trim());
-               
-                String cfdel = req.getParameter("cfdel").trim();
+                String cf_no = req.getParameter("cf_no");
+                String cfdel = req.getParameter("cfdel");
+                String memNoS = req.getParameter("memNoS");
+
 System.out.println("cf_no:" + cf_no);
 System.out.println("cfdel:" + cfdel);
-                Integer del = null;
-                try {
-                    del = new Integer(req.getParameter("cfdel").trim());
-                } catch (NumberFormatException e) {
-                    del = 0;
-                    errorMsgs.add("請填數字 0 or 1");
-                }
 
                 Chat_FriendVO chat_FriendVO = new Chat_FriendVO();
                 chat_FriendVO.setCf_no(cf_no);
@@ -240,18 +234,20 @@ System.out.println("cfdel:" + cfdel);
                 if (!errorMsgs.isEmpty()) {
                     req.setAttribute("chat_FriendVO", chat_FriendVO); // 含有輸入格式錯誤的empVO物件,也存入req
                     RequestDispatcher failureView = req
-                            .getRequestDispatcher("/chat/update_chat_input.jsp"); /*QQ*/
+                            .getRequestDispatcher("/frontend/chat/update_chat_input.jsp"); /*QQ*/
                     failureView.forward(req, res);
                     return; //程式中斷
                 }
 
                 /***************************2.開始修改資料*****************************************/
-                Chat_FriendService chat_FriendSvc = new Chat_FriendService();
-                chat_FriendVO = chat_FriendSvc.updateChat_Friend(cf_no, cfdel);
+                Chat_FriendService cfSvc = new Chat_FriendService();
+                cfSvc.updateChat_Friend(cf_no, cfdel);
+                List<Chat_FriendVO> oneMemCF = cfSvc.getOneMCF(memNoS);
+                System.out.println("oneMemCF: " + oneMemCF + "\n" + "memNoS: " + memNoS);
 
                 /***************************3.修改完成,準備轉交(Send the Success view)*************/
-                req.setAttribute("chat_FriendVO", chat_FriendVO); // 資料庫update成功後,正確的的empVO物件,存入req
-                String url = "/chat/ChatFriend/listCF0403.jsp";
+                req.setAttribute("oneMemCF", oneMemCF); // 資料庫update成功後,正確的的empVO物件,存入req
+                String url = "/frontend/chat/ChatFriend/listOneMCF.jsp";
                 RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
                 successView.forward(req, res);
 

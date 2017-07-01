@@ -8,8 +8,8 @@
 <html>
 <head>
     <title>員工資料新增 - addEmp.jsp</title></head>
-<link rel="stylesheet" type="text/css" href="js/calendar.css">
-<script language="JavaScript" src="js/calendarcode.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/calendar.css">
+<script language="JavaScript" src="../js/calendarcode.js"></script>
 <div id="popupcalendar" class="text"></div>
 
 <body bgcolor='white'>
@@ -20,7 +20,7 @@
             <h3>好友資料新增 - addEmp.jsp</h3>
         </td>
         <td>
-            <a href="select_page.jsp"><img src="images/tomcat.gif" width="100" height="100" border="1">回首頁</a>
+            <a href="../select_page.jsp"><img src="../images/tomcat.gif" width="100" height="100" border="1">回首頁</a>
         </td>
     </tr>
 </table>

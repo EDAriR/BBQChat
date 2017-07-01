@@ -25,7 +25,7 @@
         <td>
             <h3>員工資料 - listOneMCF.jsp</h3> <a
                 href="<%=request.getContextPath()%>/select_page.jsp"><img
-                src="images/back1.gif" width="100" height="32" border="0">回首頁</a>
+                src="../images/back1.gif" width="100" height="32" border="0">回首頁</a>
         </td>
     </tr>
 </table>
@@ -41,7 +41,7 @@
         <th>修改</th>
     </tr>
  
-<%@ include file="page1.file" %>
+<%@ include file="../page1.file" %>
 
     <c:forEach var="cflsit" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
         <tr align='center' valign='middle' ${(cflsit.cf_no==param.cf_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
@@ -69,7 +69,7 @@
     </c:forEach>
 </table>
  
- <%@ include file="page2.file" %>
+ <%@ include file="../page2.file" %>
 
 </body>
 </html>
