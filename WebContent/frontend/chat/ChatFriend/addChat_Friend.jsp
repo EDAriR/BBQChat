@@ -8,9 +8,6 @@
 <html>
 <head>
     <title>員工資料新增 - addEmp.jsp</title></head>
-<link rel="stylesheet" type="text/css" href="js/calendar.css">
-<script language="JavaScript" src="js/calendarcode.js"></script>
-<div id="popupcalendar" class="text"></div>
 
 <body bgcolor='white'>
 

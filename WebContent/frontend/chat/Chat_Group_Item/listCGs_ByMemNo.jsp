@@ -6,14 +6,15 @@
 
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
-    List<Chat_Group_ItemVO> cgilsit = (List<Chat_Group_ItemVO>) request.getAttribute("cgilsit");
-    pageContext.setAttribute("list", cgilsit);
+    List<Chat_Group_ItemVO> cglist = (List<Chat_Group_ItemVO>) request.getAttribute("memNo");
+    pageContext.setAttribute("list", cglist);
 %>
 
 <jsp:useBean id="cgiSvc" scope="page" class="com.chat.model.Chat_Group_ItemService"/>
+
 <html>
 <head>
-    <title>部門員工 - listCGs_ByCgno.jsp</title>
+    <title>部門員工 - listCGs_ByMemNo.jsp</title>
 </head>
 <body bgcolor='white'>
 
@@ -21,7 +22,7 @@
 <table border='1' cellpadding='5' cellspacing='0' width='800'>
     <tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
         <td>
-            <h3>部門員工 - listCGs_ByCgno.jsp</h3>
+            <h3>部門員工 - listCGs_ByMemNo.jsp</h3>
             <a href="<%=request.getContextPath()%>/select_page.jsp"><img src="images/back1.gif" width="100" height="32"
                                                                          border="0">回首頁</a>
         </td>
@@ -47,14 +48,15 @@
     </tr>
 
     <c:forEach var="cgVO" items="${list.all}">
-        <tr align='center' valign='middle' ${(cgVO.empno==param.empno) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
+        <tr align='center' valign='middle' ${(cgVO.mem_no==param.mem_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
             <td>${cgVO.cg_no}</td>
             <td>${cgVO.mem_no}</td>
 
             <td>
                 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do">
                     <input type="submit" value="刪除">
-                    <input type="hidden" name="chat_GroupVO" value="${cgVO.mem_no}">
+                    <input type="hidden" name="cgNo" value="${cgVO.cg_no}">
+                    <input type="hidden" name="memNo" value="${cgVO.mem_no}">
                     <input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
                     <!--送出本網頁的路徑給Controller-->
                     <input type="hidden" name="action" value="delete"></FORM>
