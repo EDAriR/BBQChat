@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="262204df-fcad-4d8d-a5d5-22b485f43f00" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/addChat_Friend_backupV2.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneMCF_backupV3.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneMCF＿backupV4.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/addChat_Friend.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/addChat_Friend.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/update_cf_input0403.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/update_cf_input0403.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java" afterPath="$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/addChat_Friend_backupV1.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/addChat_Friend_backupV1.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneChat_Friend.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneChat_Friend.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF_backup1.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneMCF_backup1.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF_backup2.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneMCF_backup2.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,20 +53,20 @@
       <file leaf-file-name="listOneMCF.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-614">
-              <caret line="84" column="70" lean-forward="true" selection-start-line="84" selection-start-column="70" selection-end-line="84" selection-end-column="70" />
+            <state relative-caret-position="239">
+              <caret line="89" column="23" lean-forward="true" selection-start-line="89" selection-start-column="23" selection-end-line="89" selection-end-column="23" />
               <folding>
-                <marker date="1498916689409" expanded="true" signature="339:430" ph="..." />
+                <marker date="1498918238567" expanded="true" signature="339:430" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="listOneMCF_backupV3.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneMCF_backupV3.jsp">
+      <file leaf-file-name="listOneMCF＿backupV4.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneMCF＿backupV4.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-952">
-              <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -171,9 +163,9 @@
         <option value="$PROJECT_DIR$/src/com/member/model/MemberDAO.java" />
         <option value="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/addChat_Friend_backupV2.jsp" />
         <option value="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/addChat_Friend.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp" />
         <option value="$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java" />
         <option value="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneMCF_backupV3.jsp" />
+        <option value="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp" />
       </list>
     </option>
   </component>
@@ -324,6 +316,7 @@
       <recent name="server" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GGGG\j2hs\BBQChat\WebContent\frontend\chat" />
       <recent name="D:\GGGG\j2hs\BBQChat\WebContent\frontend\chat\ChatFriend" />
       <recent name="D:\GGGG\j2hs\BBQChat\src\com\chat\model" />
       <recent name="C:\Users\user\Desktop\專題用\BBQChat\src\WebSocketServerHandler" />
@@ -859,7 +852,7 @@
       <workItem from="1498813494941" duration="1000" />
       <workItem from="1498826288106" duration="6350000" />
       <workItem from="1498885583361" duration="1608000" />
-      <workItem from="1498890855760" duration="14946000" />
+      <workItem from="1498890855760" duration="16498000" />
     </task>
     <task id="LOCAL-00001" summary="cc">
       <created>1497707069545</created>
@@ -1001,15 +994,21 @@
       <option name="project" value="LOCAL" />
       <updated>1498903879746</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="listoneMCF upadta +add">
+      <created>1498916865903</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1498916865903</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117782000" />
+    <option name="totallyTimeSpent" value="119334000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1026,7 +1025,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2454054" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2454054" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24972972" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1065,7 +1064,8 @@
     <MESSAGE value="CF list MENS" />
     <MESSAGE value="popup list" />
     <MESSAGE value="new add V1" />
-    <option name="LAST_COMMIT_MESSAGE" value="new add V1" />
+    <MESSAGE value="listoneMCF upadta +add" />
+    <option name="LAST_COMMIT_MESSAGE" value="listoneMCF upadta +add" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1078,13 +1078,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_RecordDAO_interface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chat/model/User_ReportJDBCDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1049">
@@ -1506,20 +1499,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneMCF_backupV3.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-614">
-          <caret line="84" column="70" lean-forward="true" selection-start-line="84" selection-start-column="70" selection-end-line="84" selection-end-column="70" />
+        <state relative-caret-position="239">
+          <caret line="89" column="23" lean-forward="true" selection-start-line="89" selection-start-column="23" selection-end-line="89" selection-end-column="23" />
           <folding>
-            <marker date="1498916689409" expanded="true" signature="339:430" ph="..." />
+            <marker date="1498918238567" expanded="true" signature="339:430" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneMCF_backupV3.jsp">
+    <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneMCF＿backupV4.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-952">
-          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
