@@ -70,26 +70,10 @@
             </select></td>
         </tr>
 
-
     </table>
     <br>
     <input type="hidden" name="action" value="insert">
-    <input type="submit" value="送出新增">
-</FORM>
-
-<FORM METHOD="post"
-      name="form1"
-      ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_FriendServlet.do">
-
-<c:forEach var="memberVO" items="${memberSvc.all}">
-    <label for="${memberVO.mem_no}">${memberVO.mem_name}</label>
-    <input type="hidden" name="action" value="insert">
-    <button class="btn btn-danger btn-large"
-            name="${memberVO.mem_no}" id="${memberVO.mem_no}">
-        <i class="icon-ok-sign"></i>送出新增
-    </button>
-</c:forEach>
-</FORM>
+    <input type="submit" value="送出新增"></FORM>
 </body>
 
 </html>

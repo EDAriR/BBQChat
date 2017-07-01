@@ -265,7 +265,7 @@ System.out.println("cfdel:" + cfdel);
         }
 
         if ("insert".equals(action)) { // 來自addEmp.jsp的請求  
-
+System.out.println("action in Chat_FrienServlet.do:" + action);
             List<String> errorMsgs = new LinkedList<String>();
             // Store this set in the request scope, in case we need to
             // send the ErrorPage view.
@@ -273,13 +273,11 @@ System.out.println("cfdel:" + cfdel);
 
 
             /***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-            String cf_no = req.getParameter("cf_no");
             String mem_no_s = req.getParameter("mem_no_s");
             String mem_no_o = req.getParameter("mem_no_o");
             String cfdel = req.getParameter("cfdel");
 
             Chat_FriendVO chat_FriendVO = new Chat_FriendVO();
-            chat_FriendVO.setCf_no(cf_no);
             chat_FriendVO.setMem_no_s(mem_no_s);
             chat_FriendVO.setMem_no_o(mem_no_o);
             chat_FriendVO.setCf_is_del(cfdel);
@@ -295,10 +293,10 @@ System.out.println("cfdel:" + cfdel);
 
             /***************************2.開始新增資料***************************************/
             Chat_FriendService chat_FriendSvc = new Chat_FriendService();
-            chat_FriendVO = chat_FriendSvc.addChat_Friend(cf_no, mem_no_s, mem_no_o, cfdel);
+            chat_FriendVO = chat_FriendSvc.addChat_Friend(mem_no_s, mem_no_o, cfdel);
 
             /***************************3.新增完成,準備轉交(Send the Success view)***********/
-            String url = "/chat/listAllChat_Friend.jsp";
+            String url = "/frontend/chat/ChatFriend/listCF0403.jsp";
             RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
             successView.forward(req, res);
             /***************************其他可能的錯誤處理**********************************/

@@ -28,7 +28,7 @@ public class Chat_FriendDAO implements Chat_FriendDAO_interface {
 
     // 新增資料
     private static final String INSERT_STMT = "INSERT INTO chat_friend (cf_no, mem_no_s, mem_no_o, cf_is_del) " +
-            "VALUES ('cf'||LPAD(TO_CHAR(cf_no_seq.NEXTVAL),3,'0'), ?, ?, ?)";
+            "VALUES ('CF'||LPAD(TO_CHAR(cf_no_seq.NEXTVAL),6,'0'), ?, ?, ?)";
     // 查詢資料
     private static final String GET_ALL_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend";
     private static final String GET_ONE_STMT = "SELECT cf_no, mem_no_s, mem_no_o, cf_is_del FROM chat_friend WHERE cf_no = ?";

@@ -26,6 +26,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- bootstrapcdn Latest compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="../../css/babeq.css">
 
 </head>
 <body bgcolor='white'>

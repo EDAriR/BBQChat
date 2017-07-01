@@ -11,13 +11,12 @@ public class Chat_FriendService {
         dao = new Chat_FriendDAO();
     }
 
-    public Chat_FriendVO addChat_Friend(String cf_no,
-                                        String mem_no_s, String mem_no_o, String cf_is_del) {
+    public Chat_FriendVO addChat_Friend(String mem_no_s, String mem_no_o, String cf_is_del) {
 
         Chat_FriendVO chat_FriendVO = new Chat_FriendVO();
         
 //      cf_no  mem_no_s  mem_no_o  cf_is_del
-        chat_FriendVO.setCf_no(cf_no);
+        
         chat_FriendVO.setMem_no_s(mem_no_s);
         chat_FriendVO.setMem_no_o(mem_no_o);
         chat_FriendVO.setCf_is_del(cf_is_del);
