@@ -146,11 +146,14 @@ public class Chat_GroupServlet extends HttpServlet {
             // send the ErrorPage view.
             req.setAttribute("errorMsgs", errorMsgs);
 
+            HttpSession session = req.getSession();
+
             try {
                 /***************************
                  * 1.接收請求參數 - 輸入格式的錯誤處理
                  **********************/
                 String memNo = req.getParameter("memNo");
+                session.setAttribute("memNo", memNo);
                 System.out.println("listCGs_ByMemNo \"memNo\" in C :" + memNo);
                 /*************************** 2.開始查詢資料 *****************************************/
                 Chat_Group_ItemService cgiSvc = new Chat_Group_ItemService();
@@ -291,6 +294,46 @@ public class Chat_GroupServlet extends HttpServlet {
             }
         }
 
+        if ("cgmInsert".equals(action)) { // 來自addEmp.jsp的請求
+
+            List<String> errorMsgs = new LinkedList<String>();
+            // Store this set in the request scope, in case we need to
+            // send the ErrorPage view.
+            req.setAttribute("errorMsgs", errorMsgs);
+
+            try {
+                /***********************
+                 * 1.接收請求參數 - 輸入格式的錯誤處理
+                 *************************/
+                String memNo = req.getParameter("memNo");
+                String cgNo = req.getParameter("cgNo");
+
+                Chat_Group_ItemVO cgiVO = new Chat_Group_ItemVO();
+
+                cgiVO.setCg_no(cgNo);
+                cgiVO.setMem_no(memNo);
+
+                /*************************** 2.開始新增資料 ***************************************/
+                Chat_Group_ItemService cgiSvc = new Chat_Group_ItemService();
+                cgiSvc.addChat_Group_Item(cgNo, memNo);
+
+                /***************************
+                 * 3.新增完成,準備轉交(Send the Success view)
+                 ***********/
+                List<Chat_Group_ItemVO> cglsit = cgiSvc.getOneChat_Group_Mem(memNo);
+                req.setAttribute("cglsit", cglsit);
+                String url = "/frontend/chat/Chat_Group_Item/listCGs_ByMemNo.jsp";
+                RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
+                successView.forward(req, res);
+
+                /*************************** 其他可能的錯誤處理 **********************************/
+            } catch (Exception e) {
+                errorMsgs.add("cgmInsert Exception:" + e.getMessage());
+                RequestDispatcher failureView = req.getRequestDispatcher("/emp/addEmp.jsp");
+                failureView.forward(req, res);
+            }
+        }
+
         if ("insert".equals(action)) { // 來自addEmp.jsp的請求
 
             List<String> errorMsgs = new LinkedList<String>();
@@ -410,7 +453,7 @@ public class Chat_GroupServlet extends HttpServlet {
         }
 
         if ("cgmdelete".equals(action)) { // 來自listAllEmp.jsp 或
-System.out.println("cgmdelete in C action: " + action);
+            System.out.println("cgmdelete in C action: " + action);
             List<String> errorMsgs = new LinkedList<String>();
             req.setAttribute("errorMsgs", errorMsgs);
 
@@ -420,6 +463,7 @@ System.out.println("cgmdelete in C action: " + action);
                 /*************************** 1.接收請求參數 ***************************************/
                 String cgNo = new String(req.getParameter("cgNo"));
                 String memNo = new String(req.getParameter("memNo"));
+                req.getSession().setAttribute("memNo", memNo);
 
                 /*************************** 2.開始刪除資料 ***************************************/
                 Chat_Group_ItemService cgiSvc = new Chat_Group_ItemService();
@@ -445,7 +489,7 @@ System.out.println("cgmdelete in C action: " + action);
                 String url = "/frontend/chat/Chat_Group_Item/listCGs_ByMemNo.jsp";
                 RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
                 successView.forward(req, res);
-                
+
                 /*************************** 其他可能的錯誤處理 **********************************/
             } catch (Exception e) {
                 errorMsgs.add("刪除資料失敗:" + e.getMessage());

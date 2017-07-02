@@ -10,7 +10,7 @@
     pageContext.setAttribute("cglsit", cglsit);
 %>
 
-<jsp:useBean id="cgiSvc" scope="page" class="com.chat.model.Chat_Group_ItemService"/>
+<jsp:useBean id="cgSvc" scope="page" class="com.chat.model.Chat_GroupService"/>
 
 <html>
 <head>
@@ -40,6 +40,8 @@
     </font>
 </c:if>
 
+<h1>${memNo}</h1>
+
 <table border='1' bordercolor='#CCCCFF' width='800'>
     <tr>
         <th>群組編號</th>
@@ -64,6 +66,37 @@
         </tr>
     </c:forEach>
 </table>
+
+
+
+<table border='1' bordercolor='#CCCCFF' width='800'>
+    <h1>所有群組</h1>
+
+    <tr>
+        <th>群組編號</th>
+        <th>會員編號</th>
+        <th>刪除</th>
+    </tr>
+
+    <c:forEach var="cgVO" items="${cgSvc.all}">
+        <tr align='center' valign='middle' ${(cgVO.cg_no==param.cg_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
+            <td>${cgVO.cg_no}</td>
+            <td>${cgVO.cg_name}</td>
+
+            <td>
+                <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_GroupServlet.do">
+                    <input type="submit" value="新增">
+                    <input type="hidden" name="cgNo" value="${cgVO.cg_no}">
+                     <input type="hidden" name="memNo" value="${memNo}">
+                    <input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
+                    <!--送出本網頁的路徑給Controller-->
+                    <input type="hidden" name="action" value="cgmInsert">
+                </FORM>
+            </td>
+        </tr>
+    </c:forEach>
+</table>
+
 
 <br>本網頁的路徑:<br><b>
     <font color=blue>request.getServletPath():</font> <%= request.getServletPath()%><br>
