@@ -30,6 +30,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../css/babeq.css">
+
+    <link rel="stylesheet" href="chatlist.css">
 </head>
 <body bgcolor='white'>
 
@@ -175,15 +177,15 @@
 <div class="container text-center">
     <div class="row">
 
-        <div class="round hollow text-center">
-            <a href="#" id="addClass"><span class="glyphicon glyphicon-comment"></span> Open in chat </a>
+        <div class="round OpenChat text-center">
+            <a href="#" id="addClass"><span class="glyphicon glyphicon-comment"></span></a>
         </div>
 
     </div>
 </div>
 
 
-<div class="popup-box chat-popup" id="qnimate">
+<div class="chat-box chat-popup" id="chatlist">
     <div class="popup-head">
         <div class="popup-head-left pull-left"><img
                 src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"
@@ -196,14 +198,14 @@
             </button>
         </div>
     </div>
-    <div class="popup-messages">
+    <div class="chat-friend">
 
 
         <div class="direct-chat-messages">
             <%--顯示會員群組列表--%>
             <c:forEach var="cgVO" items="${cglsit}">
-                <div class="direct-chat-msg doted-border">
-                    <div class="direct-chat-info clearfix">
+                <div class="chat-list doted-border">
+                    <div class="chat-list-info clearfix">
                     <span class="direct-chat-name pull-left">
                 <c:forEach var="cg1VO" items="${cgSvc.all}">
                         <c:if test="${cgVO.cg_no==cg1VO.cg_no}">
@@ -213,9 +215,9 @@
                     </span>
                         <button>xxx</button>
                     </div>
-                    <!-- /.direct-chat-info -->
+                    <!-- /.chat-list-info -->
                     <img alt="message user image"
-                         src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"
+                         src="../pic/cat01.jpg"
                          class="direct-chat-img"><!-- /.direct-chat-img -->
                 </div>
             </c:forEach>
@@ -228,8 +230,8 @@
                 <%--判斷好友是否顯示--%>
                 <c:if test="${cflsit.cf_is_del==0}">
 
-                    <div class="direct-chat-msg doted-border">
-                        <div class="direct-chat-info clearfix">
+                    <div class="chat-list doted-border">
+                        <div class="chat-list-info clearfix">
                         <span class="direct-chat-name pull-left">
                             <c:forEach var="memVO" items="${memSvc.all}">
                                 <c:if test="${cflsit.mem_no_o==memVO.mem_no}">
@@ -239,7 +241,7 @@
                         </span>
                             <button>xxx</button>
                         </div>
-                        <!-- /.direct-chat-info -->
+                        <!-- /.chat-list-info -->
                         <img alt="message user image"
                              src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"
                              class="direct-chat-img"><!-- /.direct-chat-img -->
@@ -256,7 +258,21 @@
 </div>
 
 </body>
+
+
+<script>
+    $(function () {
+        $("#addClass").click(function () {
+            $('#chatlist').addClass('chat-box-on');
+        });
+
+        $("#removeClass").click(function () {
+            $('#chatlist').removeClass('chat-box-on');
+        });
+    })
+</script>
 <style>
+
     @import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
     @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
@@ -264,7 +280,7 @@
         font-family: 'Open Sans', sans-serif;
     }
 
-    .popup-box {
+    .chat-box {
         background-color: #ffffff;
         border: 1px solid #b0b0b0;
         bottom: 0;
@@ -276,7 +292,7 @@
         font-family: 'Open Sans', sans-serif;
     }
 
-    .round.hollow a {
+    .round.OpenChat a {
         border: 2px solid #ff6701;
         border-radius: 35px;
         color: red;
@@ -290,7 +306,7 @@
         right: 10px;
     }
 
-    .round.hollow a:hover {
+    .round.OpenChat a:hover {
         border: 2px solid #000;
         border-radius: 35px;
         color: red;
@@ -300,11 +316,11 @@
         text-decoration: none;
     }
 
-    .popup-box-on {
+    .chat-box-on {
         display: block !important;
     }
 
-    .popup-box .popup-head {
+    .chat-box .popup-head {
         background-color: #fff;
         clear: both;
         color: #7b7b7b;
@@ -335,7 +351,7 @@
         width: 33px;
     }
 
-    .popup-box .popup-head .popup-head-right {
+    .chat-box .popup-head .popup-head-right {
         margin: 11px 7px 0;
     }
 
@@ -354,7 +370,7 @@
         width: 95% !important;
     }
 
-    .popup-box .popup-messages {
+    .chat-box .chat-friend {
         background: #3f9684 none repeat scroll 0 0;
         height: 90%;
         overflow: auto;
@@ -367,7 +383,7 @@
 
     }
 
-    .popup-messages {
+    .chat-friend {
         border-bottom: 1px solid #a4c6b5;
         height: 12px;
         margin: 7px 0 20px;
@@ -375,7 +391,7 @@
         text-align: center;
     }
 
-    .popup-messages abbr.timestamp {
+    .chat-friend abbr.timestamp {
         background: #3f9684 none repeat scroll 0 0;
         color: #fff;
         padding: 0 11px;
@@ -408,7 +424,7 @@
         color: #303030;
     }
 
-    .popup-messages {
+    .chat-friend {
         background: #3f9684 none repeat scroll 0 0;
         border-bottom: 1px solid #a4c6b5;
         height: 12px;
@@ -420,18 +436,18 @@
         padding: 0 11px;
     }
 
-    .popup-messages .direct-chat-messages {
+    .chat-friend .direct-chat-messages {
         height: auto;
     }
 
-    .popup-messages {
+    .chat-friend {
         background: #dfece7 none repeat scroll 0 0;
         border: 1px solid #dfece7;
         border-radius: 2px;
         color: #1f2121;
     }
 
-    .popup-messages .direct-chat-name {
+    .chat-friend .direct-chat-name {
         font-size: 15px;
         font-weight: 600;
         margin: 0 0 0 49px !important;
@@ -439,28 +455,28 @@
         opacity: 0.9;
     }
 
-    .popup-messages .direct-chat-info {
+    .chat-friend .chat-list-info {
         display: block;
         font-size: 12px;
         margin-bottom: 0;
     }
 
-    .popup-messages .direct-chat-img {
+    .chat-friend .direct-chat-img {
         border: 1px solid #fff;
         background: #3f9684 none repeat scroll 0 0;
         border-radius: 50%;
         float: left;
         height: 40px;
-        margin: -31px 0 0; /*這個調 置中*/
+        margin: -31px 0 0; /*????矽 蝵桐葉*/
         width: 40px;
     }
 
-    .popup-messages .direct-chat-msg {
+    .chat-friend .chat-list {
         margin-bottom: 30px;
         position: relative;
     }
 
-    .popup-messages .doted-border::after {
+    .chat-friend .doted-border::after {
         background: transparent none repeat scroll 0 0 !important;
         bottom: 0;
         content: "";
@@ -473,7 +489,7 @@
         z-index: -2;
     }
 
-    .popup-messages .direct-chat-msg::after {
+    .chat-friend .chat-list::after {
         background: #fff none repeat scroll 0 0;
         border-right: medium none;
         bottom: 0;
@@ -487,7 +503,7 @@
         z-index: -2;
     }
 
-    .popup-messages {
+    .chat-friend {
         background: #dfece7 none repeat scroll 0 0;
         border: 1px solid #dfece7;
         border-radius: 2px;
@@ -495,18 +511,6 @@
     }
 
 </style>
-
-<script>
-    $(function () {
-        $("#addClass").click(function () {
-            $('#qnimate').addClass('popup-box-on');
-        });
-
-        $("#removeClass").click(function () {
-            $('#qnimate').removeClass('popup-box-on');
-        });
-    })
-</script>
 
 
 <br>本網頁的路徑:<br><b>
