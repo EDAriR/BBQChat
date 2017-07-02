@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="262204df-fcad-4d8d-a5d5-22b485f43f00" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/listCGsCFs_ByMemNo.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/Chat_Group_Item/listCGs_ByMemNo.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/Chat_Group_Item/listCGs_ByMemNo.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp" afterPath="$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/chat/controller/Chat_GroupServlet.java" afterPath="$PROJECT_DIR$/src/com/chat/controller/Chat_GroupServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/member/model/MemberDAO.java" afterPath="$PROJECT_DIR$/src/com/member/model/MemberDAO.java" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,27 +23,31 @@
       <file leaf-file-name="Chat_FriendServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="247" column="67" lean-forward="false" selection-start-line="247" selection-start-column="67" selection-end-line="247" selection-end-column="67" />
+            <state relative-caret-position="280">
+              <caret line="112" column="17" lean-forward="true" selection-start-line="109" selection-start-column="16" selection-end-line="112" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chat_GroupServlet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Chat_GroupServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/chat/controller/Chat_GroupServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="316" column="70" lean-forward="true" selection-start-line="316" selection-start-column="70" selection-end-line="316" selection-end-column="70" />
+            <state relative-caret-position="276">
+              <caret line="44" column="53" lean-forward="true" selection-start-line="44" selection-start-column="53" selection-end-line="44" selection-end-column="53" />
               <folding>
-                <element signature="e#6541#6549#0" expanded="true" />
-                <element signature="e#8803#8811#0" expanded="true" />
-                <element signature="e#10267#10275#0" expanded="true" />
-                <element signature="e#19600#19608#0" expanded="true" />
-                <element signature="e#21829#21837#0" expanded="true" />
-                <marker date="1498992415884" expanded="false" signature="14294:14302" ph="&lt;~&gt;" />
-                <marker date="1498992415884" expanded="false" signature="24130:24138" ph="&lt;~&gt;" />
-                <marker date="1498992415884" expanded="false" signature="24985:25003" ph="&lt;~&gt;" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#8670#8678#0" expanded="true" />
+                <element signature="e#10932#10940#0" expanded="true" />
+                <element signature="e#12396#12404#0" expanded="true" />
+                <element signature="e#21729#21737#0" expanded="true" />
+                <element signature="e#23958#23966#0" expanded="true" />
+                <marker date="1498997446540" expanded="false" signature="3434:3442" ph="&lt;~&gt;" />
+                <marker date="1498997446540" expanded="false" signature="6446:6454" ph="&lt;~&gt;" />
+                <marker date="1498997446540" expanded="false" signature="16423:16431" ph="&lt;~&gt;" />
+                <marker date="1498997446540" expanded="false" signature="18208:18216" ph="&lt;~&gt;" />
+                <marker date="1498997446540" expanded="false" signature="26259:26267" ph="&lt;~&gt;" />
+                <marker date="1498997446540" expanded="false" signature="27114:27132" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -59,10 +66,10 @@
       <file leaf-file-name="select_page.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="67" column="9" lean-forward="true" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+            <state relative-caret-position="295">
+              <caret line="57" column="67" lean-forward="false" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="67" />
               <folding>
-                <marker date="1498975437548" expanded="true" signature="4334:5360" ph="..." />
+                <marker date="1498995265888" expanded="true" signature="4726:5752" ph="..." />
               </folding>
             </state>
           </provider>
@@ -71,8 +78,8 @@
       <file leaf-file-name="listCGs_ByCgno.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/Chat_Group_Item/listCGs_ByCgno.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="308">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -81,9 +88,26 @@
       <file leaf-file-name="listCGs_ByMemNo.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/Chat_Group_Item/listCGs_ByMemNo.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="88" column="51" lean-forward="false" selection-start-line="88" selection-start-column="47" selection-end-line="88" selection-end-column="51" />
+            <state relative-caret-position="588">
+              <caret line="66" column="4" lean-forward="true" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="16" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listCGsCFs_ByMemNo.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/listCGsCFs_ByMemNo.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="36" />
+              <folding>
+                <element signature="n#table#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#c:if#0;n#jsp:root#0;n#!!top" expanded="false" />
+                <element signature="n#table#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#table#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#table#3;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,6 +143,9 @@
       <find>listOneMCF</find>
       <find>GET_MNS_STMT</find>
       <find>ins</find>
+      <find>sess</find>
+      <find>cglsit</find>
+      <find>listCGs_ByCgno</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -132,7 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/WebSocketServerHandler/Client.java" />
         <option value="$PROJECT_DIR$/src/WebSocketServerHandler/WebSocketServerHandler.java" />
         <option value="$PROJECT_DIR$/src/server/Client.java" />
         <option value="$PROJECT_DIR$/src/server/RequestService.java" />
@@ -178,11 +204,12 @@
         <option value="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/addChat_Friend.jsp" />
         <option value="$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java" />
         <option value="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/backup/listOneMCF_backupV3.jsp" />
-        <option value="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp" />
         <option value="$PROJECT_DIR$/WebContent/frontend/chat/Chat_Group_Item/listCGs_ByMemNo.jsp" />
+        <option value="$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp" />
+        <option value="$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp" />
         <option value="$PROJECT_DIR$/src/com/chat/controller/Chat_GroupServlet.java" />
+        <option value="$PROJECT_DIR$/WebContent/frontend/chat/listCGsCFs_ByMemNo.jsp" />
       </list>
     </option>
   </component>
@@ -303,7 +330,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Chat_Group_Item" />
+              <option name="myItemId" value="ChatFriend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -334,8 +361,8 @@
       <recent name="D:\GGGG\j2hs\BBQChat" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\GGGG\j2hs\BBQChat\WebContent\frontend\chat\Chat_Group_Item" />
       <recent name="D:\GGGG\j2hs\BBQChat\WebContent\frontend\chat" />
+      <recent name="D:\GGGG\j2hs\BBQChat\WebContent\frontend\chat\Chat_Group_Item" />
       <recent name="D:\GGGG\j2hs\BBQChat\WebContent\frontend\chat\ChatFriend" />
       <recent name="D:\GGGG\j2hs\BBQChat\src\com\chat\model" />
       <recent name="C:\Users\user\Desktop\專題用\BBQChat\src\WebSocketServerHandler" />
@@ -984,7 +1011,7 @@
       <workItem from="1498826288106" duration="6350000" />
       <workItem from="1498885583361" duration="1608000" />
       <workItem from="1498890855760" duration="17133000" />
-      <workItem from="1498966358493" duration="11190000" />
+      <workItem from="1498966358493" duration="16786000" />
     </task>
     <task id="LOCAL-00001" summary="cc">
       <created>1497707069545</created>
@@ -1154,11 +1181,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498981233875</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="listCGs_ByMemNo.jsp add ok">
+      <created>1498992587496</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1498992587496</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131159000" />
+    <option name="totallyTimeSpent" value="136755000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1221,7 +1255,8 @@
     <MESSAGE value="listoneMCF upadta +add" />
     <MESSAGE value="listoneMCF upadta delete+add in friendlist" />
     <MESSAGE value="listCGs_ByMemNo.jsp delete ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="listCGs_ByMemNo.jsp delete ok" />
+    <MESSAGE value="listCGs_ByMemNo.jsp add ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="listCGs_ByMemNo.jsp add ok" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1234,13 +1269,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_Group_ItemDAO_interface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chat/model/Chat_RecordJDBCDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -1387,6 +1415,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
           <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1394,6 +1423,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1820">
           <caret line="65" column="32" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="65" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1444,6 +1474,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1458,6 +1489,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
           <caret line="70" column="45" lean-forward="true" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1487,6 +1519,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="519">
           <caret line="43" column="74" lean-forward="false" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1536,24 +1569,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="89" column="23" lean-forward="false" selection-start-line="89" selection-start-column="23" selection-end-line="89" selection-end-column="23" />
-          <folding>
-            <marker date="1498918238567" expanded="true" signature="339:430" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="247" column="67" lean-forward="false" selection-start-line="247" selection-start-column="67" selection-end-line="247" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/Chat_Group_Item/listCGs_ByMemNo_backupV1.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
@@ -1562,29 +1577,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp">
+    <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/Chat_Group_Item/listCGs_ByMemNo.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="67" column="9" lean-forward="true" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
-          <folding>
-            <marker date="1498975437548" expanded="true" signature="4334:5360" ph="..." />
-          </folding>
+        <state relative-caret-position="588">
+          <caret line="66" column="4" lean-forward="true" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/Chat_Group_Item/listCGs_ByCgno.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="308">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="85" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/Chat_Group_Item/listCGs_ByMemNo.jsp">
+    <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/ChatFriend/listOneMCF.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="88" column="51" lean-forward="false" selection-start-line="88" selection-start-column="47" selection-end-line="88" selection-end-column="51" />
-          <folding />
+        <state relative-caret-position="112">
+          <caret line="4" column="39" lean-forward="true" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+          <folding>
+            <marker date="1498993067423" expanded="true" signature="339:430" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1596,19 +1611,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/chat/controller/Chat_FriendServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="112" column="17" lean-forward="true" selection-start-line="109" selection-start-column="16" selection-end-line="112" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/select_page.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="57" column="67" lean-forward="false" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="67" />
+          <folding>
+            <marker date="1498995265888" expanded="true" signature="4726:5752" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/chat/controller/Chat_GroupServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="316" column="70" lean-forward="true" selection-start-line="316" selection-start-column="70" selection-end-line="316" selection-end-column="70" />
+        <state relative-caret-position="276">
+          <caret line="44" column="53" lean-forward="true" selection-start-line="44" selection-start-column="53" selection-end-line="44" selection-end-column="53" />
           <folding>
-            <element signature="e#6541#6549#0" expanded="true" />
-            <element signature="e#8803#8811#0" expanded="true" />
-            <element signature="e#10267#10275#0" expanded="true" />
-            <element signature="e#19600#19608#0" expanded="true" />
-            <element signature="e#21829#21837#0" expanded="true" />
-            <marker date="1498992415884" expanded="false" signature="14294:14302" ph="&lt;~&gt;" />
-            <marker date="1498992415884" expanded="false" signature="24130:24138" ph="&lt;~&gt;" />
-            <marker date="1498992415884" expanded="false" signature="24985:25003" ph="&lt;~&gt;" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#8670#8678#0" expanded="true" />
+            <element signature="e#10932#10940#0" expanded="true" />
+            <element signature="e#12396#12404#0" expanded="true" />
+            <element signature="e#21729#21737#0" expanded="true" />
+            <element signature="e#23958#23966#0" expanded="true" />
+            <marker date="1498997446540" expanded="false" signature="3434:3442" ph="&lt;~&gt;" />
+            <marker date="1498997446540" expanded="false" signature="6446:6454" ph="&lt;~&gt;" />
+            <marker date="1498997446540" expanded="false" signature="16423:16431" ph="&lt;~&gt;" />
+            <marker date="1498997446540" expanded="false" signature="18208:18216" ph="&lt;~&gt;" />
+            <marker date="1498997446540" expanded="false" signature="26259:26267" ph="&lt;~&gt;" />
+            <marker date="1498997446540" expanded="false" signature="27114:27132" ph="&lt;~&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/frontend/chat/listCGsCFs_ByMemNo.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="36" />
+          <folding>
+            <element signature="n#table#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#c:if#0;n#jsp:root#0;n#!!top" expanded="false" />
+            <element signature="n#table#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#table#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#table#3;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

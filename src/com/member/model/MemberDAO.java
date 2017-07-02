@@ -189,7 +189,7 @@ public class MemberDAO implements MemberDAO_interface {
                 memberVO.setMem_updated(rs.getDate("mem_updated"));
                 memberVO.setMem_name(rs.getString("mem_name"));
                 memberVO.setMem_aka(rs.getString("mem_aka"));
-                memberVO.setMem_photo(rs.getBytes("mem_photo"));
+//                memberVO.setMem_photo(rs.getBytes("mem_photo"));
                 memberVO.setMem_adds(rs.getString("mem_adds"));
                 memberVO.setMem_addc(rs.getString("mem_addc"));
                 memberVO.setMem_phone(rs.getString("mem_phone"));

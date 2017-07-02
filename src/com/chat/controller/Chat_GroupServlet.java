@@ -1,9 +1,6 @@
 package com.chat.controller;
 
-import com.chat.model.Chat_GroupService;
-import com.chat.model.Chat_GroupVO;
-import com.chat.model.Chat_Group_ItemService;
-import com.chat.model.Chat_Group_ItemVO;
+import com.chat.model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,6 +27,54 @@ public class Chat_GroupServlet extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
+
+        if ("getOneMemCFCG".equals(action)) { // 來自select_page.jsp的請求
+            System.out.println("getOneMemCFCG \"action\" in C :" + action);
+            List<String> errorMsgs = new LinkedList<String>();
+            // Store this set in the request scope, in case we need to
+            // send the ErrorPage view.
+            req.setAttribute("errorMsgs", errorMsgs);
+
+            HttpSession session = req.getSession();
+
+            try {
+                /***************************
+                 * 1.接收請求參數 - 輸入格式的錯誤處理
+                 **********************/
+                String memNo = req.getParameter("memNo");
+                session.setAttribute("memNo", memNo);
+
+                /*************************** 2.開始查詢資料 *****************************************/
+
+                Chat_Group_ItemService cgiSvc = new Chat_Group_ItemService();
+                List<Chat_Group_ItemVO> cglsit = cgiSvc.getOneChat_Group_Mem(memNo);
+                if (cglsit == null) {
+                    errorMsgs.add("查無資料");
+                }
+                Chat_FriendService cfSvc = new Chat_FriendService();
+                List<Chat_FriendVO> oneMemCF = cfSvc.getOneMCF(memNo);
+
+                System.out.println("cfSvc:" + cfSvc + "\n" + "oneMemCF:" + oneMemCF);
+                if (oneMemCF == null) {
+                    errorMsgs.add("查無資料");
+                }
+                /***************************
+                 * 3.查詢完成,準備轉交(Send the Success view)
+                 *************/
+                req.setAttribute("cglsit", cglsit);
+                req.setAttribute("oneMemCF", oneMemCF);
+                System.out.println("cglsit in listCGs_ByMemNo: " + cglsit.size());
+                String url = "/frontend/chat/listCGsCFs_ByMemNo.jsp";
+                RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
+                successView.forward(req, res);
+
+                /*************************** 其他可能的錯誤處理 *************************************/
+            } catch (Exception e) {
+                errorMsgs.add("無法取得資料:" + e.getMessage());
+                RequestDispatcher failureView = req.getRequestDispatcher("/listtAllCG.jsp");
+                failureView.forward(req, res);
+            }
+        }
 
         if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
             System.out.println("getOne_For_Display \"action\" in C :" + action);

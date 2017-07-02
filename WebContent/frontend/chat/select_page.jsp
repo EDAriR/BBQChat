@@ -51,6 +51,16 @@
 
     <li>
         <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_GroupServlet.do">
+            <p>好友列表綜合</p>
+            <p>輸入會員編號 (如 M0000001 ):</p>
+            <input type="text" name="memNo">
+            <input type="submit" value="送出">getOneMemCFCG Chat_Group
+            <input type="hidden" name="action" value="getOneMemCFCG">
+        </FORM>
+    </li>
+
+    <li>
+        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_GroupServlet.do">
             <p>輸入群組編號 (如 CG000001 ):</p>
             <input type="text" name="cg_no">
             <input type="submit" value="送出">getOne_For_Display Chat_Group

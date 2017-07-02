@@ -1,23 +1,25 @@
-<%@page import="java.util.List" %>
+<%@ page import="com.chat.model.Chat_FriendVO" %>
+<%@ page import="com.chat.model.Chat_Group_ItemVO" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.chat.model.*" %>
-<%@ page import="com.member.model.*" %>
-<%-- 此頁練習採用 Script 的寫法取值 --%>
 
-<%-- 取出 Concroller EmpServlet.java已存入request的EmpVO物件--%>
+
+<%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
+    List<Chat_Group_ItemVO> cglsit = (List<Chat_Group_ItemVO>) request.getAttribute("cglsit");
+    pageContext.setAttribute("cglsit", cglsit);
     List<Chat_FriendVO> list = (List<Chat_FriendVO>) request.getAttribute("oneMemCF");
     pageContext.setAttribute("list", list);
 %>
 
-<%-- 取出 對應的DeptVO物件--%>
+<jsp:useBean id="cgSvc" scope="page" class="com.chat.model.Chat_GroupService"/>
+<jsp:useBean id="cgiSvc" scope="page" class="com.chat.model.Chat_Group_ItemService"/>
 <jsp:useBean id="memSvc" scope="page" class="com.member.model.MemberService"/>
 
 <html>
 <head>
-    <title>群組資料 - listOneMCF.jsp</title>
-
+    <title>部門員工 - listCGsCFs_ByMemNo.jsp</title>
     <!-- bootstrapcdn 3.37 Latest compiled and minified CSS  Optional theme-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
@@ -27,20 +29,33 @@
     <!-- bootstrapcdn Latest compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../../css/babeq.css">
-
+    <link rel="stylesheet" type="text/css" href="../css/babeq.css">
 </head>
 <body bgcolor='white'>
-<b><font color=red>此頁練習採用 Script 的寫法取值:</font></b>
+
+<b><font color=red>此頁練習採用 EL 的寫法取值:</font></b>
 <table border='1' cellpadding='5' cellspacing='0' width='800'>
     <tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
         <td>
-            <h3>員工資料 - listOneMCF.jsp</h3> <a
-                href="<%=request.getContextPath()%>/select_page.jsp"><img
-                src="images/back1.gif" width="100" height="32" border="0">回首頁</a>
+            <h3>部門員工 - listCGs_ByMemNo.jsp</h3>
+            <a href="<%=request.getContextPath()%>/select_page.jsp"><img src="images/back1.gif" width="100" height="32"
+                                                                         border="0">回首頁</a>
         </td>
     </tr>
 </table>
+
+<%-- 錯誤表列 --%>
+<c:if test="${not empty errorMsgs}">
+    <font color='red'>請修正以下錯誤:
+        <ul>
+            <c:forEach var="message" items="${errorMsgs}">
+                <li>${message}</li>
+            </c:forEach>
+        </ul>
+    </font>
+</c:if>
+
+<h1>${memNo}</h1>
 
 <table border='1' bordercolor='#CCCCFF' width='800'>
     <tr>
@@ -102,6 +117,61 @@
 </table>
 
 
+<table border='1' bordercolor='#CCCCFF' width='800'>
+    <tr>
+        <th>群組編號</th>
+        <th>會員編號</th>
+        <th>刪除</th>
+    </tr>
+
+    <c:forEach var="cgVO" items="${cglsit}">
+        <tr align='center' valign='middle' ${(cgVO.mem_no==param.mem_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
+            <td>${cgVO.cg_no}</td>
+            <td>${cgVO.mem_no}</td>
+
+            <td>
+                <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_GroupServlet.do">
+                    <input type="submit" value="刪除">
+                    <input type="hidden" name="cgNo" value="${cgVO.cg_no}">
+                    <input type="hidden" name="memNo" value="${cgVO.mem_no}">
+                    <input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
+                    <!--送出本網頁的路徑給Controller-->
+                    <input type="hidden" name="action" value="cgmdelete"></FORM>
+            </td>
+        </tr>
+    </c:forEach>
+</table>
+
+
+<table border='1' bordercolor='#CCCCFF' width='800'>
+    <h1>所有群組</h1>
+
+    <tr>
+        <th>群組編號</th>
+        <th>會員編號</th>
+        <th>刪除</th>
+    </tr>
+
+    <c:forEach var="cgVO" items="${cgSvc.all}">
+        <tr align='center' valign='middle' ${(cgVO.cg_no==param.cg_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
+            <td>${cgVO.cg_no}</td>
+            <td>${cgVO.cg_name}</td>
+
+            <td>
+                <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_GroupServlet.do">
+                    <input type="submit" value="新增">
+                    <input type="hidden" name="cgNo" value="${cgVO.cg_no}">
+                    <input type="hidden" name="memNo" value="${memNo}">
+                    <input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
+                    <!--送出本網頁的路徑給Controller-->
+                    <input type="hidden" name="action" value="cgmInsert">
+                </FORM>
+            </td>
+        </tr>
+    </c:forEach>
+</table>
+
+
 <div class="container text-center">
     <div class="row">
 
@@ -117,7 +187,7 @@
     <div class="popup-head">
         <div class="popup-head-left pull-left"><img
                 src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"
-                alt="iamgurdeeposahan"> Gurdeep Osahan
+                alt="iamgurdeeposahan"> ${memSvc.getOneMember(memNo).mem_name}
         </div>
         <div class="popup-head-right pull-right">
 
@@ -130,6 +200,27 @@
 
 
         <div class="direct-chat-messages">
+            <%--顯示會員群組列表--%>
+            <c:forEach var="cgVO" items="${cglsit}">
+                <div class="direct-chat-msg doted-border">
+                    <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-name pull-left">
+                <c:forEach var="cg1VO" items="${cgSvc.all}">
+                        <c:if test="${cgVO.cg_no==cg1VO.cg_no}">
+                            ${cg1VO.cg_name}
+                        </c:if>
+                </c:forEach>
+                    </span>
+                        <button>xxx</button>
+                    </div>
+                    <!-- /.direct-chat-info -->
+                    <img alt="message user image"
+                         src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"
+                         class="direct-chat-img"><!-- /.direct-chat-img -->
+                </div>
+            </c:forEach>
+
+            <%--顯示會員群組列表--%>
 
             <%--顯示會員好友列表--%>
             <c:forEach var="cflsit" items="${list}">
@@ -416,4 +507,11 @@
         });
     })
 </script>
+
+
+<br>本網頁的路徑:<br><b>
+    <font color=blue>request.getServletPath():</font> <%= request.getServletPath()%><br>
+    <font color=blue>request.getRequestURI(): </font> <%= request.getRequestURI()%>
+</b>
+</body>
 </html>
