@@ -32,4 +32,13 @@
     <servlet-name>Chat_FrienServlet</servlet-name>
     <url-pattern>/chat/ChatFriend/Chat_FriendServlet.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Chat_GroupServlet</servlet-name>
+    <servlet-class>com.chat.controller.Chat_GroupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Chat_GroupServlet</servlet-name>
+    <url-pattern>/chat/ChatFriend/Chat_GroupServlet.do</url-pattern>
+  </servlet-mapping>
 </web-app>

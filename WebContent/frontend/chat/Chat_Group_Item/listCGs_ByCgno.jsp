@@ -7,7 +7,7 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
     List<Chat_Group_ItemVO> cgilsit = (List<Chat_Group_ItemVO>) request.getAttribute("cgilsit");
-    pageContext.setAttribute("list", cgilsit);
+    pageContext.setAttribute("cgilsit", cgilsit);
 %>
 
 <jsp:useBean id="cgiSvc" scope="page" class="com.chat.model.Chat_Group_ItemService"/>
@@ -46,8 +46,8 @@
         <th>刪除</th>
     </tr>
 
-    <c:forEach var="cgVO" items="${list.all}">
-        <tr align='center' valign='middle' ${(cgVO.empno==param.empno) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
+    <c:forEach var="cgVO" items="${cgilsit}">
+        <tr align='center' valign='middle' ${(cgVO.cg_no==param.cg_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色而已-->
             <td>${cgVO.cg_no}</td>
             <td>${cgVO.mem_no}</td>
 

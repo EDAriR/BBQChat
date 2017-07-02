@@ -145,6 +145,7 @@ public class Chat_Group_ItemDAO implements Chat_Group_ItemDAO_interface {
                 chat_group_itemVO.setCg_no(rs.getString("cg_no"));
                 chat_group_itemVO.setMem_no(rs.getString("mem_no"));
                 list.add(chat_group_itemVO); // Store the row in the list
+                System.out.println("chat_group_itemVO: " + chat_group_itemVO);
             }
             // Handle any SQL errors
         } catch (SQLException se) {

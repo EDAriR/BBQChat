@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>IBM Emp: Home</title>
-    
+
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -50,11 +50,29 @@
     <br><br>
 
     <li>
-        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/chat/Chat_Group/Chat_GroupServlet.do">
+        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_GroupServlet.do">
             <p>輸入群組編號 (如 CG000001 ):</p>
             <input type="text" name="cg_no">
-            <input type="submit" value="送出">getOne_For_Display  Chat_Group
+            <input type="submit" value="送出">getOne_For_Display Chat_Group
             <input type="hidden" name="action" value="getOne_For_Display">
+        </FORM>
+    </li>
+
+    <li>
+        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_GroupServlet.do">
+            <p>輸入群組編號 (如 CG000001 ):</p>
+            <input type="text" name="cgNo" value="">
+            <input type="submit" value="送出">listCGs_ByCgno Chat_Group
+            <input type="hidden" name="action" value="listCGs_ByCgno">
+        </FORM>
+    </li>
+
+    <li>
+        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/chat/ChatFriend/Chat_GroupServlet.do">
+            <p>輸入自己會員編號 (如 M0000001 ):</p>
+            <input type="text" name="memNo" value="">
+            <input type="submit" value="送出">listCGs_ByMemNo Chat_Group
+            <input type="hidden" name="action" value="listCGs_ByMemNo">
         </FORM>
     </li>
 
@@ -93,24 +111,29 @@
         <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/chat/ChatFriend/Chat_FriendServlet.do">
 
             <%--end dropdown--%>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <p>選擇群組名稱:</p>
+                    選擇群組名稱:<span class="caret"></span>
                 </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <c:forEach var="cgVO" items="${cgSvc.all}">
+                            <input type="hidden" name="action" value="getOne_For_Display">
+                            <button class="dropdown-item" type="submit" value="${cgVO.cg_no}">${cgVO.cg_name}</button>
+                        </c:forEach>
+                    </li>
 
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <c:forEach var="cgVO" items="${cgSvc.all}">
-                        <input type="hidden" name="action" value="getOne_For_Display">
-                        <button class="dropdown-item" type="submit" value="${cgVO.cg_no}">${cgVO.cg_name}</button>
-                    </c:forEach>
-                </div>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </div>
 
-                <div class="dropdown">
-
-                </div>
-                <%--end dropdown--%>
+            <%--end dropdown--%>
         </FORM>
+
+        <!-- Single button -->
+
     </li>
 
     <li>

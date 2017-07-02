@@ -1,17 +1,23 @@
 package com.chat.controller;
 
-import java.io.*;
-import java.util.*;
-import java.sql.Date;
-
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-
 import com.chat.model.Chat_GroupService;
 import com.chat.model.Chat_GroupVO;
 import com.chat.model.Chat_Group_ItemService;
 import com.chat.model.Chat_Group_ItemVO;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 @WebServlet("/chat/Chat_Group/Chat_GroupServlet.do")
 public class Chat_GroupServlet extends HttpServlet {
@@ -105,6 +111,7 @@ public class Chat_GroupServlet extends HttpServlet {
                 /*************************** 2.開始查詢資料 *****************************************/
                 Chat_Group_ItemService cgiSvc = new Chat_Group_ItemService();
                 List<Chat_Group_ItemVO> cgilsit = cgiSvc.getOneChat_Group_No(cgNo);
+                System.out.println("cgNo in listCGs_ByCgno: " + cgNo);
                 if (cgilsit == null) {
                     errorMsgs.add("查無資料");
                 }
@@ -119,6 +126,7 @@ public class Chat_GroupServlet extends HttpServlet {
                  * 3.查詢完成,準備轉交(Send the Success view)
                  *************/
                 req.setAttribute("cgilsit", cgilsit); // 資料庫取出的empVO物件,存入req
+                System.out.println("cgilsit in listCGs_ByCgno: " + cgilsit.size());
                 String url = "/frontend/chat/Chat_Group_Item/listCGs_ByCgno.jsp";
                 RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
                 successView.forward(req, res);
@@ -143,7 +151,7 @@ public class Chat_GroupServlet extends HttpServlet {
                  * 1.接收請求參數 - 輸入格式的錯誤處理
                  **********************/
                 String memNo = req.getParameter("memNo");
-
+                System.out.println("listCGs_ByMemNo \"memNo\" in C :" + memNo);
                 /*************************** 2.開始查詢資料 *****************************************/
                 Chat_Group_ItemService cgiSvc = new Chat_Group_ItemService();
                 List<Chat_Group_ItemVO> cglsit = cgiSvc.getOneChat_Group_Mem(memNo);
@@ -161,6 +169,7 @@ public class Chat_GroupServlet extends HttpServlet {
                  * 3.查詢完成,準備轉交(Send the Success view)
                  *************/
                 req.setAttribute("cglsit", cglsit); // 資料庫取出的empVO物件,存入req
+                System.out.println("cglsit in listCGs_ByMemNo: " + cglsit.size());
                 String url = "/frontend/chat/Chat_Group_Item/listCGs_ByMemNo.jsp";
                 RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
                 successView.forward(req, res);
@@ -168,26 +177,18 @@ public class Chat_GroupServlet extends HttpServlet {
                 /*************************** 其他可能的錯誤處理 *************************************/
             } catch (Exception e) {
                 errorMsgs.add("無法取得資料:" + e.getMessage());
-                RequestDispatcher failureView = req.getRequestDispatcher("/listtAllCG.jsp");
+                RequestDispatcher failureView = req.getRequestDispatcher("無法取得資料/listtAllCG.jsp");
                 failureView.forward(req, res);
             }
         }
 
         if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp 或
-            // /dept/listEmps_ByDeptno.jsp
-            // 的請求
 
             List<String> errorMsgs = new LinkedList<String>();
-            // Store this set in the request scope, in case we need to
-            // send the ErrorPage view.
+
             req.setAttribute("errorMsgs", errorMsgs);
 
             String requestURL = req.getParameter("requestURL"); // 送出修改的來源網頁路徑:
-            // 可能為【/emp/listAllEmp.jsp】
-            // 或
-            // 【/dept/listEmps_ByDeptno.jsp】
-            // 或 【
-            // /dept/listAllDept.jsp】
 
             try {
                 /*************************** 1.接收請求參數 ****************************************/
@@ -221,13 +222,6 @@ public class Chat_GroupServlet extends HttpServlet {
             req.setAttribute("errorMsgs", errorMsgs);
 
             String requestURL = req.getParameter("requestURL"); // 送出修改的來源網頁路徑:
-            // 可能為【/emp/listAllEmp.jsp】
-            // 或
-            // 【/dept/listEmps_ByDeptno.jsp】
-            // 或 【
-            // /dept/listAllDept.jsp】
-            // 或 【
-            // /emp/listEmps_ByCompositeQuery.jsp】
 
             try {
                 /***************************
@@ -373,21 +367,11 @@ public class Chat_GroupServlet extends HttpServlet {
         }
 
         if ("delete".equals(action)) { // 來自listAllEmp.jsp 或
-            // /dept/listEmps_ByDeptno.jsp的請求
 
             List<String> errorMsgs = new LinkedList<String>();
-            // Store this set in the request scope, in case we need to
-            // send the ErrorPage view.
             req.setAttribute("errorMsgs", errorMsgs);
 
             String requestURL = req.getParameter("requestURL"); // 送出刪除的來源網頁路徑:
-            // 可能為【/emp/listAllEmp.jsp】
-            // 或
-            // 【/dept/listEmps_ByDeptno.jsp】
-            // 或 【
-            // /dept/listAllDept.jsp】
-            // 或 【
-            // /emp/listEmps_ByCompositeQuery.jsp】
 
             try {
                 /*************************** 1.接收請求參數 ***************************************/
@@ -417,6 +401,51 @@ public class Chat_GroupServlet extends HttpServlet {
                 RequestDispatcher successView = req.getRequestDispatcher(url); // 刪除成功後,轉交回送出刪除的來源網頁
                 successView.forward(req, res);
 
+                /*************************** 其他可能的錯誤處理 **********************************/
+            } catch (Exception e) {
+                errorMsgs.add("刪除資料失敗:" + e.getMessage());
+                RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
+                failureView.forward(req, res);
+            }
+        }
+
+        if ("cgmdelete".equals(action)) { // 來自listAllEmp.jsp 或
+System.out.println("cgmdelete in C action: " + action);
+            List<String> errorMsgs = new LinkedList<String>();
+            req.setAttribute("errorMsgs", errorMsgs);
+
+            String requestURL = req.getParameter("requestURL"); // 送出刪除的來源網頁路徑:
+
+            try {
+                /*************************** 1.接收請求參數 ***************************************/
+                String cgNo = new String(req.getParameter("cgNo"));
+                String memNo = new String(req.getParameter("memNo"));
+
+                /*************************** 2.開始刪除資料 ***************************************/
+                Chat_Group_ItemService cgiSvc = new Chat_Group_ItemService();
+                cgiSvc.deleteChat_Group_Item(cgNo, memNo);
+                /***************************
+                 * 3.刪除完成,準備轉交(Send the Success view)
+                 ***********/
+                List<Chat_Group_ItemVO> cglsit = cgiSvc.getOneChat_Group_Mem(memNo);
+                ;
+                System.out.println("memNo in listCGs_ByCgno: " + memNo);
+                if (cglsit == null) {
+                    errorMsgs.add("查無資料");
+                }
+                // Send the use back to the form, if there were errors
+                if (!errorMsgs.isEmpty()) {
+                    RequestDispatcher failureView = req.getRequestDispatcher("cgiiiiiilsit == null/listtAllCG.jsp");
+                    failureView.forward(req, res);
+                    return;// 程式中斷
+                }
+
+                req.setAttribute("cglsit", cglsit); // 資料庫取出的empVO物件,存入req
+                System.out.println("cglsit in cgmdelete: " + cglsit.size());
+                String url = "/frontend/chat/Chat_Group_Item/listCGs_ByMemNo.jsp";
+                RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listOneEmp.jsp
+                successView.forward(req, res);
+                
                 /*************************** 其他可能的錯誤處理 **********************************/
             } catch (Exception e) {
                 errorMsgs.add("刪除資料失敗:" + e.getMessage());

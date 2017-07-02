@@ -35,7 +35,7 @@ public class Chat_Group_ItemService {
 
     public List<Chat_Group_ItemVO> getOneChat_Group_Mem(String mem_no) {
 
-        return dao.findByCgNo(mem_no);
+        return dao.findByMemNo(mem_no);
     }
 
     public List<Chat_Group_ItemVO> getAll() {
